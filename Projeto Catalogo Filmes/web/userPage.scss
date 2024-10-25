@@ -1,0 +1,102 @@
+@import "./colors";
+
+.container{
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+.user_content{
+    gap: 16px;
+    flex-direction: column;
+
+    h1{
+        margin-right: 16px;
+    }
+
+    .edit_button{
+        display: block;
+
+        border-radius: 8px;
+        border: none;
+    
+        padding: 12px;
+    
+        color: $gray-400;
+        background: $gray-800;
+        transition: .4s;
+        cursor: pointer;
+        font-weight: 600;
+    
+        &:hover{
+            filter: brightness(1.1);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+    }
+    .actions_buttons{
+        gap: 16px;
+    }
+
+    .label{
+        text-align: center;
+        h4{
+            color: $gray-400;
+        }
+        p{
+            font-size: 24px;
+            font-weight: 500;
+        }
+    }
+
+
+}
+
+.avatar_container{
+    width: 264px;
+    height: 264px;
+    background-color: $purple-normal;
+    border-radius: 100%;
+}
+
+.modal_edit_user_info{
+    form{
+        flex-direction: column;
+        gap: 16px;
+    }
+    .avatar{
+        flex-direction: column;
+        gap: 16px;
+
+        .avatar_img{
+            width: 160px;
+            height: 160px;
+            background: $purple-normal;
+            border-radius: 100%;
+            overflow: hidden;
+
+            img{
+                width: 100%;
+                aspect-ratio: 1/1;
+            }
+        }
+    }
+    label.new_name_label{
+        span{
+            margin-bottom: 8px;
+            display: block;
+            color: $gray-300;
+        }
+    }
+    .input_style{
+        width: 100%;
+    }
+    .update_button{
+        background: $purple-gradient;
+        color: $gray-100;
+        font-size: 20px;
+    }
+}
+
+.hidden{
+    opacity: 0;
+    pointer-events: none;
+}

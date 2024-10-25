@@ -78,4 +78,55 @@ h1 {
 
 i {
   color: #E7E7E7;
+}
+
+.modal {
+  z-index: 99;
+  position: absolute;
+  min-height: 80px;
+  height: -moz-fit-content;
+  height: fit-content;
+  min-width: 300px;
+  width: -moz-fit-content;
+  width: fit-content;
+  border: 1px solid #171317;
+  border-radius: 8px;
+  margin: 100px 0;
+  background: #0F0C0F;
+  transition: 0.4s;
+}
+.modal .modal_header {
+  padding: 8px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #171317;
+}
+.modal .modal_header p {
+  font-size: 18px;
+  color: #ADA8AD;
+}
+.modal .modal_header .close {
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+  border: 0;
+  background: #878387;
+  cursor: pointer;
+}
+.modal .modal_content {
+  padding: 16px;
+}
+
+#modal_blur {
+  display: block;
+  inset: 0;
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.3);
+  transition: 0.2s;
+  -webkit-backdrop-filter: blur(3px);
+          backdrop-filter: blur(3px);
+  z-index: 20;
 }/*# sourceMappingURL=global.css.map */

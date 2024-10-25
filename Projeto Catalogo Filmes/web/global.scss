@@ -87,3 +87,55 @@ h1{
 i{
     color: $gray-100;
 }
+
+.modal{
+    z-index: 99;
+    position: absolute;
+    min-height: 80px;
+    height: fit-content;
+    min-width: 300px;
+    width: fit-content;
+    border: 1px solid $gray-800;
+    border-radius: 8px;
+    margin: 100px 0;
+    background: $gray-900;
+    transition: .4s;
+
+    .modal_header{
+        padding: 8px 16px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid $gray-800;
+
+        p{
+            font-size: 18px;
+            color: $gray-200;
+        }
+
+        .close{
+            width: 24px;
+            height: 24px;
+            border-radius: 4px;
+            border: 0;
+            background: $gray-300;
+            cursor: pointer;
+        }
+
+    }
+    .modal_content{
+        padding: 16px;
+    }
+}
+
+#modal_blur{
+    display: block;
+    inset: 0;
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.3);
+    transition: .2s;
+    backdrop-filter: blur(3px);
+    z-index: 20;
+}
