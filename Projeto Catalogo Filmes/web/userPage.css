@@ -1,0 +1,85 @@
+.container {
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.user_content {
+  gap: 16px;
+  flex-direction: column;
+}
+.user_content h1 {
+  margin-right: 16px;
+}
+.user_content .edit_button {
+  display: block;
+  border-radius: 8px;
+  border: none;
+  padding: 12px;
+  color: #665E66;
+  background: #171317;
+  transition: 0.4s;
+  cursor: pointer;
+  font-weight: 600;
+}
+.user_content .edit_button:hover {
+  filter: brightness(1.1);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+.user_content .actions_buttons {
+  gap: 16px;
+}
+.user_content .label {
+  text-align: center;
+}
+.user_content .label h4 {
+  color: #665E66;
+}
+.user_content .label p {
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.avatar_container {
+  width: 264px;
+  height: 264px;
+  background-color: #A411D4;
+  border-radius: 100%;
+}
+
+.modal_edit_user_info form {
+  flex-direction: column;
+  gap: 16px;
+}
+.modal_edit_user_info .avatar {
+  flex-direction: column;
+  gap: 16px;
+}
+.modal_edit_user_info .avatar .avatar_img {
+  width: 160px;
+  height: 160px;
+  background: #A411D4;
+  border-radius: 100%;
+  overflow: hidden;
+}
+.modal_edit_user_info .avatar .avatar_img img {
+  width: 100%;
+  aspect-ratio: 1/1;
+}
+.modal_edit_user_info label.new_name_label span {
+  margin-bottom: 8px;
+  display: block;
+  color: #878387;
+}
+.modal_edit_user_info .input_style {
+  width: 100%;
+}
+.modal_edit_user_info .update_button {
+  background: linear-gradient(to right, #C648EF, #8501B0);
+  color: #E7E7E7;
+  font-size: 20px;
+}
+
+.hidden {
+  opacity: 0;
+  pointer-events: none;
+}/*# sourceMappingURL=userPage.css.map */
