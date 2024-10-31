@@ -1,9 +1,10 @@
+<% %>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PÃ¡gina do usuÃ¡rio: nome do usuÃ¡rio</title>
+    <title>Página do usuário: nome do usuário</title>
     <link rel="stylesheet" href="./global.css">
     <link rel="stylesheet" href="userPage.css">
 </head>
@@ -16,7 +17,7 @@
                 <img src="" alt="">
             </div>
             <div class="flex">
-                <h1>Nome do usuÃ¡rio</h1> 
+                <h1>Nome do usuário</h1> 
                 <button class="edit_button" id="edit_user_info_button">edit</button>
             </div>
             <div class="label">
@@ -34,7 +35,7 @@
 
     <div class="modal modal_edit_user_info hidden">
         <div class="modal_header">
-            <p>Editar usuÃ¡rio</p>
+            <p>Editar usuário</p>
             <button class="close">X</button>
         </div>
         <div class="modal_content">

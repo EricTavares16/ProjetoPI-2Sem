@@ -10,13 +10,13 @@
  
  if ( user.getLogin() == true) { // faz o login no objeto user
     
-   String nome = user.retornarNomeUser();
-   session.setAttribute("usuarioName", nome);
-   response.sendRedirect("index.jsp");// carrega a página de sistema
+   Usuario userLogado = user.retornarUserLogado();
+   session.setAttribute("usuarioLogado", userLogado);
+   response.sendRedirect("Home.jsp");// carrega a página de sistema
    
  } else{
     String sHTML="<center>Opa! Login ou Senha não encontrados! Tente Novamente! <br>"
-    + "<a href = '/Projeto_Catalogo_Filmes'> Voltar </a></center>";
+    + "<a href = 'login.html'> Voltar </a></center>";
     out.println(sHTML);
    }
  %>
