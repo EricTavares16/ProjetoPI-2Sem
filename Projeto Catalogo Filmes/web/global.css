@@ -9,6 +9,10 @@
   text-decoration: none;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   display: flex;
   position: relative;
@@ -123,10 +127,16 @@ i {
   inset: 0;
   position: absolute;
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
+  height: 100%;
   background-color: rgba(0, 0, 0, 0.3);
   transition: 0.2s;
   -webkit-backdrop-filter: blur(3px);
           backdrop-filter: blur(3px);
   z-index: 20;
+}
+
+.hidden {
+  opacity: 0;
+  pointer-events: none;
 }/*# sourceMappingURL=global.css.map */

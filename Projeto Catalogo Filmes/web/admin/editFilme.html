@@ -111,7 +111,7 @@
                     <div class="div_list_inputs colunm">
                         <div class="input_div_grid desc_area">
                             <label>Atores Principais</label>
-                            <label class="input_capas"> <button>Adicionar Ator</button></label>
+                            <label class="input_capas"> <button onclick="openCloseModal('.modal_edit_user_info',1)">Adicionar Ator</button>                            </label>
                             <div class="container_actores_list ">
                                 <div class="container_inputs_edit_actor">
                                     <div class="div_picture_actor_input">
@@ -168,7 +168,36 @@
         
     </footer>
 
+    <div class="modal modal_edit_user_info hidden">
+        <div class="modal_header">
+            <p>Editar usuário</p>
+            <button class="close" data-modal-close>X</button>
+        </div>
+        <div class="modal_content">
+            <form class="flex">  
+                <div class="avatar flex-center">
+                    <div class="avatar_img flex-center">
+                        <img src="" alt="Avatar">
+                    </div>
+                    <label class="avatar_input">
+                        <input type="file" class="input_style">
+                    </label>
+                </div>
+                <label class="new_name_label">
+                    <span>Novo nome:</span>
+                    <input type="text" name="" id="" class="input_style">
+                </label>
+                <input type="submit" value="Atualizar" class="input_style update_button">
+            </form>
+        </div>
+    </div>
 
+    <div id="modal_blur" class="hidden"></div>
+
+
+    
+    
+    <script src="../scriptGlobal.js"></script>
     <script src="https://kit.fontawesome.com/3d5034d18d.js" crossorigin="anonymous"></script>
 
 </body>

@@ -1,26 +1,34 @@
-const blur = document.querySelector("#modal_blur")
-const botaoDeFecharModal = document.querySelectorAll("[data-modal-close]")
-const arrModais = document.querySelectorAll(".modal")
+const blur = document.querySelector("#modal_blur");
+const botaoDeFecharModal = document.querySelectorAll("[data-modal-close]");
 
 const openCloseModal = (modalClass, openOrClose = 1) => {
-    const modalRef = document.querySelector(modalClass)
-    if(openOrClose){
-        modalRef.classList.remove("hidden")
-        blur.classList.remove("hidden")
-    }else{
-        modalRef.classList.add("hidden")
-        blur.classList.add("hidden")
+    const modalRef = document.querySelector(modalClass);
+    const blur = document.querySelector("#modal_blur");
+    if (modalRef && blur) {
+        if (openOrClose) {
+            modalRef.classList.remove("hidden");
+            blur.classList.remove("hidden");
+            window.scrollTo(0,0)
+        } else {
+            modalRef.classList.add("hidden");
+            blur.classList.add("hidden");
+        }
+    } else {
+        console.log("Erro, modal ou blur não encontrado: ", modalClass)
     }
-}
+};
 
-botaoDeFecharModal.forEach(close =>{
-    close.addEventListener("click", ()=> {
-        arrModais.forEach(modal =>{
-            const arrClass = modal.className.split(" ")
-            openCloseModal(`.${arrClass[1]}`, 0)
-        })
-    })
-})
+
+botaoDeFecharModal.forEach(close => {
+    close.addEventListener("click", () => {
+        document.querySelectorAll(".modal").forEach(modal => {
+            modal.classList.add("hidden");
+        });
+        blur.classList.add("hidden");
+        console.log("Todos os modais fechados e blur oculto");
+    });
+});
+
 
 
 // Exemplo para utilizar a função de abrir modal
