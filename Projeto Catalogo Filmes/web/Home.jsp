@@ -122,5 +122,7 @@
 
         </div>
     </main>
+    
+    <script src="scriptGlobal.js"></script>
 </body>
 </html>
