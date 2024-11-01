@@ -1,3 +1,8 @@
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="model.Usuario"%>
+<%Usuario userLogado = (Usuario) session.getAttribute("usuarioLogado");%>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -18,8 +23,14 @@
             <img src="./imgs/destaque_foto.png" alt="Foto do filme destaque do sistema">
         </div>
         <div class="container">
-            <a href="#" class="avatar_image flex-center">
-                <img src="#" alt="Sua foto de usuario" onclick="window.location.assign('login.html');">
+            <a href="userPage.jsp" class="avatar_image flex-center">
+                <%
+    if (userLogado == null) {
+        response.sendRedirect("login.jsp"); // Substitua "login.jsp" pela página de destino
+    }
+%>
+
+<h3><%= userLogado.getNome() %></h3>            
             </a>
             <a href="#" class="input_style btn_detalhes_destaque">Detalhes</a>
         </div>
