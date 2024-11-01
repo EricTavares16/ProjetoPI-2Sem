@@ -21,7 +21,7 @@
             </div>
             <div class="flex">
                 <h1><%= userLogado.getNome() %></h1> 
-                <button class="edit_button" id="edit_user_info_button">edit</button>
+                <button class="edit_button" id="edit_user_info_button" onclick="openCloseModal('.modal_edit_user_info')">edit</button>
             </div>
             <div class="label">
                 <h4>Email:</h4>
@@ -40,7 +40,7 @@
     <div class="modal modal_edit_user_info hidden">
         <div class="modal_header">
             <p>Editar usuário</p>
-            <button class="close">X</button>
+            <button class="close" data-modal-close>X</button>
         </div>
         <div class="modal_content">
             <form class="flex">  
@@ -64,6 +64,6 @@
     <div id="modal_blur" class="hidden">
     </div>
 
-    <script src="./userPage.js"></script>
+ <script src="scriptGlobal.js"></script>
 </body>
 </html>
