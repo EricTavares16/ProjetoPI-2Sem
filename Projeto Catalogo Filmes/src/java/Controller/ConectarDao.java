@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException; // Tratamento de Erros SQL
 import java.sql.Connection; // Armazena a Conexão Aberta
 import java.sql.PreparedStatement;
+
 public class ConectarDao {
 
     public Connection con = null;
@@ -50,13 +51,95 @@ Pela excessão da clausula try. */
                     + "DS_EMAIL varchar(200) not null UNIQUE,"
                     + "DS_SENHA varchar(200) not null ,"
                     + "primary key (ID_USUARIO))";
-            
             ps = con.prepareStatement(sql); // prepara o objeto que irá executar o comando SQL
             ps.executeUpdate();// Executa o comando SQL
 
+            sql = "CREATE TABLE IF NOT EXISTS TB_FILME ("
+                    + "ID_FILME INT NOT NULL AUTO_INCREMENT,"
+                    + "NM_FILME VARCHAR(200) NOT NULL,"
+                    + "DS_SINOPSE VARCHAR(200)NOT NULL,"
+                    + "HR_DURACAO TIME NOT NULL,"
+                    + "DT_LANCAMENTO DATE NOT NULL,"
+                    + "VL_AVALIACAO DECIMAL(2, 1) NOT NULL,"
+                    + "NR_CLASSIFICACAO_INDICATIVA INT NOT NULL,"
+                    + "primary key (ID_FILME)"
+                    + ");";
+
+            ps = con.prepareStatement(sql); // prepara o objeto que irá executar o comando SQL
+            ps.executeUpdate();// Executa o comando SQL
+
+            sql = "CREATE TABLE IF NOT EXISTS TB_ATOR ("
+                    + "ID_ATOR INT NOT NULL AUTO_INCREMENT,"
+                    + "NM_ATOR VARCHAR(200) NOT NULL,"
+                    + "NR_IDADE INT NOT NULL,"
+                    + "primary key (ID_ATOR)"
+                    + ");";
+
+            ps = con.prepareStatement(sql); // prepara o objeto que irá executar o comando SQL
+            ps.executeUpdate();// Executa o comando SQL
+
+            sql = "CREATE TABLE IF NOT EXISTS TB_FILME_ATOR ("
+                    + "ID_FILME_ATOR INT NOT NULL AUTO_INCREMENT,"
+                    + "ID_FILME INT NOT NULL,"
+                    + "ID_ATOR INT NOT NULL,"
+                    + "primary key (ID_FILME_ATOR),"
+                    + "FOREIGN KEY (ID_FILME) REFERENCES TB_FILME(ID_FILME),"
+                    + "FOREIGN KEY (ID_ATOR) REFERENCES TB_ATOR(ID_ATOR)"
+                    + ");";
+
+            ps = con.prepareStatement(sql); // prepara o objeto que irá executar o comando SQL
+            ps.executeUpdate();// Executa o comando SQL
+
+                    sql = "CREATE TABLE IF NOT EXISTS TB_GENERO ("
+                    + "ID_GENERO INT NOT NULL AUTO_INCREMENT,"
+                    + "NM_GENERO VARCHAR(200) NOT NULL,"
+                    + "primary key (ID_GENERO)"
+                    + ");";
+
+            ps = con.prepareStatement(sql); // prepara o objeto que irá executar o comando SQL
+            ps.executeUpdate();// Executa o comando SQL
+
+            sql = "CREATE TABLE IF NOT EXISTS TB_GENERO_FILME ("
+                    + "ID_GENERO_FILME INT NOT NULL AUTO_INCREMENT,"
+                    + "ID_FILME INT NOT NULL,"
+                    + "ID_GENERO INT NOT NULL,"
+                    + "primary key (ID_GENERO_FILME),"
+                    + "FOREIGN KEY (ID_FILME) REFERENCES TB_FILME(ID_FILME),"
+                    + "FOREIGN KEY (ID_GENERO) REFERENCES TB_GENERO(ID_GENERO)"
+                    + ");";
+
+            ps = con.prepareStatement(sql); // prepara o objeto que irá executar o comando SQL
+            ps.executeUpdate();// Executa o comando SQL
+            
+            sql = "CREATE TABLE IF NOT EXISTS TB_COMENTARIO ("
+                    + "ID_COMENTARIO INT NOT NULL AUTO_INCREMENT,"
+                    + "ID_FILME INT NOT NULL,"
+                    + "ID_USUARIO INT NOT NULL,"
+                    + "DS_COMENTARIO VARCHAR(400) NOT NULL,"
+                    + "DT_COMENTARIO DATE NOT NULL,"
+                    + "primary key (ID_COMENTARIO),"
+                    + "FOREIGN KEY (ID_FILME) REFERENCES TB_FILME(ID_FILME),"
+                    + "FOREIGN KEY (ID_USUARIO) REFERENCES TB_USUARIO(ID_USUARIO)"
+                    + ");";
+
+            ps = con.prepareStatement(sql); // prepara o objeto que irá executar o comando SQL
+            ps.executeUpdate();// Executa o comando SQL
+            
+            sql = "CREATE TABLE IF NOT EXISTS TB_FAVORITO ("
+                    + "ID_FAVORITO INT NOT NULL AUTO_INCREMENT,"
+                    + "ID_FILME INT NOT NULL,"
+                    + "ID_USUARIO INT NOT NULL,"
+                    + "primary key (ID_FAVORITO),"
+                    + "FOREIGN KEY (ID_FILME) REFERENCES TB_FILME(ID_FILME),"
+                    + "FOREIGN KEY (ID_USUARIO) REFERENCES TB_USUARIO(ID_USUARIO)"
+                    + ");";
+
+            ps = con.prepareStatement(sql); // prepara o objeto que irá executar o comando SQL
+            ps.executeUpdate();// Executa o comando SQL
         } catch (SQLException err) {
             htmlError = err.getMessage();
         }
     }
+
 }
 
