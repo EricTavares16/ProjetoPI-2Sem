@@ -10,6 +10,7 @@ public class Usuario extends ConectarDao implements IcrudDao  {
     public String nome;
     public String email;
     public String senha;
+    public int pkuser;
 
 
      public String getId() {
@@ -113,8 +114,7 @@ public class Usuario extends ConectarDao implements IcrudDao  {
 
     //esse aqui a gente vai usar isso aqui pra outra coisa, pra substituir a imagem.
     public void alterar(){
-    try { sql = "update TB_USUARIO set NM_USUARIO=?, DS_EMAIL=?"
-        + " DS_SENHA=?, where DS_EMAIL=? ";
+    try { sql = "UPDATE TB_USUARIO SET NM_USUARIO=?, DS_EMAIL=?, DS_SENHA=? WHERE  UCASE(TRIM(DS_EMAIL)) = UCASE(TRIM(?))";
         ps = con.prepareStatement(sql); // prepara SQL
         ps.setString(1, nome); // Configura Parametros
         ps.setString(2, email); // Configura Parametros
@@ -123,20 +123,46 @@ public class Usuario extends ConectarDao implements IcrudDao  {
         ps.executeUpdate(); // executa comando SQL
             this.statusSQL = null; // armazena null se deu tudo certo
         } catch (SQLException ex) {
-    this.statusSQL = "Erro ao Alterar usuario ! <br> " +
-    ex.getMessage();    
+    this.statusSQL = "Erro ao Alterar usuario ! <br> " +    ex.getMessage();    
     } 
  }
+    
+    public void deletar() {
+        try { sql = "DELETE FROM TB_USUARIO WHERE UCASE(TRIM(DS_EMAIL)) = UCASE(TRIM(?))";
+        ps = con.prepareStatement(sql); // prepara SQL
+        ps.setString(1, email); // Configura Parametros
+        ps.executeUpdate(); // executa comando SQL
+            this.statusSQL = null; // armazena null se deu tudo certo
+         } catch (SQLException ex) {
+        this.statusSQL = "Erro ao encontrar usuario ! <br> " + ex.getMessage();
+ }}
+    
+    public boolean buscarEmail() {
+            
+        try {
+            
+                sql = "select * from TB_USUARIO where DS_EMAIL = ? ";
+                ps = con.prepareStatement(sql); // prepara SQL
+                ps.setString(1, email); // Configura Parametros
+                tab = ps.executeQuery(); // Executa comando SQL
+                if (tab.next()) {
+               // this.pkuser = tab.getInt("ID_USUARIO");
+                this.nome = tab.getString("NM_USUARIO");
+                this.email = tab.getString("DS_EMAIL");
+/*                this.img = tab.getString("NM_IMAGEM");*/
+                return true;}
+                this.statusSQL = null; // armazena null se deu tudo certo
+                 } catch (SQLException ex) {
+                    this.statusSQL = "Erro ao tentar buscar Usuário! " + ex.getMessage();
+                    } return false;
+        }
 
 @Override
 public boolean salvar() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    @Override
-public boolean deletar() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+
 
     @Override
 public boolean buscar() {
