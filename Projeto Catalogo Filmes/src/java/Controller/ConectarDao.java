@@ -50,6 +50,7 @@ Pela excessão da clausula try. */
                     + "NM_USUARIO varchar(200) not null ,"
                     + "DS_EMAIL varchar(200) not null UNIQUE,"
                     + "DS_SENHA varchar(200) not null ,"
+                    + "IMG_FOTO varchar(20) null ,"
                     + "primary key (ID_USUARIO))";
             ps = con.prepareStatement(sql); // prepara o objeto que irá executar o comando SQL
             ps.executeUpdate();// Executa o comando SQL
