@@ -78,8 +78,8 @@ public class Usuario extends ConectarDao implements IcrudDao  {
     
     public boolean getLogin() {
         
-        if (email.equals("admin") && senha.equals("1234")) 
-        return true;
+      //  if (email.equals("admin") && senha.equals("1234")) 
+      //  return true;
         
         try {
             
@@ -97,12 +97,12 @@ public class Usuario extends ConectarDao implements IcrudDao  {
 
              return true;
             }
-            if (email.equals("admin") && senha.equals("1234")) {
+          /*  if (email.equals("admin") && senha.equals("1234")) {
                 nome = "";
                 email = "";
                 pkuser = 0;
                 foto = "";
-                return true;}
+                return true;}*/
                 this.statusSQL = null;// armazena null se deu tudo certo
         } catch (SQLException ex) {
             this.statusSQL = "Erro ao tentar buscar Usuário! " + ex.getMessage();
