@@ -22,10 +22,8 @@
     
  
      String oper = request.getParameter("oper");
-     /* Para gravar pega as requisições e faz a consistência */
+     /* Para gravar pega as requisiÃ§Ãµes e faz a consistÃªncia */
     if ("Atualizar".equals(oper) && sHTML.isBlank()) {
-        user.nome = request.getAttribute("novoNome");
-        user.foto = fotoUserLogado;
      if (!user.buscarEmail()) {
      user.incluir(); } else { user.alterar(); }
     }
@@ -39,7 +37,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página do usuário: nome do usuário</title>
+    <title>PÃ¡gina do usuÃ¡rio: nome do usuÃ¡rio</title>
     <link rel="stylesheet" href="./global.css">
     <link rel="stylesheet" href="userPage.css">
 </head>
@@ -71,7 +69,7 @@
 
     <div class="modal modal_edit_user_info hidden">
         <div class="modal_header">
-            <p>Editar usuário</p>
+            <p>Editar usuÃ¡rio</p>
             <button class="close" data-modal-close>X</button>
         </div>
         <div class="modal_content">
