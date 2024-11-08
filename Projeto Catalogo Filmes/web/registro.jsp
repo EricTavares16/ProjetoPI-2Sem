@@ -2,7 +2,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <% Usuario user = new Usuario(); // Instancia o objeto Usuario 
 
- if ( !(user.statusSQL == null) ) out.println(user.statusSQL);
+ 
  // preenche os atributos do objeto usuario
     String senhas = request.getParameter("senha");
     String rpsenhas = request.getParameter("rpsenha");

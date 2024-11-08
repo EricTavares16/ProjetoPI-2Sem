@@ -1,7 +1,10 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="model.Usuario"%>
-<%Usuario userLogado = (Usuario) session.getAttribute("usuarioLogado");
+
+<% 
+
+Usuario userLogado = (Usuario) session.getAttribute("usuarioLogado");
 String fotoUserLogado = userLogado.getFoto();
 String fotoCaminho = " ";
     if (fotoUserLogado == null){ fotoUserLogado = " ";

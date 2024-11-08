@@ -24,7 +24,6 @@
      String oper = request.getParameter("oper");
      /* Para gravar pega as requisições e faz a consistência */
     if ("Atualizar".equals(oper) && sHTML.isBlank()) {
-        user.foto = fotoUserLogado;
      if (!user.buscarEmail()) {
      user.incluir(); } else { user.alterar(); }
     }
