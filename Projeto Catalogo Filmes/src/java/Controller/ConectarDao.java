@@ -137,6 +137,11 @@ Pela excessão da clausula try. */
 
             ps = con.prepareStatement(sql); // prepara o objeto que irá executar o comando SQL
             ps.executeUpdate();// Executa o comando SQL
+            
+            sql = "INSERT IGNORE INTO TB_USUARIO (NM_USUARIO, DS_EMAIL, DS_SENHA) VALUES ('admin', 'admin', '1234');";
+
+            ps = con.prepareStatement(sql); // prepara o objeto que irá executar o comando SQL
+            ps.executeUpdate();// Executa o comando SQL
         } catch (SQLException err) {
             htmlError = err.getMessage();
         }

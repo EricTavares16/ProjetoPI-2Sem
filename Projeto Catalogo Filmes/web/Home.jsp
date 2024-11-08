@@ -1,7 +1,10 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="model.Usuario"%>
-<%Usuario userLogado = (Usuario) session.getAttribute("usuarioLogado");
+
+<% 
+
+Usuario userLogado = (Usuario) session.getAttribute("usuarioLogado");
 String fotoUserLogado = userLogado.getFoto();
 String fotoCaminho = " ";
     if (fotoUserLogado == null){ fotoUserLogado = " ";
@@ -41,7 +44,7 @@ String fotoCaminho = " ";
 
 <!--<h3><%= fotoCaminho %></h3--><img src="<%= fotoCaminho %>" alt="">
             </a>
-            <a href="#" class="input_style btn_detalhes_destaque">Detalhes</a>
+            <a href="admin/cadNewFilme.html" class="input_style btn_detalhes_destaque">Detalhes</a>
         </div>
     </header>
     <main class="big_container flex-center">
