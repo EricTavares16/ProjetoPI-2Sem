@@ -25,7 +25,6 @@ botaoDeFecharModal.forEach(close => {
             modal.classList.add("hidden");
         });
         blur.classList.add("hidden");
-        console.log("Todos os modais fechados e blur oculto");
     });
 });
 

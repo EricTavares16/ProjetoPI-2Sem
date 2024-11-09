@@ -38,43 +38,102 @@
   font-size: 24px;
   font-weight: 500;
 }
-
-.avatar_container {
+.user_content .avatar_user_page {
+  position: relative;
+}
+.user_content .avatar_user_page .avatar_container {
   width: 264px;
   height: 264px;
-  background-color: #A411D4;
+  background: #A411D4;
+  overflow: hidden;
   border-radius: 100%;
 }
+.user_content .avatar_user_page .avatar_container .edit_icon {
+  display: ab;
+}
+.user_content .avatar_user_page .avatar_container img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+}
+.user_content .avatar_user_page .edit_icon {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: #211D21;
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.user_content .avatar_user_page .edit_icon svg {
+  width: 16px;
+}
+.user_content .avatar_user_page .edit_icon svg path {
+  fill: #E7E7E7;
+}
+.user_content .avatar_user_page .edit_icon:hover {
+  filter: brightness(1.2);
+}
 
-.modal_edit_user_info form {
+.modal_edit_user_name form {
   flex-direction: column;
   gap: 16px;
 }
-.modal_edit_user_info .avatar {
+.modal_edit_user_name label.new_name_label span {
+  margin-bottom: 8px;
+  display: block;
+  color: #878387;
+}
+.modal_edit_user_name .input_style {
+  width: 100%;
+}
+.modal_edit_user_name .update_button {
+  background: linear-gradient(to right, #C648EF, #8501B0);
+  color: #E7E7E7;
+  font-size: 20px;
+}
+
+.modal_edit_user_img form {
+  flex-direction: column;
+}
+.modal_edit_user_img .input_style {
+  width: 100%;
+}
+.modal_edit_user_img .update_button {
+  background: linear-gradient(to right, #C648EF, #8501B0);
+  color: #E7E7E7;
+  font-size: 20px;
+}
+.modal_edit_user_img label.new_name_label {
+  margin-bottom: 16px;
+}
+.modal_edit_user_img label.new_name_label span {
+  margin-bottom: 8px;
+  display: block;
+  color: #878387;
+}
+.modal_edit_user_img .avatar {
   flex-direction: column;
   gap: 16px;
+  margin-bottom: 16px;
 }
-.modal_edit_user_info .avatar .avatar_img {
+.modal_edit_user_img .avatar .avatar_img {
   width: 160px;
   height: 160px;
   background: #A411D4;
   border-radius: 100%;
   overflow: hidden;
 }
-.modal_edit_user_info .avatar .avatar_img img {
+.modal_edit_user_img .avatar .avatar_img img {
   width: 100%;
-  aspect-ratio: 1/1;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
 }
-.modal_edit_user_info label.new_name_label span {
-  margin-bottom: 8px;
-  display: block;
-  color: #878387;
-}
-.modal_edit_user_info .input_style {
-  width: 100%;
-}
-.modal_edit_user_info .update_button {
-  background: linear-gradient(to right, #C648EF, #8501B0);
-  color: #E7E7E7;
-  font-size: 20px;
-}/*# sourceMappingURL=userPage.css.map */
