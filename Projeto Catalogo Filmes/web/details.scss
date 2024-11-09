@@ -23,11 +23,15 @@
 
         .content{
             .voltar_btn{
-                border-radius: 16px;
-                aspect-ratio: 1 / 1;
+                display: flex;
                 width: 48px;
-                background-color: #211C21;
-                color: $gray-200;
+                height: 48px;
+                border-radius: 16px;
+                padding: 0;
+                svg{
+                    width: 16px;
+                    fill: $gray-100;
+                }
             }
             h1{
                 font-size: 40px;
@@ -157,7 +161,37 @@ main{
             flex-direction: column;
             align-items: flex-end;
             gap: 16px;
-            .input_style:last-child{
+
+            .select_star{
+                display: flex; 
+                align-items: center; 
+                justify-items: center;
+                padding: 0;              
+                padding-left: 16px;
+                gap: 8px;
+                .star_icon{
+                    width: 16px;
+                    svg{
+                        width: inherit;
+                        path{
+                            fill: $yellow-normal;
+                        }
+                    }
+                }
+
+                select{
+                    background: $gray-800;
+                    border: none;
+                    height: 40px;
+                    outline: none;
+                    color: $gray-100;
+                    border-top-right-radius: 100%;
+                    border-bottom-right-radius: 100%;
+                    width: 56px;
+                }
+            }
+
+            .input_style[type="submit"]{
                 background: $purple-normal;
                 color: white;
             }

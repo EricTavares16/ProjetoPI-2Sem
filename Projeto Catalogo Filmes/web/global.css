@@ -56,6 +56,16 @@ img {
   align-items: center;
 }
 
+.w-full {
+  width: 100%;
+}
+
+.flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .input_style {
   display: block;
   border-radius: 999px;
