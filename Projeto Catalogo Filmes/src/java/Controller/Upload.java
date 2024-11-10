@@ -46,7 +46,7 @@ public class Upload extends HttpServlet {
         String pkuser = request.getParameter("pkuser");
         String email = request.getParameter("email");
         if (pkuser == null) {
-            response.sendRedirect("./login.html");
+            response.sendRedirect("./login.jsp");
         }
         // Monta o nome do arquivo destino com extensão
         fileName = filePart.getSubmittedFileName(); // nome original
@@ -73,20 +73,7 @@ public class Upload extends HttpServlet {
             while ((length = input.read(buffer)) > 0) {
                 output.write(buffer, 0, length);
             }
-            // Grava o nome da foto na tabela Usuários
-            Usuario user = new Usuario();
-            user.foto = nomeGravar;
-            user.email = email;
-            if (user.email.length() > 0) {
-                user.atualizarFoto();
-            }
-            if (user.statusSQL == null) {
-                String urlcaminho = request.getContextPath();
-                urlcaminho += "/Home.jsp?oper=";
-                response.sendRedirect(urlcaminho);
-            }
 
-            erro = user.statusSQL + "&#92;" + user.email + " " + nomeGravar + " " + user.sql;
         } catch (IOException e) {
             e.printStackTrace();
             response.sendRedirect("/userPage.jsp?oper=");

@@ -10,77 +10,17 @@ import java.sql.SQLException;
  *
  * @author Megas-XRL8
  */
-public class Filmes extends ConectarDao implements IcrudDao   {
+public class Filme extends ConectarDao implements IcrudDao   {
     
-    private String nome;
-    private String sinopse;
-    private String duracao;
-    private String dataLancamento;
-    private double avaliacao;
-    private int classificacao;
-    private int pkuser;
-    
-    
-    
-    
+    public String nome;
+    public String sinopse;
+    public String duracao;
+    public String dataLancamento;
+    public double avaliacao;
+    public int classificacao;
+    public int pkuser;
     
 
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getSinopse() {
-        return sinopse;
-    }
-
-    public void setSinopse(String sinopse) {
-        this.sinopse = sinopse;
-    }
-
-    public String getDuracao() {
-        return duracao;
-    }
-
-    public void setDuracao(String duracao) {
-        this.duracao = duracao;
-    }
-
-    public String getDataLancamento() {
-        return dataLancamento;
-    }
-
-    public void setDataLancamento(String dataLancamento) {
-        this.dataLancamento = dataLancamento;
-    }
-
-    public double getAvaliacao() {
-        return avaliacao;
-    }
-
-    public void setAvaliacao(double avaliacao) {
-        this.avaliacao = avaliacao;
-    }
-
-    public int getClassificacao() {
-        return classificacao;
-    }
-
-    public void setClassificacao(int classificacao) {
-        this.classificacao = classificacao;
-    }
-
-    public int getPkuser() {
-        return pkuser;
-    }
-
-    public void setPkuser(int pkuser) {
-        this.pkuser = pkuser;
-    }
-    
         public void incluir(){
         
     try { sql = "insert into TB_FILME (NM_USUARIO, DS_EMAIL, DS_SENHA) "
