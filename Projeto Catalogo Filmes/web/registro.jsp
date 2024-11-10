@@ -7,18 +7,28 @@
     String senhas = request.getParameter("senha");
     String rpsenhas = request.getParameter("rpsenha");
     String buttonval = request.getParameter("oper");
-    
+    String sHTML = "";
     
     if(senhas != null && rpsenhas != null && senhas.equals(rpsenhas) && "1".equals(buttonval)){
         user.nome = request.getParameter("nome");
         user.email = request.getParameter("email");
         user.senha = senhas;
-        user.incluir(); // chama o método para fazer a inclusão no banco de dados
+        if (buttonval.equals("1")) {
+        if (user.buscarEmail()) {
+            user.alterar();
+            sHTML = "<br><br><center>Usuário alterado com Sucesso!<br>"
+                    + "<a href = './login.jsp'> Voltar </a></center>";
+        } else {
+            user.incluir();
+            sHTML = "<br><br><center>Usuário criado com Sucesso!<br>"
+                    + "<a href = './login.jsp'> Voltar </a></center>";
+        }
+    }   
+    sHTML = user.statusSQL;out.print(sHTML);
         
         if(user.getLogin() == true){
-            response.sendRedirect("login.html");
+            response.sendRedirect("login.jsp");
         }
-        
     }
 %>
 
@@ -122,7 +132,7 @@
                 <!--<input class="input_style" type="submit" value="Enviar" name="Enviar"
                     onclick="formreg.oper.value = '1';"> -->
                 <ul class="fazerCadastro">
-                    <p>Ja tem login? <a class="Cadastrar" href="login.html">Entrar</a></p>
+                    <p>Ja tem login? <a class="Cadastrar" href="login.jsp">Entrar</a></p>
                 </ul>
 
             </form>

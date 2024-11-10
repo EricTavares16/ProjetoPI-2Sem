@@ -10,14 +10,16 @@
  user.setSenha(senha); // mude para user.setSenha(senha); 
  
  if ( user.getLogin() == true) { // faz o login no objeto user
-    
    Usuario userLogado = user.retornarUserLogado();
    session.setAttribute("usuarioLogado", userLogado);
-   response.sendRedirect("Home.jsp");// carrega a página de sistema
-   
+   session.setAttribute("nome", user.nome);
+            session.setAttribute("email", user.email);
+            session.setAttribute("pkuser", user.pkuser);
+            response.sendRedirect("Home.jsp");// carrega a página de sistema
+
  } else if(email != null) {
     String sHTML="<center>Opa! Login ou Senha não encontrados! Tente Novamente! <br>"
-    + "<a href = 'login.html'> Voltar </a></center>";
+    + "<a href = 'login.jsp'> Voltar </a></center>";
     out.println(sHTML);
    }
  %>
@@ -94,7 +96,7 @@
                          -->
                 <hr class="linhaLogin">
                 <ul class="fazerCadastro">
-                    <p>Não tem login? <a class="Cadastrar" href="registro.html" onclick="document.getElementById('idOper').value='acessar';
+                    <p>Não tem login? <a class="Cadastrar" href="registro.jsp" onclick="document.getElementById('idOper').value='acessar';
                                 submit();window.location.assign('registro.jsp');">Cadastre-se</a></p>
                 </ul>
                 </td>

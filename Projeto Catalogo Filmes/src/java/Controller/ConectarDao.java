@@ -50,7 +50,7 @@ Pela excessão da clausula try. */
                     + "NM_USUARIO varchar(200) not null ,"
                     + "DS_EMAIL varchar(200) not null UNIQUE,"
                     + "DS_SENHA varchar(200) not null ,"
-                    + "IMG_FOTO varchar(20) null ,"
+                    + "IMG_FOTO longblob null ,"
                     + "primary key (ID_USUARIO))";
             ps = con.prepareStatement(sql); // prepara o objeto que irá executar o comando SQL
             ps.executeUpdate();// Executa o comando SQL
@@ -61,8 +61,8 @@ Pela excessão da clausula try. */
                     + "DS_SINOPSE VARCHAR(200)NOT NULL,"
                     + "HR_DURACAO TIME NOT NULL,"
                     + "DT_LANCAMENTO DATE NOT NULL,"
-                    + "VL_AVALIACAO DECIMAL(2, 1) NOT NULL,"
-                    + "NR_CLASSIFICACAO_INDICATIVA INT NOT NULL,"
+                    + "VL_AVALIACAO DECIMAL(2, 1) NULL,"
+                    + "NR_CLASSIFICACAO_INDICATIVA INT NULL,"
                     + "primary key (ID_FILME)"
                     + ");";
 
@@ -138,7 +138,7 @@ Pela excessão da clausula try. */
             ps = con.prepareStatement(sql); // prepara o objeto que irá executar o comando SQL
             ps.executeUpdate();// Executa o comando SQL
             
-            sql = "INSERT IGNORE INTO TB_USUARIO (NM_USUARIO, DS_EMAIL, DS_SENHA) VALUES ('admin', 'admin', '1234');";
+            sql = "INSERT INTO TB_USUARIO (NM_USUARIO, DS_EMAIL, DS_SENHA)SELECT 'admin', 'admin', '1234'WHERE NOT EXISTS (SELECT 1 FROM TB_USUARIO WHERE DS_EMAIL = 'admin');";
 
             ps = con.prepareStatement(sql); // prepara o objeto que irá executar o comando SQL
             ps.executeUpdate();// Executa o comando SQL

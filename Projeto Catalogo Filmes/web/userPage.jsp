@@ -4,31 +4,13 @@
     String nomeLogado = userLogado.getNome();
     String emailLogado = userLogado.getEmail();
     int pkUserLogado = userLogado.getPkuser();
-    String fotoUserLogado = userLogado.getFoto();
-    if (userLogado == null) response.sendRedirect("./login.html");
-
-    
+    if (userLogado == null) response.sendRedirect("./login.jsp");
 
     String foto = "", nome = "", email = "", senha = "", sHTML = "";
     String pkuser = "";
     Usuario user = new Usuario(); // Instancia o objeto Usuario
-    String fotoCaminho = " ";
-    if (fotoUserLogado == null){ fotoUserLogado = " ";
-    fotoCaminho = "./imgs/foto34.png";
-    }else{
-    fotoCaminho = "./imgs" + "&#92;" + fotoUserLogado.trim();
-    fotoCaminho = fotoCaminho.trim();}
     
-    
- 
-     String oper = request.getParameter("oper");
-     /* Para gravar pega as requisições e faz a consistência */
-    if ("Atualizar".equals(oper) && sHTML.isBlank()) {
-     if (!user.buscarEmail()) {
-     user.incluir(); } else { user.alterar(); }
-    }
-
-
+    if (user.buscarEmail())out.print("");
     if (!(user.statusSQL == null)) out.println(user.statusSQL);%>
 
 
@@ -47,7 +29,7 @@
         <div class="user_content flex-center">
 
             <div class="avatar_container flex-center">
-                <img src="<%= fotoCaminho %>" alt="FotoLogado">
+                <img src="data:image/png;base64,<%if(userLogado.imagemBase64 != null)out.print(userLogado.imagemBase64);%>" alt="<%out.print(userLogado.email);%> ">
             </div>
             <div class="flex">
                 <h1><%= userLogado.getNome() %></h1> 
@@ -73,14 +55,15 @@
             <button class="close" data-modal-close>X</button>
         </div>
         <div class="modal_content">
-            <form class="flex" action="./Upload" name = formFoto method=post enctype="multipart/form-data">  
+            <form class="flex" action="./CadUser" name = formFoto method=post enctype="multipart/form-data">  
 
                 <input type="hidden" name = pkuser value ="<%=pkUserLogado%>" >
                 <input type="hidden" name = email value ="<%=emailLogado%>" >
+                <input type="hidden" name = nome value ="<%= request.getParameter("nomezinho") %>" >
                 
                 <div class="avatar flex-center">
                     <div class="avatar_img flex-center">
-                        <img src="<%= fotoCaminho %>" alt="Avatar">
+                        <img src="data:image/png;base64,<%if(userLogado.imagemBase64 != null)out.print(userLogado.imagemBase64);%>" alt="Foto" >
                     </div>
                     <label class="avatar_input">
                         <input type="file" class="input_style" name="arquivo" id = "arq">
@@ -88,16 +71,9 @@
                 </div>
                 <label class="new_name_label">
                     <span>Novo nome:</span>
-                    <input type="text" name="" id="" class="input_style">
+                    <input type="text" name="nomezinho" id="nomezinho" class="input_style">
                 </label>
-                    <input type="button" value="Atualizar" class="input_style update_button" onclick=" 
-                        if(formFoto.arquivo.files.length > 0){
-                            submit();formreg.oper.value = 'Atualizar'; submit(); 
-               } else { 
-                 formreg.oper.value = 'Atualizar';
-                 close();
-                 exit();}
-                   ">
+                    <input type="submit" name="gravar" value="gravar" class="input_style update_button" onclick="">
             </form>
         </div>
     </div>

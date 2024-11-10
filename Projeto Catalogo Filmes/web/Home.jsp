@@ -3,15 +3,10 @@
 <%@page import="model.Usuario"%>
 
 <% 
-
+Usuario user = new Usuario();
 Usuario userLogado = (Usuario) session.getAttribute("usuarioLogado");
-String fotoUserLogado = userLogado.getFoto();
-String fotoCaminho = " ";
-    if (fotoUserLogado == null){ fotoUserLogado = " ";
-    fotoCaminho = "./imgs/foto34.png";
-    }else{
-    fotoCaminho = "./imgs" + "&#92;" + fotoUserLogado.trim();
-    fotoCaminho = fotoCaminho.trim();}
+
+ String nomeUser = (String) session.getAttribute("nome");
 
 %>
 
@@ -42,9 +37,9 @@ String fotoCaminho = " ";
     }
 %>
 
-<!--<h3><%= fotoCaminho %></h3--><img src="<%= fotoCaminho %>" alt="">
+<!--<h3></h3--><img src="data:image/png;base64,<%if(userLogado.imagemBase64 != null)out.print(userLogado.imagemBase64);%>" alt="<%out.print(userLogado.email);%>">
             </a>
-            <a href="admin/cadNewFilme.html" class="input_style btn_detalhes_destaque">Detalhes</a>
+            <a href="admin/cadNewFilme.jsp" class="input_style btn_detalhes_destaque">Detalhes</a>
         </div>
     </header>
     <main class="big_container flex-center">
