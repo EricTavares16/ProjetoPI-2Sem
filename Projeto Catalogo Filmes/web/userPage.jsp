@@ -4,13 +4,31 @@
     String nomeLogado = userLogado.getNome();
     String emailLogado = userLogado.getEmail();
     int pkUserLogado = userLogado.getPkuser();
-    if (userLogado == null) response.sendRedirect("./login.jsp");
+    String fotoUserLogado = userLogado.getFoto();
+    if (userLogado == null) response.sendRedirect("./login.html");
+
+    
 
     String foto = "", nome = "", email = "", senha = "", sHTML = "";
     String pkuser = "";
     Usuario user = new Usuario(); // Instancia o objeto Usuario
+    String fotoCaminho = " ";
+    if (fotoUserLogado == null){ fotoUserLogado = " ";
+    fotoCaminho = "./imgs/foto34.png";
+    }else{
+    fotoCaminho = "./imgs" + "&#92;" + fotoUserLogado.trim();
+    fotoCaminho = fotoCaminho.trim();}
     
-    if (user.buscarEmail())out.print("");
+    
+ 
+     String oper = request.getParameter("oper");
+     /* Para gravar pega as requisições e faz a consistência */
+    if ("Atualizar".equals(oper) && sHTML.isBlank()) {
+     if (!user.buscarEmail()) {
+     user.incluir(); } else { user.alterar(); }
+    }
+
+
     if (!(user.statusSQL == null)) out.println(user.statusSQL);%>
 
 
@@ -29,7 +47,7 @@
         <div class="user_content flex-center">
 
             <div class="avatar_container flex-center">
-                <img src="data:image/png;base64,<%if(userLogado.imagemBase64 != null)out.print(userLogado.imagemBase64);%>" alt="<%out.print(userLogado.email);%> ">
+                <img src="<%= fotoCaminho %>" alt="FotoLogado">
             </div>
             <div class="flex">
                 <h1><%= userLogado.getNome() %></h1> 
@@ -63,7 +81,7 @@
                 
                 <div class="avatar flex-center">
                     <div class="avatar_img flex-center">
-                        <img src="data:image/png;base64,<%if(userLogado.imagemBase64 != null)out.print(userLogado.imagemBase64);%>" alt="Foto" >
+                        <img src="<%= fotoCaminho %>" alt="Avatar">
                     </div>
                     <label class="avatar_input">
                         <input type="file" class="input_style" name="arquivo" id = "arq">

@@ -23,16 +23,10 @@
 <body class="body">
     <nav class="container-menu">
         <div class="buttonsAreaView">
-            <div class="buttonView active"><button><i class="fa-solid fa-circle-plus"></i></button>
-                <p>Adicionar Filme</p>
-            </div>
-            <div class="buttonView"><button><i class="fa-solid fa-user-plus"></i></button>
-                <p>Adicionar Filme</p>
-            </div>
-            <div class="buttonView"><button><i class="fa-solid fa-right-from-bracket"></i></button>
-                <p>Adicionar Filme</p>
-            </div>
-
+            <div class="buttonView active"><button><a href="cadNewFilme.html"><i class="fa-solid fa-circle-plus"></i></a></button><p>Adicionar Filme</p></div>
+            <div class="buttonView"><button><a href="editFilme.html"><i class="fa-solid fa-user-plus"></i></a></button><p>Adicionar Atores</p></div>
+            <div class="buttonView"><button><a href=""><i class="fa-solid fa-right-from-bracket"></i></a></button><p>Logout</p></div>
+            
         </div>
     </nav>
     <main class="main_page">
@@ -42,7 +36,7 @@
             <div class="cockpit_filmes_form ">
 
                 <div class="cockpit_item_adm ">
-                    <button class="btn_return"><i class="fa-solid fa-arrow-left"></i></button>
+                    <button class="btn_return"><a href="index.html"><i class="fa-solid fa-arrow-left"></i></a></button>
 
                     <h1>Capas & Banners</h1>
                 </div>
@@ -111,7 +105,7 @@
                     <div class="div_list_inputs colunm">
                         <div class="input_div_grid desc_area">
                             <label>Atores Principais</label>
-                            <label class="input_capas"> <button>Adicionar Ator</button></label>
+                            <label class="input_capas"> <button onclick="openCloseModal('.modal_add_ator')">Adicionar Ator</button></label>
                             <div class="container_actores_list ">
                                 <div class="actors_div_film">
                                     <!-- <img src="../imgs/foto34.png" alt=""> -->
@@ -161,14 +155,14 @@
        
     </main>
     <footer class="">
-        <div class="footer_container_area ">
+        <!-- <div class="footer_container_area ">
             
-            <!-- <button class="add_btn">
+            <button class="add_btn">
                 <i class="fa-solid fa-pen"></i>
                 Editar
-            </button> -->
+            </button>
       
-        </div>
+        </div> -->
         <div class="footer_container_area ">
             <button class="cancel_btn">
                 <!-- <i class="fa-solid fa-xmark"></i> -->
@@ -185,6 +179,47 @@
     </footer>
 
 
+
+<!-- MODAL TEST -->     
+
+<!--<button class="edit_button" id="edit_user_info_button" onclick="openCloseModal('.modal_edit_user_name')">edit</button>-->
+
+<div class="modal modal_add_ator hidden">
+    <div class="modal_header">
+        <p>Adicionar ator</p>
+        <button class="close" data-modal-close>X</button>
+    </div>
+    <div class="modal_content">
+        <form class="flex">  
+                        <div class="atorModalLeft">
+                            <img src="/Projeto Catalogo Filmes/web/imgs/foto34.png">
+                        </div>
+                        <div class="atorModalRight">
+                            <div  class="atorModalLabel">
+                            <label>
+                                <p>Nome:</p>
+                            <input class="input_style" type="text" id="nome" name="nome">
+                            </label>
+                            </div>
+                            <div class="atorModalLabel">
+                            <label class="atorModalLabel">
+                                <p>Nome fictício:</p>
+                            <input class="input_style" type="text" id="nome-ficticio" name="nome-ficticio">
+                            </div>
+                            
+                        </label>
+                        </div>
+                    </div>
+        </form>
+    </div>
+</div>
+
+<div id="modal_blur" class="hidden">
+</div>
+
+
+<!-- fim do modal -->
+    <script src="/Projeto Catalogo Filmes/web/scriptGlobal.js"></script>
     <script src="https://kit.fontawesome.com/3d5034d18d.js" crossorigin="anonymous"></script>
 
 </body>

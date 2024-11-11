@@ -25,11 +25,34 @@ botaoDeFecharModal.forEach(close => {
             modal.classList.add("hidden");
         });
         blur.classList.add("hidden");
+        preview.src = ''; 
+      preview.style.display = 'none'; 
+      fileInput.value = ''; 
+      removeButton.style.display = 'none'; 
     });
 });
 
 
+// PARA APRESENTAR A IMAGEM
+const fileInput = document.getElementById('fileInput');
+    const preview = document.getElementById('preview');
 
+    // Adicionar evento de mudança ao input
+    fileInput.addEventListener('change', function() {
+      const file = fileInput.files[0]; // Obter o arquivo selecionado
+      if (file) {
+        const reader = new FileReader();
+
+        // Quando a leitura estiver concluída, definir a fonte da imagem
+        reader.onload = function(event) {
+          preview.src = event.target.result; // Definir a URL da imagem
+          preview.style.display = 'block'; // Tornar a imagem visível
+        };
+
+        // Ler o conteúdo do arquivo (como URL de dados)
+        reader.readAsDataURL(file);
+      }
+    });
 // Exemplo para utilizar a função de abrir modal
 // botaoDeAbrirModal.addEventListener("click", ()=> openCloseModal(nomeVariavelModal))
 // botaoDeFecharModal.addEventListener("click", ()=> openCloseModal(nomeVariavelModal))
