@@ -58,13 +58,14 @@ Pela excessão da clausula try. */
             sql = "CREATE TABLE IF NOT EXISTS TB_FILME ("
                     + "ID_FILME INT NOT NULL AUTO_INCREMENT,"
                     + "NM_FILME VARCHAR(200) NOT NULL,"
-                    + "DS_SINOPSE VARCHAR(200)NOT NULL,"
-                    + "HR_DURACAO TIME NOT NULL,"
-                    + "DT_LANCAMENTO DATE NOT NULL,"
+                    + "DS_SINOPSE VARCHAR(200) NULL,"
+                    + "HR_DURACAO VARCHAR(200) NULL,"
+                    + "DT_LANCAMENTO DATE  NULL,"
                     + "VL_AVALIACAO DECIMAL(2, 1) NULL,"
                     + "NR_CLASSIFICACAO_INDICATIVA INT NULL,"
                     + "primary key (ID_FILME)"
                     + ");";
+
 
             ps = con.prepareStatement(sql); // prepara o objeto que irá executar o comando SQL
             ps.executeUpdate();// Executa o comando SQL
