@@ -262,6 +262,33 @@ public class Usuario extends ConectarDao implements IcrudDao  {
     } 
  }
     
+    public void alterarNome(){
+    try { 
+         sql = "UPDATE TB_USUARIO SET NM_USUARIO=? WHERE UCASE(TRIM(DS_EMAIL)) = UCASE(TRIM(?))";
+        ps = con.prepareStatement(sql); // prepara SQL
+        
+
+        // Configura os parâmetros para a atualização da foto
+        ps.setString(1, nome);
+        ps.setString(2, email);
+        
+
+        // Executa o comando SQL (comando UPDATE)
+        int linhasAfetadas = ps.executeUpdate();
+        
+        // Verifica se alguma linha foi afetada
+        if (linhasAfetadas > 0) {
+            this.statusSQL = null;  // Atualização bem-sucedida
+        } else {
+            this.statusSQL = "Nenhuma linha foi atualizada.";  // Caso não tenha alterado nada
+        }
+        
+            this.statusSQL = null; // armazena null se deu tudo certo
+        } catch (SQLException ex) {
+        this.statusSQL = "Erro ao Alterar usuario ! <br> " +    ex.getMessage();    
+    } 
+ }
+    
     public void deletar() {
         try { sql = "DELETE FROM TB_USUARIO WHERE UCASE(TRIM(DS_EMAIL)) = UCASE(TRIM(?))";
         ps = con.prepareStatement(sql); // prepara SQL

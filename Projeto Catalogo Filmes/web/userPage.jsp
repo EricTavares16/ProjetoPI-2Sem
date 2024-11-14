@@ -11,7 +11,8 @@
     Usuario user = new Usuario(); // Instancia o objeto Usuario
     
     if (user.buscarEmail())out.print("");
-    if (!(user.statusSQL == null)) out.println(user.statusSQL);%>
+    if (!(user.statusSQL == null)) out.println(user.statusSQL);
+%>
 
 
 <!DOCTYPE html>
@@ -62,7 +63,7 @@
             <form class="flex" action="./CadUser" name = formFoto method=post enctype="multipart/form-data">  
                 <input type="hidden" name = pkuser value ="<%=pkUserLogado%>" >
                 <input type="hidden" name = email value ="<%=emailLogado%>" >
-                <input type="hidden" name = nome value ="<%= request.getParameter("nomezinho") %>" >
+                <input type="hidden" name = nomevalue value="<%= request.getParameter("novoome") %>">
                 <div class="avatar flex-center">
                     <div class="avatar_img flex-center">
                         <img src="data:image/png;base64,<%if(userLogado.imagemBase64 != null)out.print(userLogado.imagemBase64);%>" alt="Foto" >
@@ -81,13 +82,14 @@
             <button class="close" data-modal-close>X</button>
         </div>
         <div class="modal_content">
-            <form class="flex">  
+            <form class="flex" action="./CadUser" name = formFoto method=post enctype="multipart/form-data">  
+                <input type="hidden" name = email value ="<%=emailLogado%>" >
                     <label class="new_name_label">
                         <span>Novo nome:</span>
-                        <input type="text" name="" id="" placeholder="<%userLogado.getNome();%>" class="input_style">
+                        <input type="text" class="input_style" name="novoNome">
                     </label>
                 
-                <input type="submit" value="Atualizar" class="input_style update_button">
+                    <input type="submit" name="atualizarNome" value="atualizarNome" class="input_style update_button" onclick="">
             </form>
         </div>
     </div>
