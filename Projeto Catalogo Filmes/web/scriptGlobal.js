@@ -17,42 +17,37 @@ const openCloseModal = (modalClass, openOrClose = 1) => {
         console.log("Erro, modal ou blur não encontrado: ", modalClass)
     }
 };
-
-
 botaoDeFecharModal.forEach(close => {
     close.addEventListener("click", () => {
         document.querySelectorAll(".modal").forEach(modal => {
             modal.classList.add("hidden");
         });
         blur.classList.add("hidden");
-        preview.src = ''; 
-      preview.style.display = 'none'; 
-      fileInput.value = ''; 
+    //     preview.src = ''; 
+     //   preview.style.display = 'none'; 
+    //   fileInput.value = ''; 
       removeButton.style.display = 'none'; 
     });
 });
 
 
-// PARA APRESENTAR A IMAGEM
-const fileInput = document.getElementById('fileInput');
-    const preview = document.getElementById('preview');
+function handleFileChange(event) {
+    const id = event.target.dataset.id;
+    const file = event.target.files[0]; // Obter o primeiro arquivo selecionado
+    const preview = document.getElementById(`imagePreview ${id}`);
 
-    // Adicionar evento de mudança ao input
-    fileInput.addEventListener('change', function() {
-      const file = fileInput.files[0]; // Obter o arquivo selecionado
-      if (file) {
+    if (file) {
         const reader = new FileReader();
-
-        // Quando a leitura estiver concluída, definir a fonte da imagem
-        reader.onload = function(event) {
-          preview.src = event.target.result; // Definir a URL da imagem
-          preview.style.display = 'block'; // Tornar a imagem visível
+        
+        // Quando o arquivo for carregado, exibe-o na imagem de pré-visualização
+        reader.onload = function(e) {
+            preview.src = e.target.result;
         };
-
-        // Ler o conteúdo do arquivo (como URL de dados)
-        reader.readAsDataURL(file);
-      }
-    });
+        
+        reader.readAsDataURL(file); // Ler o arquivo como uma URL de dados
+    }
+   
+}
 // Exemplo para utilizar a função de abrir modal
 // botaoDeAbrirModal.addEventListener("click", ()=> openCloseModal(nomeVariavelModal))
 // botaoDeFecharModal.addEventListener("click", ()=> openCloseModal(nomeVariavelModal))
