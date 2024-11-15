@@ -266,12 +266,12 @@
     margin-left: 80px;
     height: 256px;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     
     .footer_container_area {
         display: flex;
         align-items: center;
-        justify-content: space-around;
+        justify-content: space-between;
 
         max-width: 80%;
         min-height: 56px;
