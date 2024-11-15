@@ -134,12 +134,12 @@ public class Usuario extends ConectarDao implements IcrudDao  {
     
     public void incluir(){
     try { sql = "insert into TB_USUARIO (NM_USUARIO, DS_EMAIL, DS_SENHA,IMG_FOTO) "
-        + "values (?,?,?,?) ";
+        + "values (?,?,?,?)";
     ps = con.prepareStatement(sql);
     ps.setString(1, nome); // Configura Parametros
     ps.setString(2, email); // Configura Parametros
     ps.setString(3, senha); // Configura Parametros
-   ps.setBlob(4, foto,tamanho ); // Configura Parametros
+    ps.setBlob(4, foto,tamanho ); // Configura Parametros
     ps.executeUpdate(); // executa comando SQL
  this.statusSQL = null; // armazena null se deu tudo certo
  } catch (SQLException ex) {
@@ -196,10 +196,10 @@ public class Usuario extends ConectarDao implements IcrudDao  {
     Usuario userLogado = new Usuario();
     
     try {
-        sql = "SELECT * FROM TB_USUARIO WHERE DS_EMAIL = ? AND DS_SENHA = ?";
+        sql = "SELECT * FROM TB_USUARIO WHERE DS_EMAIL = ?";
         ps = con.prepareStatement(sql); // prepara SQL
         ps.setString(1, email); // Configura Parametros
-        ps.setString(2, senha); // Configura Parametros
+//        ps.setString(2, senha); // Configura Parametros
         tab = ps.executeQuery(); // Executa comando SQL
         
         int pkUser = 0 ;
@@ -325,6 +325,7 @@ public class Usuario extends ConectarDao implements IcrudDao  {
             // Configura os parâmetros para a atualização da foto
             ps.setBlob(1, foto);
             ps.setString(2, email);
+            
         } else {
             // Caso a foto seja nula, atualiza com valor nulo
             ps.setNull(1, java.sql.Types.BLOB);

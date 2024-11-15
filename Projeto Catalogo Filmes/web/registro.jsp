@@ -15,7 +15,6 @@
         user.senha = senhas;
         if (buttonval.equals("1")) {
         if (user.buscarEmail()) {
-            user.alterar();
             sHTML = "<br><br><center>Usuário alterado com Sucesso!<br>"
                     + "<a href = './login.jsp'> Voltar </a></center>";
         } else {
@@ -29,6 +28,10 @@
         if(user.getLogin() == true){
             response.sendRedirect("login.jsp");
         }
+    }else{
+    sHTML = "<br><br><center><div class=\" popup-erro\">Erro! senha Invalida!<br>"
+                    + "</center>";
+    out.print(sHTML);
     }
 %>
 

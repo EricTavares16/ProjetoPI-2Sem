@@ -5,6 +5,7 @@
 package model;
 import Controller.ConectarDao;
 import Controller.IcrudDao;
+import java.io.InputStream;
 import static java.lang.System.out;
 import java.sql.SQLException;
 /**
@@ -20,6 +21,13 @@ public class Filme extends ConectarDao implements IcrudDao   {
     public double avaliacao;
     public int classificacao;
     public int pkuser;
+    public InputStream capa; // Imagem guardada no InputStream
+    public long capatamanho; // Guarda o tamanho da imagem em bytes
+    public String capaimagemBase64; 
+    public InputStream banner; // Imagem guardada no InputStream
+    public long bannertamanho; // Guarda o tamanho da imagem em bytes
+    public String bannerimagemBase64;
+
     
 
     public String getNome() {
@@ -77,13 +85,29 @@ public class Filme extends ConectarDao implements IcrudDao   {
     public void setPkuser(int pkuser) {
         this.pkuser = pkuser;
     }
+
+    public String getCapaimagemBase64() {
+        return capaimagemBase64;
+    }
+
+    public void setCapaimagemBase64(String capaimagemBase64) {
+        this.capaimagemBase64 = capaimagemBase64;
+    }
+
+    public String getBannerimagemBase64() {
+        return bannerimagemBase64;
+    }
+
+    public void setBannerimagemBase64(String bannerimagemBase64) {
+        this.bannerimagemBase64 = bannerimagemBase64;
+    }
+    
     
     
     public void incluirFilme(){
 
-    try { sql = "insert into TB_FILME (NM_FILME, DS_SINOPSE, HR_DURACAO, DT_LANCAMENTO, VL_AVALIACAO,"
-            + "NR_CLASSIFICACAO_INDICATIVA) "
-        + "values (?,?,?,?,?,?) ";
+    try { sql = "INSERT INTO TB_FILME (NM_FILME, DS_SINOPSE, HR_DURACAO, DT_LANCAMENTO, VL_AVALIACAO,"
+            + "NR_CLASSIFICACAO_INDICATIVA"; if( capatamanho > 0); sql += ", IMG_CAPA"; if(bannertamanho > 0); sql+= ", IMG_BANNER"; sql+="values (?,?,?,?,?,?,?,?) ";
     ps = con.prepareStatement(sql);
     ps.setString(1, nome); // Configura Parametros
     ps.setString(2, sinopse); // Configura Parametros
@@ -91,8 +115,17 @@ public class Filme extends ConectarDao implements IcrudDao   {
     ps.setString(4, dataLancamento ); // Configura Parametros
     ps.setDouble(5, avaliacao ); // Configura Parametros
     ps.setInt(6, classificacao ); // Configura Parametros
-    ps.executeUpdate(); // executa comando SQL
-    this.statusSQL = null; // armazena null se deu tudo certo
+    
+    if (capatamanho > 0) { 
+            ps.setBlob(7, capa, capatamanho); // foto
+        } else { 
+            ps.setNull(7, java.sql.Types.BLOB);}
+    if (bannertamanho > 0) { 
+            ps.setBlob(8, banner, bannertamanho); // foto
+        } else { 
+            ps.setNull(8, java.sql.Types.BLOB);}
+    ps.executeUpdate();
+    this.statusSQL = null;
     
  } catch (SQLException ex) {
  this.statusSQL = "Erro ao incluir usuario ! <br> " + ex.getMessage();

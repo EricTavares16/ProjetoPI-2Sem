@@ -1,9 +1,12 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
+ */
 package Controller;
-
+import model.Filme;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
-import model.Usuario;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -13,16 +16,18 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
-@WebServlet(name = "CadUser", urlPatterns = {"/CadUser"})
-@MultipartConfig
-public class CadUser extends HttpServlet {
 
+@WebServlet(name = "CadFilme", urlPatterns = {"/CadFilme"})
+@MultipartConfig
+public class CadFilme extends HttpServlet {
+    
     private String statusSQL;
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
+        
+        
         String sHTML = "";
         String Modal = "";
 
@@ -32,49 +37,44 @@ public class CadUser extends HttpServlet {
         
         statusSQL = "Entrou no serverlet";
         
-        Usuario user = new Usuario(); // Instancia o objeto Usuario
-        user.email = request.getParameter("email");
-        user.nome = request.getParameter("novoNome");
-        user.senha = request.getParameter("senha");
+        Filme film = new Filme(); // Instancia o objeto Usuario
+        film.nome = request.getParameter("nomeFilme");
 /* Código para trazer a requisição do arquivo e colocar na objeto user */
-        Part part = request.getPart("arquivo");
+        Part part = request.getPart("arquivoCapa");
         if(part != null){
-        InputStream arquivo = part.getInputStream();
-        user.tamanho = part.getSize();
-        user.foto = arquivo; }
+        InputStream arquivoCapa = part.getInputStream();
+        film.capatamanho = part.getSize();
+        film.capa = arquivoCapa; }
+        
+        Part part2 = request.getPart("arquivoBanner");
+        if(part != null){
+        InputStream arquivoBanner = part.getInputStream();
+        film.bannertamanho = part.getSize();
+        film.banner = arquivoBanner; }
 /* Código para trazer a requisição do arquivo e colocar na objeto user */
-        if (request.getParameter("gravar") != null) {
-            user.atualizarFoto();
-            if (user.statusSQL == null) {
-                Usuario newUser = user.retornarUserLogado();
-                session.removeAttribute("usuarioLogado");
-                session.setAttribute("usuarioLogado", newUser);
+        if (request.getParameter("oper") != null) {
+           statusSQL = film.nome + film.sinopse + film.bannerimagemBase64 + film.banner + film.banner + film.bannerimagemBase64 + film.capaimagemBase64 + film.banner;
+            film.incluirFilme();
+            if (film.statusSQL == null) {
                 statusSQL = "Registro Alterado com Sucesso !";
             }}
         
-        if(request.getParameter("atualizarNome") != null){
-            user.alterarNome();
-            Usuario newUser = user.retornarUserLogado();
-            session.removeAttribute("usuarioLogado");
-            session.setAttribute("usuarioLogado", newUser);
-             if (user.statusSQL == null) statusSQL = "Nome Alterado com Sucesso !";
-        }
         
         if (request.getParameter("deletar") != null) {
-            user.deletar();
+            film.deletar();
             session.invalidate();
             statusSQL = "Você deletou seu usuário, sua sessão foi fechada!";}
 
+        
+        
+        
         try (PrintWriter out = response.getWriter()) {
-          sHTML = "<!DOCTYPE html>"
+            sHTML = "<!DOCTYPE html>"
                     + "<html><head><title>Cadastro de Usuários</title>"
                     + "</head><body style=\"background-color: black;\">"
-                    + "</body>"
-                    + "<script>window.open('./loading.html');</script></html>";
+                    + " <center style=\"color: white;\" > "+ statusSQL+ "<center> </body>"
+                    + "<script>window.open('./Home.jsp');</script></html>";
                     out.print(sHTML);
-                    
-                    
-
         }
     }
 
