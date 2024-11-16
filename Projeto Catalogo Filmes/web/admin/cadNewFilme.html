@@ -55,9 +55,9 @@
                         <label>Capa principal</label>
                         <label class="input_capas">
                             <img src="../Assets/BGInputsFile.svg" alt="Clique para selecionar uma imagem"
-                                id="imagePreview 1">
+                                id="imagePreview">
                             <!-- Campo de input de arquivo escondido -->
-                            <input type="file" class="principal" id="file-input" data-id="1" accept="image/*" onchange="handleFileChange(event)">
+                            <input type="file" class="principal" id="file-input"  accept="image/*" onchange="handleFileChange(event)">
                         </label>
                         <!-- <label class="input_capas"> <input type="file" accept="image/*" class=" principal"></label> -->
                     </div>
@@ -65,9 +65,9 @@
                         <label>Banner principal</label>
                         <label class="input_capas">
                             <img src="../Assets/BGInputsFile.svg" alt="Clique para selecionar uma imagem"
-                                id="imagePreview 2">
+                                id="imagePreview">
                             <!-- Campo de input de arquivo escondido -->
-                            <input type="file" class="banners" id="file-input" data-id="2" accept="image/*"
+                            <input type="file" class="banners" id="file-input"  accept="image/*"
                                 onchange="handleFileChange(event)">
                         </label>
 
@@ -138,8 +138,8 @@
                     <div class="div_list_inputs colunm">
                         <div class="input_div_grid desc_area">
                             <label>Atores Principais</label>
-                            <label class="input_capas"> <button onclick="openCloseModal('.modal_add_ator')">Adicionar
-                                    Ator</button></label>
+                            <label class="input_capas"> <button type="button" onclick="openCloseModal('.modal_add_ator')">Adicionar Ator</button>
+                            </label>
                             <div class="container_actores_list ">
                                 <div class="actors_div_film">
 
@@ -200,11 +200,10 @@
                     <div class="input_div">
                         <!-- A imagem atua como botão para selecionar o arquivo -->
                         <label class="input_capas">
-                            <img src="../Assets/BGInputsFile.svg" alt="Clique para selecionar uma imagem"
-                                id="imagePreview 3">
+                  
                             <!-- Campo de input de arquivo escondido -->
                             <input type="file" class="banners" id="file-input" data-id="3" accept="image/*"
-                                onchange="handleFileChange(event)">
+                                onclick="handleFileChange(event)">
                         </label>
                     </div>
 
