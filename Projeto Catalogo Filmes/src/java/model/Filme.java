@@ -106,8 +106,8 @@ public class Filme extends ConectarDao implements IcrudDao   {
     
     public void incluirFilme(){
 
-    try { sql = "INSERT INTO TB_FILME (NM_FILME, DS_SINOPSE, HR_DURACAO, DT_LANCAMENTO, VL_AVALIACAO,"
-            + "NR_CLASSIFICACAO_INDICATIVA"; if( capatamanho > 0); sql += ", IMG_CAPA"; if(bannertamanho > 0); sql+= ", IMG_BANNER"; sql+="values (?,?,?,?,?,?,?,?) ";
+    try { sql = "INSERT INTO TB_FILME (NM_FILME, DS_SINOPSE, HR_DURACAO, DT_LANCAMENTO, VL_AVALIACAO, NR_CLASSIFICACAO_INDICATIVA, IMG_CAPA, IMG_BANNER) VALUES (?,?,?,?,?,?,?,?)";
+
     ps = con.prepareStatement(sql);
     ps.setString(1, nome); // Configura Parametros
     ps.setString(2, sinopse); // Configura Parametros

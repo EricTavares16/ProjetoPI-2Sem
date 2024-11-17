@@ -38,7 +38,44 @@ public class CadFilme extends HttpServlet {
         statusSQL = "Entrou no serverlet";
         
         Filme film = new Filme(); // Instancia o objeto Usuario
-        film.nome = request.getParameter("nomeFilme");
+        film.nome = request.getParameter("nome");
+        film.sinopse = request.getParameter("sinopse");
+        film.duracao = request.getParameter("duracao");
+        film.dataLancamento = request.getParameter("data");
+        String classificacaoStr = request.getParameter("classificacao");
+        int classificacao = 0;
+        String avaliacaoStr = request.getParameter("avaliacao");
+        double avaliacao = 0.0;
+        
+         if (classificacaoStr != null && !classificacaoStr.trim().isEmpty()) {
+            // Verificando a classificação para converter em um número
+            if (classificacaoStr.equals("12") || classificacaoStr.equals("+12")) {
+                classificacao = 12;
+            } else if (classificacaoStr.equals("14") || classificacaoStr.equals("+14")) {
+                classificacao = 14;
+            } else if (classificacaoStr.equals("16") || classificacaoStr.equals("+16")) {
+                classificacao = 16;
+            } else if (classificacaoStr.equals("18") || classificacaoStr.equals("+18")) {
+                classificacao = 18;
+            } else if (classificacaoStr.equalsIgnoreCase("Livre")) {
+                classificacao = 0; // Valor para classificação "Livre"
+            } else {
+                classificacao = 0; // V
+                //valor padrão, caso o valor não corresponda
+            }
+            film.classificacao = classificacao;
+        }
+         if (avaliacaoStr != null && !avaliacaoStr.trim().isEmpty()) {
+            try {
+                avaliacao = Double.parseDouble(avaliacaoStr);
+                film.avaliacao = avaliacao;
+            } catch (NumberFormatException e) {
+                // Tratar erro de conversão de número
+                e.printStackTrace();  // Log de erro ou definir valor padrão
+                film.avaliacao = 0.0;
+            }
+        }
+     
 /* Código para trazer a requisição do arquivo e colocar na objeto user */
         Part part = request.getPart("arquivoCapa");
         if(part != null){
@@ -53,8 +90,8 @@ public class CadFilme extends HttpServlet {
         film.banner = arquivoBanner; }
 /* Código para trazer a requisição do arquivo e colocar na objeto user */
         if (request.getParameter("oper") != null) {
-           statusSQL = film.nome + film.sinopse + film.bannerimagemBase64 + film.banner + film.banner + film.bannerimagemBase64 + film.capaimagemBase64 + film.banner;
             film.incluirFilme();
+            statusSQL = film.nome + film.sinopse + film.bannerimagemBase64 + film.banner + film.banner + film.bannerimagemBase64 + film.capaimagemBase64 + film.banner + film.capatamanho;
             if (film.statusSQL == null) {
                 statusSQL = "Registro Alterado com Sucesso !";
             }}
@@ -72,7 +109,7 @@ public class CadFilme extends HttpServlet {
             sHTML = "<!DOCTYPE html>"
                     + "<html><head><title>Cadastro de Usuários</title>"
                     + "</head><body style=\"background-color: black;\">"
-                    + " <center style=\"color: white;\" > "+ statusSQL+ "<center> </body>"
+                    + " <center style=\"color: white;\" > "+ statusSQL + film.statusSQL+ "<center> </body>"
                     + "<script>window.open('./Home.jsp');</script></html>";
                     out.print(sHTML);
         }
