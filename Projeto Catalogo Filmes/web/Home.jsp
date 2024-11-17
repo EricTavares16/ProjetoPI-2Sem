@@ -5,8 +5,7 @@
 <% 
 Usuario user = new Usuario();
 Usuario userLogado = (Usuario) session.getAttribute("usuarioLogado");
-
- String nomeUser = (String) session.getAttribute("nome");
+String nomeUser = (String) session.getAttribute("nome");
 
 %>
 

@@ -145,6 +145,14 @@ Pela excessão da clausula try. */
 
             ps = con.prepareStatement(sql); // prepara o objeto que irá executar o comando SQL
             ps.executeUpdate();// Executa o comando SQL
+            
+            sql = "INSERT INTO TB_FILME (NM_FILME, DS_SINOPSE, HR_DURACAO, DT_LANCAMENTO, VL_AVALIACAO, NR_CLASSIFICACAO_INDICATIVA) " +
+                    "VALUES ('Homem de Ferro', " +
+                    "'Tony Stark é um industrial bilionário e inventor brilhante que realiza testes bélicos no exterior, mas é sequestrado por terroristas que o forçam a construir uma arma devastadora. Em vez disso, ele constrói uma armadura blindada e enfrenta seus sequestradores. Quando volta aos Estados Unidos, Stark aprimora a armadura e a utiliza para combater o crime.', " +
+                    "'02:06:00', '2008-04-30', NULL, 12)";
+
+            ps = con.prepareStatement(sql); // prepara o objeto que irá executar o comando SQL
+            ps.executeUpdate();// Executa o comando SQL
         } catch (SQLException err) {
             htmlError = err.getMessage();
         }
