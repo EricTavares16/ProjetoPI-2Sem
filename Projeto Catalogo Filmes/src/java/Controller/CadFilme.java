@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
+import model.GeneroFilme;
 
 
 @WebServlet(name = "CadFilme", urlPatterns = {"/CadFilme"})
@@ -46,7 +47,9 @@ public class CadFilme extends HttpServlet {
         int classificacao = 0;
         String avaliacaoStr = request.getParameter("avaliacao");
         double avaliacao = 0.0;
-        
+        String genreoStr = request.getParameter("categoria");
+        int categoria;
+    
          if (classificacaoStr != null && !classificacaoStr.trim().isEmpty()) {
             // Verificando a classificação para converter em um número
             if (classificacaoStr.equals("12") || classificacaoStr.equals("+12")) {
@@ -75,6 +78,25 @@ public class CadFilme extends HttpServlet {
                 film.avaliacao = 0.0;
             }
         }
+         
+          GeneroFilme genf = new GeneroFilme();
+          if(genreoStr != null && !genreoStr.trim().isEmpty()){
+             if (genreoStr.equals("Ação")) {
+                genf.idGenero = 1;
+            }else if(genreoStr.equals("Comédia")){
+                genf.idGenero = 2;
+            }else if(genreoStr.equals("Românce")){
+                genf.idGenero = 3;
+            }else if(genreoStr.equals("Aventura")){
+                genf.idGenero = 4;
+            }else if(genreoStr.equals("Ficção")){
+                genf.idGenero = 5;
+            }else if(genreoStr.equals("Desenho")){
+                genf.idGenero = 6;
+            } 
+            
+            
+    }
      
 /* Código para trazer a requisição do arquivo e colocar na objeto user */
         Part part = request.getPart("arquivoCapa");
@@ -91,6 +113,8 @@ public class CadFilme extends HttpServlet {
 /* Código para trazer a requisição do arquivo e colocar na objeto user */
         if (request.getParameter("oper") != null) {
             film.incluirFilme();
+            genf.idFilme = genf.buscarUltimoFilme();
+            genf.incluir();
             statusSQL = film.nome + film.sinopse + film.bannerimagemBase64 + film.banner + film.banner + film.bannerimagemBase64 + film.capaimagemBase64 + film.banner + film.capatamanho;
             if (film.statusSQL == null) {
                 statusSQL = "Registro Alterado com Sucesso !";
