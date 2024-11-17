@@ -98,9 +98,9 @@
             </div>
         </nav>
 
-        <form method="get" action="cadNewFilme.jsp" name="formreg" onsubmit="formreg.oper.value = '1'">
+        <form method="post" action="../CadFilme" name="formFilm" enctype="multipart/form-data" onsubmit="formreg.oper.value = '1'">
             <input type="hidden" name="oper" value="0">  <!-- Campo oculto para 'oper' -->
-
+            <input type="hidden" name = pkuser value ="<%=nome%>" >
             <main class="main_page">
 
                 <div class="">  
@@ -119,11 +119,11 @@
                         <div class="inputs_area ">
                             <div class="input_div">
                                 <label>Capa principal</label>
-                                <label class="input_capas"> <input type="file" class=" principal"></label>
+                                <label class="input_capas"> <input type="file" class=" principal" name="arquivoCapa" id = "arqCapa"></label>
                             </div>
                             <div class="input_div">
                                 <label>Banner principal</label>
-                                <label class="input_capas"> <input type="file" class=" banners"></label>
+                                <label class="input_capas"> <input type="file" class=" banners" name="arquivoBanner" id = "arqBanner"></label>
                             </div>
                         </div>
                         <div class="inputs_area linear ">

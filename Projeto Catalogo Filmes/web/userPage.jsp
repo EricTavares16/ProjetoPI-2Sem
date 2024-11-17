@@ -5,7 +5,7 @@
     String emailLogado = userLogado.getEmail();
     int pkUserLogado = userLogado.getPkuser();
     if (userLogado == null) response.sendRedirect("./login.jsp");
-
+    session.setAttribute("usuarioLogado", userLogado);
     String foto = "", nome = "", email = "", senha = "", sHTML = "";
     String pkuser = "";
     Usuario user = new Usuario(); // Instancia o objeto Usuario

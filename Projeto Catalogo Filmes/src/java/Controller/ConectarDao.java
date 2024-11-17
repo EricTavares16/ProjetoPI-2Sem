@@ -63,6 +63,8 @@ Pela excessão da clausula try. */
                     + "DT_LANCAMENTO DATE  NULL,"
                     + "VL_AVALIACAO DECIMAL(2, 1) NULL,"
                     + "NR_CLASSIFICACAO_INDICATIVA INT NULL,"
+                    + "IMG_CAPA longblob NULL,"
+                    + "IMG_BANNER longblob NULL,"
                     + "primary key (ID_FILME)"
                     + ");";
 

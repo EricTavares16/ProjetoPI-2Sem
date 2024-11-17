@@ -45,10 +45,18 @@ public class CadUser extends HttpServlet {
 /* Código para trazer a requisição do arquivo e colocar na objeto user */
         if (request.getParameter("gravar") != null) {
             user.atualizarFoto();
-            if (user.statusSQL == null) statusSQL = "Registro Alterado com Sucesso !";}
+            if (user.statusSQL == null) {
+                Usuario newUser = user.retornarUserLogado();
+                session.removeAttribute("usuarioLogado");
+                session.setAttribute("usuarioLogado", newUser);
+                statusSQL = "Registro Alterado com Sucesso !";
+            }}
         
         if(request.getParameter("atualizarNome") != null){
             user.alterarNome();
+            Usuario newUser = user.retornarUserLogado();
+            session.removeAttribute("usuarioLogado");
+            session.setAttribute("usuarioLogado", newUser);
              if (user.statusSQL == null) statusSQL = "Nome Alterado com Sucesso !";
         }
         
@@ -60,11 +68,12 @@ public class CadUser extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
           sHTML = "<!DOCTYPE html>"
                     + "<html><head><title>Cadastro de Usuários</title>"
-                    + "</head><body style=\"background-color: greenyellow;\">"
-                    + "<br><br><center> " + statusSQL + "<br>"
-                    + "<a href ='" + request.getContextPath() + "/" + "./userPage.jsp"
-                    + "'> Voltar </a></center></body></html>";
+                    + "</head><body style=\"background-color: black;\">"
+                    + "</body>"
+                    + "<script>window.open('./loading.html');</script></html>";
                     out.print(sHTML);
+                    
+                    
 
         }
     }
