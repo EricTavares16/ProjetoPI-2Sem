@@ -2,7 +2,11 @@
 <%@page import="model.Filme"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
-
+    String nomeUser = (String) session.getAttribute("nome");
+    if("admin".equals(nomeUser)){
+    }else{
+        response.sendRedirect("../Home.jsp");
+    }
     // Recebendo parâmetros
     String nome = request.getParameter("nome");
     String sinopse = request.getParameter("sinopse");
@@ -85,36 +89,26 @@
 
     <body class="body">
         <nav class="container-menu">
-            <div class="buttonsAreaView">
-                <div class="buttonView active"><button><i class="fa-solid fa-circle-plus"></i></button>
-                    <p>Adicionar Filme</p>
-                </div>
-                <div class="buttonView"><button><i class="fa-solid fa-user-plus"></i></button>
-                    <p>Adicionar Filme</p>
-                </div>
-                <div class="buttonView"><button><i class="fa-solid fa-right-from-bracket"></i></button>
-                    <p>Adicionar Filme</p>
-                </div>
-            </div>
+        <div class="buttonsAreaView">
+            <div class="buttonView active"><button style="cursor: pointer;" ><i class="fa-solid fa-circle-plus" p onclick="window.location.href='cadNewFilme.jsp'"></i></button><p>Adicionar Filme</p></div>
+            <div class="buttonView"><button style="cursor: pointer;" ><i class="fa-solid fa-user-plus" onclick="window.location.href='CadNewAtor.jsp'"></i></button><p>Adicionar Ator</p></div>
+            <div class="buttonView"><button style="cursor: pointer;" ><i class="fa-solid fa-right-from-bracket" onclick="window.location.href='../logout.jsp'"></i></button><p>Logout</p></div>
+        </div>
         </nav>
-
-        <form method="post" action="../CadFilme" name="formFilm" enctype="multipart/form-data" onsubmit="formreg.oper.value = '1'">
-            <input type="hidden" name="oper" value="0">  <!-- Campo oculto para 'oper' -->
-            <input type="hidden" name = pkuser value ="<%=nome%>" >
-            <main class="main_page">
-
                 <div class="">  
                     <!-- MENU DE FILTROS DO FILME -->
                     <div class="cockpit_filmes_form ">
-
                         <div class="cockpit_item_adm ">
-                            <button class="btn_return"><i class="fa-solid fa-arrow-left"></i></button>
-
-                            <h1>Capas & Banners</h1>
+                            <button class="btn_return" style="cursor: pointer;" onclick="window.location.href='./HomeAdmin.jsp'"><i class="fa-solid fa-arrow-left"></i></button>
                         </div>
-
+                        
+                            <h1>Capas & Banners</h1>
                     </div>
-
+            <div class="cockpit_filmes_form ">
+                <form method="post" action="../CadFilme" name="formFilm" enctype="multipart/form-data" onsubmit="formreg.oper.value = '1'">
+                    <input type="hidden" name="oper" value="0">  <!-- Campo oculto para 'oper' -->
+                    <input type="hidden" name = pkuser value ="<%=nome%>" >
+                    <main class="main_page">
                     <section id="filmes_container container_G_Fil " class="div_security_area ">
                         <div class="inputs_area ">
                             <div class="input_div">
@@ -235,7 +229,7 @@
                 </button>
             </div>
         </form>
-
+</div>
         <footer class="">
 
         </footer>
