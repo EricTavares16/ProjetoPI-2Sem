@@ -23,15 +23,10 @@
 <body class="body">
     <nav class="container-menu">
         <div class="buttonsAreaView">
-            <div class="buttonView active"><button><a href="cadNewFilme.html"><i
-                            class="fa-solid fa-circle-plus"></i></a></button>
-                <p>Adicionar Filme</p>
-            </div>
-
-            <div class="buttonView"><button><a href=""><i class="fa-solid fa-right-from-bracket"></i></a></button>
-                <p>Logout</p>
-            </div>
-
+            <div class="buttonView active"><button><a href="cadNewFilme.html"><i class="fa-solid fa-circle-plus"></i></a></button><p>Adicionar Filme</p></div>
+            <div class="buttonView"><button><a href="editFilme.html"><i class="fa-solid fa-user-plus"></i></a></button><p>Adicionar Atores</p></div>
+            <div class="buttonView"><button><a href=""><i class="fa-solid fa-right-from-bracket"></i></a></button><p>Logout</p></div>
+            
         </div>
     </nav>
     <main class="main_page">
@@ -59,7 +54,7 @@
                             <!-- Campo de input de arquivo escondido -->
                             <input type="file" class="principal" id="file-input"  accept="image/*" onchange="handleFileChange(event)">
                         </label>
-                        <!-- <label class="input_capas"> <input type="file" accept="image/*" class=" principal"></label> -->
+                        <!-- <label class="input_capas"> <input type="file" accept="image/*" class="principal"></label> -->
                     </div>
                     <div class="input_div">
                         <label>Banner principal</label>
@@ -78,12 +73,12 @@
                     <div class="div_list_inputs">
                         <div class="input_div_grid">
                             <label>Nome</label>
-                            <label class="input_capas"> <input type="text" class=" principal"></label>
+                            <label class="input_capas"> <input type="text" class="principal"></label>
                         </div>
                         <div class="input_div_grid">
                             <label>Categoria</label>
-                            <label class="input_capas"> <input list="cat" class=" principal">
-                                <datalist id="cat">
+                            <label class="input_capas"> <input list="cate" id="cat" class="principal"  onclick="inputClearorNot(event)" autocomplete="off">
+                                <datalist id="cate">
                                     <option value="Ação">Ação</option>
                                     <option value="Aventura">Aventura</option>
                                     <option value="Comédia">Comédia</option>
@@ -103,21 +98,21 @@
                         </div>
                         <div class="input_div_grid">
                             <label>Ano de Lançamento</label>
-                            <label class="input_capas"> <input type="date" class=" principal"></label>
+                            <label class="input_capas"> <input type="date" class="principal"></label>
                         </div>
                         <div class="input_div_grid">
                             <label>Avaliações</label>
-                            <label class="input_capas"> <input type="text" class=" principal"></label>
+                            <label class="input_capas"> <input type="text" class="principal"></label>
                         </div>
                         <div class="input_div_grid">
                             <label>Tempo de duração <span style="font-size: 0.7rem;color: #cccccc65;">(exemplo: 120
                                     min)</span></label>
-                            <label class="input_capas"> <input type="text" class=" principal"></label>
+                            <label class="input_capas"> <input type="text" class="principal"></label>
                         </div>
                         <div class="input_div_grid">
                             <label>Restrição de idade</label>
-                            <label class="input_capas"> <input list="rest" class=" principal">
-                                <datalist id="rest">
+                            <label class="input_capas"> <input list="restri" id="rest" class="principal" onclick="inputClearorNot(event)">
+                                <datalist id="restri">
                                     <option value="+12">
                                     <option value="+14">
                                     <option value="+16">
@@ -212,18 +207,39 @@
                 </div>
                 <div class="atorModalRight">
                     <div class="atorModalLabel">
-                        <label>
+                        <!-- <label>
                             <p>Nome:</p>
                             <input class="input_style" type="text" id="nome" name="nome">
+                        </label> -->
+                        <label>
+                            <p>Nome:</p>
+                            <input class="input_style" list="actoresCad" id="nome" name="nome" autocomplete="off"autocomplete="off">
+                            <datalist id="actoresCad">
+                                <option value="Leonardo DiCaprio">
+                                <option value="Johnny Depp">
+                                <option value="Tom Hanks">
+                                <option value="Brad Pitt">
+                                <option value="Dwayne Johnson">
+                                <option value="Robert Downey Jr.">
+                                <option value="Chris Hemsworth">
+                                <option value="Will Smith">
+                                <option value="Keanu Reeves">
+                                <option value="Hugh Jackman">
+                                <option value="Ryan Reynolds">
+                                <option value="Chris Evans">
+                                <option value="Jason Momoa">
+                                <option value="Adam Sandler">
+                                <option value="Morgan Freeman">
+                              </datalist>
                         </label>
                     </div>
                     <div class="atorModalLabel">
                         <label class="atorModalLabel">
                             <p>Nome fictício:</p>
                             <input class="input_style" type="text" id="nome-ficticio" name="nome-ficticio">
+                        </label>
                     </div>
 
-                    </label>
                 </div>
         </div>
         </form>

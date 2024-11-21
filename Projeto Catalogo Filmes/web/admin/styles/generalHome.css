@@ -67,6 +67,9 @@ i {
   height: 380px;
   display: inline-flex;
 }
+.atorModalLeft .atorModalRight {
+  margin-bottom: 20px;
+}
 
 .atorModalLeft .input_div {
   display: flex;

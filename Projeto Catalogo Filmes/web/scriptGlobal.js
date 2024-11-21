@@ -42,6 +42,18 @@ document.addEventListener("DOMContentLoaded", () => {
     window.openCloseModal = openCloseModal;
 });
 
+function inputClearorNot(event){
+    
+    console.log(event);
+    console.log(event.target);
+    let input = document.getElementById( event.target.id);
+    console.log(input.value);
+    if(input.value != null){
+        input.value = "";
+    }else{
+        input.value;
+    }
+}
 
 // const blur = document.querySelector("#modal_blur");
 // const botaoDeFecharModal = document.querySelectorAll("[data-modal-close]");
