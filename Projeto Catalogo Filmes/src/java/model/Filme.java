@@ -5,15 +5,24 @@
 package model;
 import Controller.ConectarDao;
 import Controller.IcrudDao;
+import com.mysql.cj.jdbc.Blob;
+import java.io.IOException;
 import java.io.InputStream;
-import static java.lang.System.out;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Base64;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.ArrayList;
 /**
  *
  * @author Megas-XRL8
  */
 public class Filme extends ConectarDao implements IcrudDao   {
     
+    public int id;
     public String nome;
     public String sinopse;
     public String duracao;
@@ -29,6 +38,13 @@ public class Filme extends ConectarDao implements IcrudDao   {
     public String bannerimagemBase64;
 
     
+     public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getNome() {
         return nome;
@@ -102,6 +118,27 @@ public class Filme extends ConectarDao implements IcrudDao   {
         this.bannerimagemBase64 = bannerimagemBase64;
     }
     
+        public ResultSet getTab() {
+        return tab;
+    }
+
+    public void setTab(ResultSet tab) {
+        this.tab = tab;
+    }
+    
+    public Filme(int id, String nome, String sinopse, String duracao, String dataLancamento, double avaliacao, int classificacao, String capaimagemBase64) {
+        this.id = id;
+        this.nome = nome;
+        this.sinopse = sinopse;
+        this.duracao = duracao;
+        this.dataLancamento = dataLancamento;
+        this.avaliacao = avaliacao;
+        this.classificacao = classificacao;
+        this.capaimagemBase64 = capaimagemBase64;
+    }
+    
+      public Filme() {
+    }
     
     
     public void incluirFilme(){
@@ -131,6 +168,52 @@ public class Filme extends ConectarDao implements IcrudDao   {
  this.statusSQL = "Erro ao incluir usuario ! <br> " + ex.getMessage();
  }
     
+    }
+    
+    public ArrayList<Filme> listarFilmes(){
+        
+        ArrayList<Filme> filmes = new ArrayList<>();
+        
+        try { 
+
+            sql = "SELECT * FROM TB_FILME";
+
+            ps = con.prepareStatement(sql);
+           
+            tab = ps.executeQuery();
+            
+            String fotinho = "";
+
+            while(tab.next()){
+                int id = tab.getInt(1);
+                String nome = tab.getString(2);
+                String sinopse = tab.getString(3);
+                String duracao = tab.getString(4);
+                String dtLancamento = tab.getString(5);
+                double avaliacao = tab.getDouble(6);
+                int classificacao = tab.getInt(7);
+                Blob blob = (Blob) tab.getBlob(8);
+                
+                if (blob == null) {
+                    capaimagemBase64 = null; }
+                else {
+                    capa = blob.getBinaryStream();
+                    byte[] buffer = new byte[(int) blob.length()];
+                    capa.read(buffer);
+                    fotinho = capaimagemBase64 = Base64.getEncoder().encodeToString(buffer);
+                }
+                
+                filmes.add(new Filme(id, nome, sinopse, duracao, dtLancamento, avaliacao, classificacao, fotinho));
+            }
+
+            this.statusSQL = null; 
+        } catch (SQLException ex) {
+            this.statusSQL = "Erro ao incluir usuario ! <br> " + ex.getMessage();
+        } catch (IOException ex) {
+            Logger.getLogger(Filme.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return filmes;
     }
         
    public void deletar(){
