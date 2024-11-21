@@ -220,6 +220,7 @@ public class Usuario extends ConectarDao implements IcrudDao  {
             userLogado.setId(idUser);
             userLogado.setNome(nmUser);
             userLogado.setEmail(emailUser);
+            
             if (blob == null) {
                 imagemBase64 = null; }
             else {
