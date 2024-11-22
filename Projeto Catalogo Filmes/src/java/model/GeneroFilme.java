@@ -35,7 +35,7 @@ public class GeneroFilme extends ConectarDao implements IcrudDao {
     
     public void incluir(){
      try { sql = "insert into TB_GENERO_FILME (ID_FILME, ID_GENERO)"
-        + "values (?,?)";
+        + "values (?,?);";
     ps = con.prepareStatement(sql);
     ps.setInt(1, idFilme); // Configura Parametros
     ps.setInt(2,idGenero); // Configura Parametros

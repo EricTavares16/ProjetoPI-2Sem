@@ -8,7 +8,6 @@
     }else{
         response.sendRedirect("../Home.jsp");
     }
-
 %>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -35,7 +34,6 @@
     </nav>
     <main class="main_page">
         <div class="container">
-
             <!-- MENU DE FILTROS DO FILME -->
             <div class="cockpit_filmes_adm flex">
                 
@@ -43,17 +41,15 @@
                 
                 <div class="cockpit_item_adm flex-center">
                     <label class="search_input">
-
                         <span><i class="fa-solid fa-magnifying-glass"></i></span>  
                         <input type="text" placeholder="Pesquisar" >
                     </label>
                     
-                        <div class="perfil_user">op</div>
+                    <div class="perfil_user" ><a href="../Home.jsp">op</a></div>
                     
                 </div>
                 
             </div>
-
             <section id="filmes_container">
                 <div class="filme_content flex-center">
                     <img src="../imgs/bg_filme.png" alt="Nome do filme">
@@ -104,12 +100,9 @@
                     </button>
                 </div>
             </section>
-
         </div>
     </main>
     
-
     <script src="https://kit.fontawesome.com/3d5034d18d.js" crossorigin="anonymous"></script>
-
 </body>
 </html>

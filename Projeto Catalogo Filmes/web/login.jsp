@@ -3,6 +3,8 @@
  String email = request.getParameter("email"); // captura email do form
  String senha = request.getParameter("senha"); // captura senha do form
  
+ String nomeUser = (String) session.getAttribute("nome");
+
  Usuario user = new Usuario();// instancia Usuario
  if ( !(user.statusSQL == null) ) out.println(user.statusSQL);
  
@@ -15,7 +17,7 @@
    session.setAttribute("nome", user.nome);
             session.setAttribute("email", user.email);
             session.setAttribute("pkuser", user.pkuser);
-            response.sendRedirect("Home.jsp");// carrega a página de sistema
+            response.sendRedirect("loadingValid.jsp");//carrega a página de sistema
 
  } else if(email != null) {
     String sHTML="<center>Opa! Login ou Senha não encontrados! Tente Novamente! <br>"

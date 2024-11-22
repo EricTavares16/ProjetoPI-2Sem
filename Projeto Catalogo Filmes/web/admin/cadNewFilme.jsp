@@ -62,6 +62,8 @@
        
         film.incluirFilme();
     }
+    
+
 %>
 
 
@@ -129,7 +131,7 @@
                                 </div>
                                 <div class="input_div_grid">
                                     <label>Categoria</label>
-                                    <label class="input_capas"> <input list="cat" class=" principal" name="categoria">
+                                    <label name="categoria" class="input_capas"> <input list="cat" class=" principal" name="categoria">
                                         <datalist id="cat">
                                             <option value="Românce">
                                             <option value="Ação">
