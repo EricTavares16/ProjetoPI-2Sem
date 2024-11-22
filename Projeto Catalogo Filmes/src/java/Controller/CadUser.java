@@ -66,12 +66,7 @@ public class CadUser extends HttpServlet {
             statusSQL = "Você deletou seu usuário, sua sessão foi fechada!";}
 
         try (PrintWriter out = response.getWriter()) {
-          sHTML = "<!DOCTYPE html>"
-                    + "<html><head><title>Cadastro de Usuários</title>"
-                    + "</head><body style=\"background-color: black;\">"
-                    + "</body>"
-                    + "<script>window.open('./loading.html');</script></html>";
-                    out.print(sHTML);
+          response.sendRedirect("../Home.jsp");
                     
                     
 

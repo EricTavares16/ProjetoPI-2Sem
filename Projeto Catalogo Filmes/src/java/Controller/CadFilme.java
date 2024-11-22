@@ -130,12 +130,7 @@ public class CadFilme extends HttpServlet {
         
         
         try (PrintWriter out = response.getWriter()) {
-            sHTML = "<!DOCTYPE html>"
-                    + "<html><head><title>Cadastro de Usuários</title>"
-                    + "</head><body style=\"background-color: black;\">"
-                    + " <center style=\"color: white;\" > "+ statusSQL + film.statusSQL+ "<center> </body>"
-                    + "<script>window.open('./Home.jsp');</script></html>";
-                    out.print(sHTML);
+            response.sendRedirect("../Home.jsp");
         }
     }
 

@@ -9,7 +9,6 @@ String nomeUser = (String) session.getAttribute("nome");
 %>
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,7 +27,6 @@ String nomeUser = (String) session.getAttribute("nome");
         href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100,200,300,400,500,600,700,800,900;1,100,200,300,400,500,600,700,800,900&display=swap"
         rel="stylesheet">
 </head>
-
 <body class="body">
     <nav class="container-menu">
         <div class="buttonsAreaView">
@@ -39,19 +37,13 @@ String nomeUser = (String) session.getAttribute("nome");
     </nav>
     <main class="main_page">
         <div class="">
-
             <!-- MENU DE FILTROS DO FILME -->
             <div class="cockpit_filmes_form ">
-
                 <div class="cockpit_item_adm ">
                     <button class="btn_return" style="cursor: pointer;" onclick="window.location.href='./HomeAdmin.jsp'" ><i class="fa-solid fa-arrow-left"></i></button>
-
                     <h1>Capas & Banners</h1>
                 </div>
-
-
             </div>
-
             <section id="filmes_container container_G_Fil " class="div_security_area ">
                 <div class="inputs_area ">
                     <div class="input_div">
@@ -100,15 +92,12 @@ String nomeUser = (String) session.getAttribute("nome");
                                     <option value="Livre">
                                 </datalist></label>
                         </div>
-
                     </div>
                     <div class="div_list_inputs ">
                         <div class="input_div_grid desc_area">
                             <label>Descrição</label>
                             <label class="input_capas"> <textarea class="descr_input"></textarea></label>
                         </div>
-
-
                     </div>
                     <div class="div_list_inputs colunm">
                         <div class="input_div_grid desc_area">
@@ -137,7 +126,6 @@ String nomeUser = (String) session.getAttribute("nome");
                                
                             </div>
                         </div>
-
                     </div>
                 </div>
             </section>
@@ -169,7 +157,6 @@ String nomeUser = (String) session.getAttribute("nome");
       
         
     </footer>
-
     <div class="modal modal_edit_user_info hidden">
         <div class="modal_header">
             <p>Editar usuário</p>
@@ -193,15 +180,10 @@ String nomeUser = (String) session.getAttribute("nome");
             </form>
         </div>
     </div>
-
     <div id="modal_blur" class="hidden"></div>
-
-
     
     
     <script src="../scriptGlobal.js"></script>
     <script src="https://kit.fontawesome.com/3d5034d18d.js" crossorigin="anonymous"></script>
-
 </body>
-
 </html>

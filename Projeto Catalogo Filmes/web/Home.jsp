@@ -5,11 +5,13 @@
 <%@page import="java.util.ArrayList"%>
 
 <% 
+
 Usuario user = new Usuario();
 Usuario userLogado = (Usuario) session.getAttribute("usuarioLogado");
 String nomeUser = (String) session.getAttribute("nome");
-Filme filmeT = new Filme();
-ArrayList<Filme> lista = filmeT.listarFilmes();   
+   
+    Filme filmeT = new Filme();
+    ArrayList<Filme> lista = filmeT.listarFilmes();   
 %>
 
 <!DOCTYPE html>
@@ -41,7 +43,7 @@ ArrayList<Filme> lista = filmeT.listarFilmes();
 
 <!--<h3></h3--><img src="data:image/png;base64,<%if(userLogado.imagemBase64 != null)out.print(userLogado.imagemBase64);%>" alt="<%out.print(userLogado.email);%>">
             </a>
-            <a href="admin/cadNewFilme.jsp" class="input_style btn_detalhes_destaque">Detalhes</a>
+            <a href="Details.jsp" class="input_style btn_detalhes_destaque">Detalhes</a>
         </div>
     </header>
     <main class="big_container flex-center">
@@ -51,7 +53,7 @@ ArrayList<Filme> lista = filmeT.listarFilmes();
             <div class="cockpit_filmes flex">
                 <div class="cockpit_item flex-center">
                     <input type="text" placeholder="Pesquisar" class="input_style">
-                    <a href="./Details.html" class="input_style">?</a>
+                    <a href="#" class="input_style">?</a>
                 </div>
                 <ul class="cockpit_item flex-center">
                    <li><button class="input_style">Romance</button></li> 

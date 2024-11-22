@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package model;
+
 import Controller.ConectarDao;
 import Controller.IcrudDao;
 import com.mysql.cj.jdbc.Blob;
@@ -16,12 +17,13 @@ import java.util.Base64;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.ArrayList;
+
 /**
  *
  * @author Megas-XRL8
  */
-public class Filme extends ConectarDao implements IcrudDao   {
-    
+public class Filme extends ConectarDao implements IcrudDao {
+
     public int id;
     public String nome;
     public String sinopse;
@@ -30,15 +32,17 @@ public class Filme extends ConectarDao implements IcrudDao   {
     public double avaliacao;
     public int classificacao;
     public int pkuser;
+
     public InputStream capa; // Imagem guardada no InputStream
     public long capatamanho; // Guarda o tamanho da imagem em bytes
-    public String capaimagemBase64; 
+    public String capaimagemBase64;
+
     public InputStream banner; // Imagem guardada no InputStream
     public long bannertamanho; // Guarda o tamanho da imagem em bytes
+
     public String bannerimagemBase64;
 
-    
-     public int getId() {
+    public int getId() {
         return id;
     }
 
@@ -117,15 +121,15 @@ public class Filme extends ConectarDao implements IcrudDao   {
     public void setBannerimagemBase64(String bannerimagemBase64) {
         this.bannerimagemBase64 = bannerimagemBase64;
     }
-    
-        public ResultSet getTab() {
+
+    public ResultSet getTab() {
         return tab;
     }
 
     public void setTab(ResultSet tab) {
         this.tab = tab;
     }
-    
+
     public Filme(int id, String nome, String sinopse, String duracao, String dataLancamento, double avaliacao, int classificacao, String capaimagemBase64) {
         this.id = id;
         this.nome = nome;
@@ -136,55 +140,76 @@ public class Filme extends ConectarDao implements IcrudDao   {
         this.classificacao = classificacao;
         this.capaimagemBase64 = capaimagemBase64;
     }
-    
-      public Filme() {
-    }
-    
-    
-    public void incluirFilme(){
 
-    try { sql = "INSERT INTO TB_FILME (NM_FILME, DS_SINOPSE, HR_DURACAO, DT_LANCAMENTO, VL_AVALIACAO, NR_CLASSIFICACAO_INDICATIVA, IMG_CAPA, IMG_BANNER) VALUES (?,?,?,?,?,?,?,?)";
-
-    ps = con.prepareStatement(sql);
-    ps.setString(1, nome); // Configura Parametros
-    ps.setString(2, sinopse); // Configura Parametros
-    ps.setString(3, duracao ); // Configura Parametros
-    ps.setString(4, dataLancamento ); // Configura Parametros
-    ps.setDouble(5, avaliacao ); // Configura Parametros
-    ps.setInt(6, classificacao ); // Configura Parametros
-    
-    if (capatamanho > 0) { 
-            ps.setBlob(7, capa, capatamanho); // foto
-        } else { 
-            ps.setNull(7, java.sql.Types.BLOB);}
-    if (bannertamanho > 0) { 
-            ps.setBlob(8, banner, bannertamanho); // foto
-        } else { 
-            ps.setNull(8, java.sql.Types.BLOB);}
-    ps.executeUpdate();
-    this.statusSQL = null;
-    
- } catch (SQLException ex) {
- this.statusSQL = "Erro ao incluir usuario ! <br> " + ex.getMessage();
- }
-    
+    public Filme() {
     }
-    
-    public ArrayList<Filme> listarFilmes(){
-        
+
+    public void gravar() {
+        statusSQL = null;
+        try {
+            sql = "SELECT * FROM TB_FILME WHERE ID_FILME = '" + this.id + "'";
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet consul = ps.executeQuery() ;
+            if (consul.next()) 
+            { alterar(); }
+            else
+            { incluirFilme(); }
+
+        } catch (SQLException ex) {
+            statusSQL = "Erro ao gravar filme  " + ex.getMessage();
+        }
+
+    }
+
+    public void incluirFilme() {
+
+        try {
+            sql = "INSERT INTO TB_FILME (NM_FILME, DS_SINOPSE, HR_DURACAO, DT_LANCAMENTO, VL_AVALIACAO, "
+                    + "NR_CLASSIFICACAO_INDICATIVA, IMG_CAPA, IMG_BANNER) VALUES (?,?,?,?,?,?,?,?)";
+
+            ps = con.prepareStatement(sql);
+            ps.setString(1, nome); // Configura Parametros
+            ps.setString(2, sinopse); // Configura Parametros
+            ps.setString(3, duracao); // Configura Parametros
+            ps.setString(4, dataLancamento); // Configura Parametros
+            ps.setDouble(5, avaliacao); // Configura Parametros
+            ps.setInt(6, classificacao); // Configura Parametros
+
+            if (capatamanho > 0) {
+                ps.setBlob(7, capa, capatamanho); // foto
+            } else {
+                ps.setNull(7, java.sql.Types.BLOB);
+            }
+            if (bannertamanho > 0) {
+                ps.setBlob(8, banner, bannertamanho); // foto
+            } else {
+                ps.setNull(8, java.sql.Types.BLOB);
+            }
+            ps.executeUpdate();
+            this.statusSQL = null;
+
+        } catch (SQLException ex) {
+            this.statusSQL = "Erro ao incluir usuario ! <br> " + ex.getMessage();
+        }
+
+    }
+
+    public ArrayList<Filme> listarFilmes() {
+
         ArrayList<Filme> filmes = new ArrayList<>();
-        
-        try { 
+
+        try {
 
             sql = "SELECT * FROM TB_FILME";
 
             ps = con.prepareStatement(sql);
-           
+
             tab = ps.executeQuery();
-            
+
             String fotinho = "";
 
-            while(tab.next()){
+            while (tab.next()) {
                 int id = tab.getInt(1);
                 String nome = tab.getString(2);
                 String sinopse = tab.getString(3);
@@ -193,40 +218,46 @@ public class Filme extends ConectarDao implements IcrudDao   {
                 double avaliacao = tab.getDouble(6);
                 int classificacao = tab.getInt(7);
                 Blob blob = (Blob) tab.getBlob(8);
-                
+
                 if (blob == null) {
-                    capaimagemBase64 = null; }
-                else {
+                    capaimagemBase64 = null;
+                } else {
                     capa = blob.getBinaryStream();
                     byte[] buffer = new byte[(int) blob.length()];
                     capa.read(buffer);
                     fotinho = capaimagemBase64 = Base64.getEncoder().encodeToString(buffer);
                 }
-                
+
                 filmes.add(new Filme(id, nome, sinopse, duracao, dtLancamento, avaliacao, classificacao, fotinho));
             }
 
-            this.statusSQL = null; 
+            this.statusSQL = null;
         } catch (SQLException ex) {
             this.statusSQL = "Erro ao incluir usuario ! <br> " + ex.getMessage();
         } catch (IOException ex) {
             Logger.getLogger(Filme.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         return filmes;
     }
-        
-   public void deletar(){
-       try{ sql = "DELETE FROM TB_FILME WHERE UCASE(TRIM(NM_FILME)) = UCASE(TRIM(?))";
-        ps = con.prepareStatement(sql);
-        ps.setString(1, nome);
-        ps.executeUpdate();
+
+    public void deletar() {
+        try {
+            sql = "DELETE FROM TB_FILME WHERE UCASE(TRIM(NM_FILME)) = UCASE(TRIM(?))";
+            ps = con.prepareStatement(sql);
+            ps.setString(1, nome);
+            ps.executeUpdate();
             this.statusSQL = null;
-       }catch (SQLException ex){
-           this.statusSQL = "Errro ao encontrar  usuario ! <br>" + ex.getMessage();
-       }
-   }
+        } catch (SQLException ex) {
+            this.statusSQL = "Errro ao encontrar  usuario ! <br>" + ex.getMessage();
+        }
+    }
     
+    public void alterar(){
+        sql= "UPDATE TB_FILME SET NM_FILME= ";
+    
+    }
+
     @Override
     public boolean salvar() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
