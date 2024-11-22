@@ -1,12 +1,8 @@
-
+<%@page import="model.GeneroFilme"%>
 <%@page import="model.Filme"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
-    String nomeUser = (String) session.getAttribute("nome");
-    if("admin".equals(nomeUser)){
-    }else{
-        response.sendRedirect("../Home.jsp");
-    }
+
     // Recebendo parâmetros
     String nome = request.getParameter("nome");
     String sinopse = request.getParameter("sinopse");
@@ -17,12 +13,14 @@
     int classificacao = 0;
     String avaliacaoStr = request.getParameter("avaliacao");
     double avaliacao = 0.0;
-
+    String genreoStr = request.getParameter("categoria");
+    int categoria;
+    
     // Inicializando o objeto filme
     Filme film = new Filme();
         
     // Verificando se a operação é '1' (Adicionar filme)
-    if ("1".equals(oper) && nome != null) {
+    if ("1".equals(oper) && nome != null) { 
         // Atribuindo valores ao objeto Filme
         film.nome = nome;
         film.sinopse = sinopse;
@@ -59,11 +57,32 @@
             }
             film.classificacao = classificacao;
         }
-       
         film.incluirFilme();
+        
+        GeneroFilme genf = new GeneroFilme();
+        
+        if(genreoStr != null && !genreoStr.trim().isEmpty()){
+             if (genreoStr.equals("Ação")) {
+                genf.idGenero = 1;
+            }else if(genreoStr.equals("Comédia")){
+                genf.idGenero = 2;
+            }else if(genreoStr.equals("Românce")){
+                genf.idGenero = 3;
+            }else if(genreoStr.equals("Aventura")){
+                genf.idGenero = 4;
+            }else if(genreoStr.equals("Ficção")){
+                genf.idGenero = 5;
+            }else if(genreoStr.equals("Desenho")){
+                genf.idGenero = 6;
+            } 
+            genf.idFilme = genf.buscarUltimoFilme();
+            genf.incluir();
+            
+            
     }
-    
-
+    genf.idGenero = 0;
+   String sHtml = " " + film.nome + film.sinopse + genf.idFilme + genf.idGenero ;
+    }
 %>
 
 
@@ -91,35 +110,45 @@
 
     <body class="body">
         <nav class="container-menu">
-        <div class="buttonsAreaView">
-            <div class="buttonView active"><button style="cursor: pointer;" ><i class="fa-solid fa-circle-plus" p onclick="window.location.href='cadNewFilme.jsp'"></i></button><p>Adicionar Filme</p></div>
-            <div class="buttonView"><button style="cursor: pointer;" ><i class="fa-solid fa-user-plus" onclick="window.location.href='CadNewAtor.jsp'"></i></button><p>Adicionar Ator</p></div>
-            <div class="buttonView"><button style="cursor: pointer;" ><i class="fa-solid fa-right-from-bracket" onclick="window.location.href='../logout.jsp'"></i></button><p>Logout</p></div>
-        </div>
+            <div class="buttonsAreaView">
+                <div class="buttonView active"><button><i class="fa-solid fa-circle-plus"></i></button>
+                    <p>Adicionar Filme</p>
+                </div>
+                <div class="buttonView"><button><i class="fa-solid fa-user-plus"></i></button>
+                    <p>Adicionar Filme</p>
+                </div>
+                <div class="buttonView"><button><i class="fa-solid fa-right-from-bracket"></i></button>
+                    <p>Adicionar Filme</p>
+                </div>
+            </div>
         </nav>
+
+        <form method="post" action="cadNewFilme.jsp" name="formreg">
+            <input type="hidden" name="oper" value="0">
+  
+            <main class="main_page">
+
                 <div class="">  
                     <!-- MENU DE FILTROS DO FILME -->
                     <div class="cockpit_filmes_form ">
+
                         <div class="cockpit_item_adm ">
-                            <button class="btn_return" style="cursor: pointer;" onclick="window.location.href='./HomeAdmin.jsp'"><i class="fa-solid fa-arrow-left"></i></button>
-                        </div>
-                        
+                            <button class="btn_return"><i class="fa-solid fa-arrow-left"></i></button>
+
                             <h1>Capas & Banners</h1>
+                        </div>
+
                     </div>
-            <div class="cockpit_filmes_form ">
-                <form method="post" action="../CadFilme" name="formFilm" enctype="multipart/form-data" onsubmit="formreg.oper.value = '1'">
-                    <input type="hidden" name="oper" value="0">  <!-- Campo oculto para 'oper' -->
-                    <input type="hidden" name = pkuser value ="<%=nome%>" >
-                    <main class="main_page">
+
                     <section id="filmes_container container_G_Fil " class="div_security_area ">
                         <div class="inputs_area ">
                             <div class="input_div">
                                 <label>Capa principal</label>
-                                <label class="input_capas"> <input type="file" class=" principal" name="arquivoCapa" id = "arqCapa"></label>
+                                <label class="input_capas"> <input type="file" class=" principal"></label>
                             </div>
                             <div class="input_div">
                                 <label>Banner principal</label>
-                                <label class="input_capas"> <input type="file" class=" banners" name="arquivoBanner" id = "arqBanner"></label>
+                                <label class="input_capas"> <input type="file" class=" banners"></label>
                             </div>
                         </div>
                         <div class="inputs_area linear ">
@@ -127,17 +156,18 @@
                             <div class="div_list_inputs">
                                 <div class="input_div_grid">
                                     <label>Nome</label>
-                                    <label class="input_capas"> <input type="text" class=" principal" name="nome"></label>
+                                    <label class="input_capas"> <input type="text" class=" principal" name="nome" required></label>
                                 </div>
                                 <div class="input_div_grid">
                                     <label>Categoria</label>
-                                    <label name="categoria" class="input_capas"> <input list="cat" class=" principal" name="categoria">
-                                        <datalist id="cat">
+                                    <label class="input_capas"> <input list="cat" class="principal" name="categoria">
+                                        <datalist id="cat"> 
                                             <option value="Românce">
                                             <option value="Ação">
                                             <option value="Aventura">
                                             <option value="Desenho">
                                             <option value="Ficção">
+                                            <option value="Comédia">
                                         </datalist></label>
                                 </div>
                                 <div class="input_div_grid">
@@ -225,13 +255,10 @@
                     Cancelar
                 </button>
 
-                <button class="add_btn" >
-                    <i class="fa-solid fa-plus"></i>
-                    Adicionar
-                </button>
+                <input class="add_btn" type="submit" value="Adicionar" onclick="formreg.oper.value = '1';">
             </div>
         </form>
-</div>
+
         <footer class="">
 
         </footer>
