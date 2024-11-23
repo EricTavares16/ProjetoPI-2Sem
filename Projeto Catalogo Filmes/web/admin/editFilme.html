@@ -23,16 +23,10 @@
 <body class="body">
     <nav class="container-menu">
         <div class="buttonsAreaView">
-            <div class="buttonView active"><button><i class="fa-solid fa-circle-plus"></i></button>
-                <p>Adicionar Filme</p>
-            </div>
-            <div class="buttonView"><button><i class="fa-solid fa-user-plus"></i></button>
-                <p>Adicionar Filme</p>
-            </div>
-            <div class="buttonView"><button><i class="fa-solid fa-right-from-bracket"></i></button>
-                <p>Adicionar Filme</p>
-            </div>
-
+            <div class="buttonView active"><button><a href="cadNewFilme.html"><i class="fa-solid fa-circle-plus"></i></a></button><p>Adicionar Filme</p></div>
+            <div class="buttonView"><button><a href="editFilme.html"><i class="fa-solid fa-user-plus"></i></a></button><p>Adicionar Atores</p></div>
+            <div class="buttonView"><button><a href=""><i class="fa-solid fa-right-from-bracket"></i></a></button><p>Logout</p></div>
+            
         </div>
     </nav>
     <main class="main_page">
@@ -42,7 +36,7 @@
             <div class="cockpit_filmes_form ">
 
                 <div class="cockpit_item_adm ">
-                    <button class="btn_return"><i class="fa-solid fa-arrow-left"></i></button>
+                    <button class="btn_return"><a href="index.html"><i class="fa-solid fa-arrow-left"></i></a></button>
 
                     <h1>Capas & Banners</h1>
                 </div>
@@ -50,7 +44,7 @@
 
             </div>
 
-            <section id="filmes_container container_G_Fil " class="div_security_area ">
+            <form id="filmes_container container_G_Fil" class="div_security_area ">
                 <div class="inputs_area ">
                     <div class="input_div">
                         <label>Capa principal</label>
@@ -88,6 +82,11 @@
                             <label class="input_capas"> <input type="text" class=" principal"></label>
                         </div>
                         <div class="input_div_grid">
+                            <label>Tempo de duração <span style="font-size: 0.7rem;color: #cccccc65;">(exemplo: 120
+                                    min)</span></label>
+                            <label class="input_capas"> <input type="text" class=" principal"></label>
+                        </div>
+                        <div class="input_div_grid">
                             <label>Restrição de idade</label>
                             <label class="input_capas"> <input list="rest" class=" principal">
                                 <datalist id="rest">
@@ -111,62 +110,66 @@
                     <div class="div_list_inputs colunm">
                         <div class="input_div_grid desc_area">
                             <label>Atores Principais</label>
-                            <label class="input_capas"> <button onclick="openCloseModal('.modal_edit_user_info',1)">Adicionar Ator</button>                            </label>
+                            <label class="input_capas"> <button
+                                    onclick="openCloseModal('.modal_edit_user_info',1)">Adicionar Ator</button> </label>
                             <div class="container_actores_list ">
                                 <div class="container_inputs_edit_actor">
                                     <div class="div_picture_actor_input">
-                                        <label class="input_capas_picture"><input type="file" class="actor_picture"></label>
+                                        <label class="input_capas_picture"><input type="file"
+                                                class="actor_picture"></label>
                                     </div>
                                     <div class="div_input_infos_actor">
-                                        <div class="input_div_grid">
-                                            <label>Avaliações</label>
+                                         <div class="input_div_grid_ava">
+                                            <label class="label_ava">Nome</label>
                                             <label class="input_capas"> <input type="text" class=" principal"></label>
                                         </div>
-                                        <div class="input_div_grid">
-                                            <label>Avaliações</label>
+                                        <div class="input_div_grid_ava">
+                                            <label class="label_ava">Nome fictício</label>
                                             <label class="input_capas"> <input type="text" class=" principal"></label>
                                         </div>
-                                        <div class="input_div_grid">
-                                            <label>Avaliações</label>
-                                            <label class="input_capas"> <input type="text" class=" principal"></label>
+                                        <div class="input_div_grid_ava">
+
+                                            <label class="input_capas"> <input type="button" class="remove_btn"
+                                                    value="Remover"></label">
                                         </div>
                                     </div>
                                 </div>
-                               
+
                             </div>
                         </div>
 
                     </div>
+                    <div class="footer">
+                        <div class="footer_container_area ">
+
+                            <button class="delet_btn">
+
+                                Excluir
+                            </button>
+
+                        </div>
+                        <div class="footer_container_area ">
+                            <button class="cancel_btn">
+                                <!-- <i class="fa-solid fa-xmark"></i> -->
+                                Cancelar
+                            </button>
+
+                            <button class="add_btn">
+                                <i class="fa-solid fa-plus"></i>
+                                Adicionar
+                            </button>
+                        </div>
+
+
+                    </div>
                 </div>
-            </section>
-            
+            </form>
+
         </div>
-        
-       
+
+
     </main>
-    <footer class="">
-        <div class="footer_container_area ">
-            
-            <button class="delet_btn">
-                
-                Excluir
-            </button>
-      
-        </div>
-        <div class="footer_container_area ">
-            <button class="cancel_btn">
-                <!-- <i class="fa-solid fa-xmark"></i> -->
-                Cancelar
-            </button>
-        
-            <button class="add_btn">
-                <i class="fa-solid fa-plus"></i>
-                Adicionar
-            </button>
-        </div>
-      
-        
-    </footer>
+
 
     <div class="modal modal_edit_user_info hidden">
         <div class="modal_header">
@@ -174,7 +177,7 @@
             <button class="close" data-modal-close>X</button>
         </div>
         <div class="modal_content">
-            <form class="flex">  
+            <form class="flex">
                 <div class="avatar flex-center">
                     <div class="avatar_img flex-center">
                         <img src="" alt="Avatar">
@@ -195,8 +198,8 @@
     <div id="modal_blur" class="hidden"></div>
 
 
-    
-    
+
+
     <script src="../scriptGlobal.js"></script>
     <script src="https://kit.fontawesome.com/3d5034d18d.js" crossorigin="anonymous"></script>
 

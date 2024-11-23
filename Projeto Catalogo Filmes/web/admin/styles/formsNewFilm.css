@@ -160,15 +160,12 @@
 .inputs_area.linear .div_list_inputs .container_inputs_edit_actor {
   width: 560px;
   height: 348px;
-  background-color: #8501B0;
   display: flex;
-  justify-content: space-between;
   align-items: center;
 }
 .inputs_area.linear .div_list_inputs .container_inputs_edit_actor .div_picture_actor_input {
   display: flex;
   flex-direction: column;
-  margin-right: 34px;
 }
 .inputs_area.linear .div_list_inputs .container_inputs_edit_actor .div_picture_actor_input .input_capas_picture {
   height: 348px;
@@ -191,29 +188,39 @@
 .inputs_area.linear .div_list_inputs .container_inputs_edit_actor .input_capas_picture > input[type=file]:focus-within {
   border: 10px solid #8501B0;
 }
+.inputs_area.linear .div_list_inputs .container_inputs_edit_actor .div_input_infos_actor {
+  height: 280px;
+  width: 360px;
+  margin-left: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: -65px;
+}
 
-footer {
-  min-width: calc(100% - 80px);
+.footer {
+  min-width: 100%;
   margin-left: 80px;
   height: 256px;
   display: flex;
-  align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
 }
-footer .footer_container_area {
+.footer .footer_container_area {
   display: flex;
-  max-width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 80%;
   min-height: 56px;
   padding: 16px;
   margin-right: 72px;
 }
-footer .footer_container_area button {
+.footer .footer_container_area button {
   width: 198px;
   height: 54px;
   border-radius: 100px;
   margin-right: 32px;
 }
-footer .footer_container_area .cancel_btn {
+.footer .footer_container_area .cancel_btn {
   background-color: transparent;
   border: 1px solid #878387;
   color: #878387;
@@ -221,7 +228,7 @@ footer .footer_container_area .cancel_btn {
   text-align: center;
   margin-bottom: 8px;
 }
-footer .footer_container_area .delet_btn {
+.footer .footer_container_area .delet_btn {
   background-color: transparent;
   border: 1px solid #FF2929;
   color: #FF2929;
@@ -229,7 +236,7 @@ footer .footer_container_area .delet_btn {
   text-align: center;
   margin-bottom: 8px;
 }
-footer .footer_container_area .add_btn {
+.footer .footer_container_area .add_btn {
   background-color: #8501B0;
   border: none;
   color: #E7E7E7;
@@ -237,7 +244,7 @@ footer .footer_container_area .add_btn {
   text-align: center;
   margin-bottom: 8px;
 }
-footer .footer_container_area .add_btn i {
+.footer .footer_container_area .add_btn i {
   font-size: 16px;
   margin-right: 6px;
   margin-bottom: 8px;
@@ -252,3 +259,41 @@ label {
   font-size: 20px;
   color: #878387;
 }
+
+.input_div_grid_ava {
+  min-width: 264px;
+  min-height: 88px;
+  display: flex;
+  flex-direction: column;
+}
+.input_div_grid_ava .label_ava {
+  margin-bottom: -10px;
+}
+.input_div_grid_ava input,
+.input_div_grid_ava textarea,
+.input_div_grid_ava button {
+  margin-top: 10px;
+  height: 48px;
+  width: 204px;
+  color: #878387;
+  padding: 16px;
+  cursor: pointer;
+  background-color: #171317;
+  border: none;
+  border-radius: 8px;
+}
+.input_div_grid_ava button {
+  font-size: 20px;
+  font-weight: 500;
+  padding-top: 12px;
+}
+.input_div_grid_ava button:active {
+  background-color: rgba(23, 19, 23, 0.3);
+}
+.input_div_grid_ava .remove_btn {
+  background: #FF2929 !important;
+  width: 180px !important;
+  color: #E7E7E7 !important;
+}
+
+/*# sourceMappingURL=formsNewFilm.css.map */
