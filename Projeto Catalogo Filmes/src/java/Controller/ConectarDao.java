@@ -25,7 +25,7 @@ Pela excessão da clausula try. */
     public ConectarDao() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306", "root", "");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3307", "root", "");
             criarBanco();
             statusSQL = null;
         } catch (ClassNotFoundException ex) {
