@@ -41,7 +41,17 @@ public class Filme extends ConectarDao implements IcrudDao {
     public long bannertamanho; // Guarda o tamanho da imagem em bytes
 
     public String bannerimagemBase64;
+    public String genero;
 
+    
+     public String getGenero() {
+        return genero;
+    }
+
+    public void setGenero(String genero) {
+        this.genero = genero;
+    }
+    
     public int getId() {
         return id;
     }
@@ -238,6 +248,65 @@ public class Filme extends ConectarDao implements IcrudDao {
             Logger.getLogger(Filme.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+        return filmes;
+    }
+    
+     public ArrayList<Filme> listarFilmes_PorGenero(){
+        
+        ArrayList<Filme> filmes = new ArrayList<>();
+        
+        try { 
+
+            sql = "SELECT	FM.ID_FILME,\n" +
+                                "NM_FILME,\n" +
+                                "DS_SINOPSE,\n" +
+                                "HR_DURACAO,\n" +
+                                "DT_LANCAMENTO,\n" +
+                                "VL_AVALIACAO,\n" +
+                                "NR_CLASSIFICACAO_INDICATIVA,\n" +
+                                "IMG_CAPA\n" +
+                "FROM 		`TB_GENERO_FILME` GENFM\n" +
+                "INNER JOIN 	TB_FILME 	FM 	ON 	FM.ID_FILME = GENFM.ID_FILME\n" +
+                "INNER JOIN	TB_GENERO 	GEN	ON 	GEN.ID_GENERO = GENFM.ID_GENERO\n" +
+                "WHERE 		UCASE(TRIM(NM_GENERO)) = UCASE(TRIM(?))";
+
+            ps = con.prepareStatement(sql);
+            
+            ps.setString(1, genero); // Configura Parametros
+           
+            tab = ps.executeQuery();
+            
+            String fotinho = "";
+
+            while(tab.next()){
+                int id = tab.getInt(1);
+                String nome = tab.getString(2);
+                String sinopse = tab.getString(3);
+                String duracao = tab.getString(4);
+                String dtLancamento = tab.getString(5);
+                double avaliacao = tab.getDouble(6);
+                int classificacao = tab.getInt(7);
+                Blob blob = (Blob) tab.getBlob(8);
+                
+                if (blob == null) {
+                    capaimagemBase64 = null; }
+                else {
+                    capa = blob.getBinaryStream();
+                    byte[] buffer = new byte[(int) blob.length()];
+                    capa.read(buffer);
+                    fotinho = capaimagemBase64 = Base64.getEncoder().encodeToString(buffer);
+                }
+                
+                filmes.add(new Filme(id, nome, sinopse, duracao, dtLancamento, avaliacao, classificacao, fotinho));
+            }
+
+            this.statusSQL = null; 
+        } catch (SQLException ex) {
+            this.statusSQL = "Erro ao incluir usuario ! <br> " + ex.getMessage();
+        } catch (IOException ex) {
+            Logger.getLogger(Filme.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         return filmes;
     }
 

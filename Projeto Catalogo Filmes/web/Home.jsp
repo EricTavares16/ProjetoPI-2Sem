@@ -9,9 +9,35 @@
 Usuario user = new Usuario();
 Usuario userLogado = (Usuario) session.getAttribute("usuarioLogado");
 String nomeUser = (String) session.getAttribute("nome");
+
+Filme filmeT = new Filme();
+ArrayList<Filme> lista = new ArrayList<>();
+ 
+String genero = request.getParameter("genero");
+
+if(genero != null && !genero.trim().isEmpty()){
+    if(genero.equalsIgnoreCase("Romance")){
+        filmeT.setGenero(genero);
+        lista = filmeT.listarFilmes_PorGenero();
+    }
+    if(genero.equalsIgnoreCase("Acao")){
+        filmeT.setGenero(genero);
+        lista = filmeT.listarFilmes_PorGenero();
+    }
+    if(genero.equalsIgnoreCase("Aventura")){
+        filmeT.setGenero(genero);
+        lista = filmeT.listarFilmes_PorGenero();
+    }
+    if(genero.equalsIgnoreCase("Desenho")){
+        filmeT.setGenero(genero);
+        lista = filmeT.listarFilmes_PorGenero();
+    }
+    if(genero.equalsIgnoreCase("Ficcao")){
+        filmeT.setGenero(genero);
+        lista = filmeT.listarFilmes_PorGenero();
+    }
+ }
    
-    Filme filmeT = new Filme();
-    ArrayList<Filme> lista = filmeT.listarFilmes();   
 %>
 
 <!DOCTYPE html>
@@ -36,12 +62,12 @@ String nomeUser = (String) session.getAttribute("nome");
         <div class="container">
             <a href="userPage.jsp" class="avatar_image flex-center">
                 <%
-    if (userLogado == null) {
-        response.sendRedirect("login.jsp"); // Substitua "login.jsp" pela página de destino
-    }
-%>
+                    if (userLogado == null) {
+                        response.sendRedirect("login.jsp"); // Substitua "login.jsp" pela página de destino
+                    }
+                %>
 
-<!--<h3></h3--><img src="data:image/png;base64,<%if(userLogado.imagemBase64 != null)out.print(userLogado.imagemBase64);%>" alt="<%out.print(userLogado.email);%>">
+            <img src="data:image/png;base64,<%if(userLogado.imagemBase64 != null)out.print(userLogado.imagemBase64);%>" alt="<%out.print(userLogado.email);%>">
             </a>
             <a href="Details.jsp" class="input_style btn_detalhes_destaque">Detalhes</a>
         </div>
@@ -55,12 +81,27 @@ String nomeUser = (String) session.getAttribute("nome");
                     <input type="text" placeholder="Pesquisar" class="input_style">
                     <a href="#" class="input_style">?</a>
                 </div>
-                <ul class="cockpit_item flex-center">
-                   <li><button class="input_style">Romance</button></li> 
-                   <li><button class="input_style">Ação</button></li> 
-                   <li><button class="input_style">Aventura</button></li> 
-                   <li><button class="input_style">Desenho</button></li> 
-                   <li><button class="input_style">Ficção</button></li> 
+               <ul class="cockpit_item flex-center">
+                    <form method="GET">
+                        <input type="hidden" name="genero" value="Romance">
+                        <button type="submit" class="input_style">Romance</button>
+                    </form>
+                    <form method="GET">
+                        <input type="hidden" name="genero" value="Acao">
+                        <button type="submit" class="input_style">Ação</button>
+                    </form>
+                    <form method="GET">
+                        <input type="hidden" name="genero" value="Aventura">
+                        <button type="submit" class="input_style">Aventura</button>
+                    </form>
+                    <form method="GET">
+                        <input type="hidden" name="genero" value="Desenho">
+                        <button type="submit" class="input_style">Desenho</button>
+                    </form>
+                    <form method="GET">
+                        <input type="hidden" name="genero" value="Ficcao">
+                        <button type="submit" class="input_style">Ficção</button>
+                    </form>
                 </ul>
             </div>
 
