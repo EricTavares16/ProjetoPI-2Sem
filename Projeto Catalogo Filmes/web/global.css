@@ -46,6 +46,10 @@ img {
   border: 1px solid red;
 }
 
+.border-blue {
+  border: 1px solid blue;
+}
+
 .flex {
   display: flex;
 }
