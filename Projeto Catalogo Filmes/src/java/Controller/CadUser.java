@@ -34,17 +34,31 @@ public class CadUser extends HttpServlet {
         
         Usuario user = new Usuario(); // Instancia o objeto Usuario
         user.email = request.getParameter("email");
-        user.nome = request.getParameter("nome");
+        user.nome = request.getParameter("novoNome");
         user.senha = request.getParameter("senha");
 /* Código para trazer a requisição do arquivo e colocar na objeto user */
         Part part = request.getPart("arquivo");
+        if(part != null){
         InputStream arquivo = part.getInputStream();
         user.tamanho = part.getSize();
-        user.foto = arquivo; 
+        user.foto = arquivo; }
 /* Código para trazer a requisição do arquivo e colocar na objeto user */
         if (request.getParameter("gravar") != null) {
             user.atualizarFoto();
-            if (user.statusSQL == null) statusSQL = "Registro Alterado com Sucesso !";}
+            if (user.statusSQL == null) {
+                Usuario newUser = user.retornarUserLogado();
+                session.removeAttribute("usuarioLogado");
+                session.setAttribute("usuarioLogado", newUser);
+                statusSQL = "Registro Alterado com Sucesso !";
+            }}
+        
+        if(request.getParameter("atualizarNome") != null){
+            user.alterarNome();
+            Usuario newUser = user.retornarUserLogado();
+            session.removeAttribute("usuarioLogado");
+            session.setAttribute("usuarioLogado", newUser);
+             if (user.statusSQL == null) statusSQL = "Nome Alterado com Sucesso !";
+        }
         
         if (request.getParameter("deletar") != null) {
             user.deletar();
@@ -52,13 +66,9 @@ public class CadUser extends HttpServlet {
             statusSQL = "Você deletou seu usuário, sua sessão foi fechada!";}
 
         try (PrintWriter out = response.getWriter()) {
-          sHTML = "<!DOCTYPE html>"
-                    + "<html><head><title>Cadastro de Usuários</title>"
-                    + "</head><body style=\"background-color: greenyellow;\">"
-                    + "<br><br><center> " + statusSQL + "<br>"
-                    + "<a href ='" + request.getContextPath() + "/" + "./userPage.jsp"
-                    + "'> Voltar </a></center></body></html>";
-                    out.print(sHTML);
+          response.sendRedirect("./loadingValida.html");
+                    
+                    
 
         }
     }

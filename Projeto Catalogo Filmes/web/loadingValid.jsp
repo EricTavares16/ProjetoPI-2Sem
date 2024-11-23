@@ -1,3 +1,14 @@
+<%
+    String nomeUser = (String) session.getAttribute("nome");
+ if("admin".equals(nomeUser)){
+        response.sendRedirect("admin/HomeAdmin.jsp");
+    }else{
+        response.sendRedirect("Home.jsp");
+    }
+
+
+%>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -64,9 +75,9 @@
     </div>
 </body>
  <script>
-        // Redireciona para uma nova aba apÃ³s 2 segundos
+        // Redireciona para uma nova aba após 2 segundos
         setTimeout(function() {
-             window.location.href = './userPage.jsp';
+            window.open('Home.jsp');
         }, 2000); // Tempo em milissegundos (2 segundos)
     </script>
 </html>
