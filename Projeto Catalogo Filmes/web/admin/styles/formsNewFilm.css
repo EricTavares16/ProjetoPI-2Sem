@@ -339,53 +339,70 @@
 .footer .footer_container_area button:hover {
   filter: brightness(1.3);
 }
-
-.cancel_btn {
+.footer .footer_container_area .cancel_btn {
   background-color: transparent;
   border: 1px solid #878387;
   color: #878387;
   font-size: 22px;
   text-align: center;
 }
-
-.delet_btn {
+.footer .footer_container_area .delet_btn {
   background-color: transparent;
   border: 1px solid #FF2929;
   color: #FF2929;
   font-size: 22px;
   text-align: center;
 }
-
-.add_btn {
+.footer .footer_container_area .add_btn {
+  background-color: #8501B0;
+  border: none;
+  color: #E7E7E7;
+  font-size: 22px;
+  text-align: center;
+  margin-bottom: 8px;
+}
+.footer .cancel_btn {
+  background-color: transparent;
+  border: 1px solid #878387;
+  color: #878387;
+  font-size: 22px;
+  text-align: center;
+}
+.footer .delet_btn {
+  background-color: transparent;
+  border: 1px solid #FF2929;
+  color: #FF2929;
+  font-size: 22px;
+  text-align: center;
+}
+.footer .add_btn {
   background-color: #8501B0 !important;
   border: none;
   color: #E7E7E7 !important;
   font-size: 22px;
   text-align: center;
 }
-.add_btn i {
+.footer .add_btn i {
   font-size: 16px;
   margin-right: 6px;
   margin-bottom: 8px;
 }
-
-label {
+.footer label {
   font-size: 20px;
   color: #878387;
 }
-
-.input_div_grid_ava {
+.footer .input_div_grid_ava {
   min-width: 264px;
   min-height: 88px;
   display: flex;
   flex-direction: column;
 }
-.input_div_grid_ava .label_ava {
+.footer .input_div_grid_ava .label_ava {
   margin-bottom: -10px;
 }
-.input_div_grid_ava input,
-.input_div_grid_ava textarea,
-.input_div_grid_ava button {
+.footer .input_div_grid_ava input,
+.footer .input_div_grid_ava textarea,
+.footer .input_div_grid_ava button {
   margin-top: 10px;
   height: 48px;
   width: 204px;
@@ -396,21 +413,19 @@ label {
   border: none;
   border-radius: 8px;
 }
-.input_div_grid_ava button {
+.footer .input_div_grid_ava button {
   font-size: 20px;
   font-weight: 500;
   padding-top: 12px;
 }
-.input_div_grid_ava button:active {
+.footer .input_div_grid_ava button:active {
   background-color: rgba(23, 19, 23, 0.3);
 }
-.input_div_grid_ava .remove_btn {
+.footer .input_div_grid_ava .remove_btn {
   background: #FF2929 !important;
   width: 180px !important;
   color: #E7E7E7 !important;
 }
-
-/*# sourceMappingURL=formsNewFilm.css.map */
 
 .atorModalLeft {
   width: 800px;
@@ -686,4 +701,4 @@ label {
 }
 .container_topArea .inputs_areas .input_div .input_capas > input[type=file]:focus-within {
   border: 10px solid #8501B0;
-}/*# sourceMappingURL=formsNewFilm.css.map */
+}
