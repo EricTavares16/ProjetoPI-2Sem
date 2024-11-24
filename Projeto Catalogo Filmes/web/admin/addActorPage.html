@@ -20,7 +20,8 @@
 <body class="body">
     <nav class="container-menu">
         <div class="buttonsAreaView">
-            <div class="buttonView active"><button><a href="cadNewFilme.html"><i class="fa-solid fa-circle-plus"></i></a></button>
+            <div class="buttonView active"><button><a href="cadNewFilme.html"><i
+                            class="fa-solid fa-circle-plus"></i></a></button>
                 <p>Adicionar Filme</p>
             </div>
             <div class="buttonView"><button><a href="addActorPage.html"><i class="fa-solid fa-user-plus"></i></a></button>
@@ -34,19 +35,18 @@
     </nav>
     <main class="container">
         <section class="container_topArea ">
-            <div class="">
-                <button class="btn_return"><a href="index.html"><i class="fa-solid fa-arrow-left"></i></a></button>
-                <h1>Cadastro de Atores</h1>
-            </div>
-            <form class="container_actores_list ">
+            
+            <h1>Cadastro de Atores</h1>
+            <form method="post" action="../CadAtor" name="formAtor" enctype="multipart/form-data" onsubmit="formreg.oper.value = '1'">
                 <div class="container_inputs_areas">
                     <div class="inputs_areas">
                         <div class="input_div">
                             
-                            <label class="input_capas ">
-                                <img src="" alt="Clique para selecionar uma imagem" id="imagePreview6" class="img_preview">
+                            <label class="input_capas " >
+                                <img src="" alt="Clique para selecionar uma imagem" id="imagePreview6" class="img_preview" >
                                 <!-- Campo de input de arquivo escondido -->
-                                <input type="file" class="cad_actors" id="file-input6"  accept="image/*" onchange="handleFileChange(event, 'imagePreview6')">
+                                <input type="file" class="cad_actors" id="file-input6"  accept="image/*" 
+                                       onchange="handleFileChange(event, 'imagePreview6')" name="atorCapa">
                             </label>
                            
                         </div>
@@ -54,7 +54,11 @@
                         <div class="area_input ">
                             <div class="input_div_grid ">
                                 <label>Nome</label>
-                                <label class="input_capas"> <input type="text" class="principal"></label>
+                                <label class="input_capas" > <input type="text" class="principal" name="nome"></label>
+                            </div>
+                            <div class="input_div_grid ">
+                                <label>Idade</label>
+                                <label class="input_capas"> <input type="text" class="principal" name="idade"></label>
                             </div>
                             
                             <div class="input_div_grid">

@@ -89,183 +89,266 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Feedback Cinema - Cliente</title>
-        <link rel="stylesheet" href="../global.css">
-        <link rel="stylesheet" href="../home.css">
-        <link rel="stylesheet" href="styles/menu.css">
-        <link rel="stylesheet" href="styles/generalHome.css">
-        <link rel="stylesheet" href="styles/formsNewFilm.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
-              integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
-              crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link
-            href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100,200,300,400,500,600,700,800,900;1,100,200,300,400,500,600,700,800,900&display=swap"
-            rel="stylesheet">
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback Cinema - Cliente</title>
+    <link rel="stylesheet" href="../global.css">
+    <link rel="stylesheet" href="../home.css">
+    <link rel="stylesheet" href="styles/menu.css">
+    <link rel="stylesheet" href="styles/generalHome.css">
+    <link rel="stylesheet" href="styles/formsNewFilm.css">
+    <link rel="stylesheet" href="styles/formsNewFilm.scss">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100,200,300,400,500,600,700,800,900;1,100,200,300,400,500,600,700,800,900&display=swap"
+        rel="stylesheet">
+</head>
 
-    <body class="body">
-        <nav class="container-menu">
-            <div class="buttonsAreaView">
-                <div class="buttonView active"><button><i class="fa-solid fa-circle-plus"></i></button>
-                    <p>Adicionar Filme</p>
+<body class="body">
+    <nav class="container-menu">
+        <div class="buttonsAreaView">
+            <div class="buttonView active"><button><a href="cadNewFilme.html"><i class="fa-solid fa-circle-plus"></i></a></button><p>Adicionar Filme</p></div>
+            <div class="buttonView"><button><a href="editFilme.html"><i class="fa-solid fa-user-plus"></i></a></button><p>Adicionar Atores</p></div>
+            <div class="buttonView"><button><a href=""><i class="fa-solid fa-right-from-bracket"></i></a></button><p>Logout</p></div>
+            
+        </div>
+    </nav>
+    <main class="main_page">
+        <div class="">
+
+            <!-- MENU DE FILTROS DO FILME -->
+            <div class="cockpit_filmes_form ">
+
+                <div class="cockpit_item_adm ">
+                    <button class="btn_return"><a href="index.html"><i class="fa-solid fa-arrow-left"></i></a></button>
+
+                    <h1>Capas & Banners</h1>
                 </div>
-                <div class="buttonView"><button><i class="fa-solid fa-user-plus"></i></button>
-                    <p>Adicionar Filme</p>
-                </div>
-                <div class="buttonView"><button><i class="fa-solid fa-right-from-bracket"></i></button>
-                    <p>Adicionar Filme</p>
-                </div>
+
+
             </div>
-        </nav>
 
-        <form method="post" action="../CadFilme" name="formFilm" enctype="multipart/form-data" onsubmit="formreg.oper.value = '1'">
-            <input type="hidden" name="oper" value="0">
-  
-            <main class="main_page">
+            <form method="post" action="../CadFilme" name="formFilm" enctype="multipart/form-data" onsubmit="formreg.oper.value = '1'">
+                 <input type="hidden" name="oper" value="0">
+                 
+                <div class="inputs_area ">
+                    
+                    <div class="input_div">
+                        
+                        <label>Capa principal</label>
+                        
+                        <label class="input_capas">
+                            <img src="../Assets/BGInputsFile.svg" alt="Clique para selecionar uma imagem"
+                                id="imagePreview">
+                            <!-- Campo de input de arquivo escondido -->
+                            <input type="file" class="principal" id="file-input"  accept="image/*" onchange="handleFileChange(event)" name="arquivoCapa">
+                        </label>
+                        <!-- <label class="input_capas"> <input type="file" accept="image/*" class="principal"></label> -->
+                    </div>
+                    <div class="input_div">
+                        <label>Banner principal</label>
+                        <label class="input_capas">
+                            <img src="../Assets/BGInputsFile.svg" alt="Clique para selecionar uma imagem"
+                                id="imagePreview">
+                            <!-- Campo de input de arquivo escondido -->
+                            <input type="file" class="banners" id="file-input"  accept="image/*"
+                                onchange="handleFileChange(event)" name="arquivoBanner">
+                        </label>
 
-                <div class="">  
-                    <!-- MENU DE FILTROS DO FILME -->
-                    <div class="cockpit_filmes_form ">
-
-                        <div class="cockpit_item_adm ">
-                            <button class="btn_return"><i class="fa-solid fa-arrow-left"></i></button>
-
-                            <h1>Capas & Banners</h1>
+                    </div>
+                </div>
+                <div class="inputs_area linear ">
+                    <h1> Informações</h1>
+                    <div class="div_list_inputs">
+                        <div class="input_div_grid">
+                            <label>Nome</label>
+                            <label class="input_capas"> <input type="text" class="principal" name="nome" required></label>
+                        </div>
+                        <div class="input_div_grid">
+                            <label>Categoria</label>
+                            <label class="input_capas"> <input list="cate" id="cat" class="principal"  onclick="inputClearorNot(event)" autocomplete="off" name="categoria">
+                                <datalist id="cate">
+                                    <option value="Ação">Ação</option>
+                                    <option value="Aventura">Aventura</option>
+                                    <option value="Comédia">Comédia</option>
+                                    <option value="Drama">Drama</option>
+                                    <option value="Terror">Terror</option>
+                                    <option value="Ficção Científica">Ficção Científica</option>
+                                    <option value="Romance">Romance</option>
+                                    <option value="Fantasia">Fantasia</option>
+                                    <option value="Suspense">Suspense</option>
+                                    <option value="Mistério">Mistério</option>
+                                    <option value="Animação">Animação</option>
+                                    <option value="Documentário">Documentário</option>
+                                    <option value="Musical">Musical</option>
+                                    <option value="Histórico">Histórico</option>
+                                    <option value="Família">Família</option>
+                                </datalist></label>
+                        </div>
+                        <div class="input_div_grid">
+                            <label>Ano de Lançamento</label>
+                            <label class="input_capas"> <input type="date" class="principal" name="data"></label>
+                        </div>
+                        <div class="input_div_grid">
+                            <label>Avaliações</label>
+                            <label class="input_capas"> <input type="text" class="principal" name="avaliacao"></label>
+                        </div>
+                        <div class="input_div_grid">
+                            <label>Tempo de duração <span style="font-size: 0.7rem;color: #cccccc65;">(exemplo: 120
+                                    min)</span></label>
+                            <label class="input_capas"> <input type="text" class="principal" name="duracao"></label>
+                        </div>
+                        <div class="input_div_grid">
+                            <label>Restrição de idade</label>
+                            <label class="input_capas"> <input list="restri" id="rest" class="principal" onclick="inputClearorNot(event)" name="classificacao" autocomplete="off">
+                                <datalist id="restri">
+                                    <option value="+12" name="1">
+                                    <option value="+14"name="2">
+                                    <option value="+16"name="3">
+                                    <option value="+18"name="4">
+                                    <option value="Livre"name="0">
+                                </datalist></label>
                         </div>
 
                     </div>
-
-                    <section id="filmes_container container_G_Fil " class="div_security_area ">
-                        <div class="inputs_area ">
-                            <div class="input_div">
-                                <label>Capa principal</label>
-                                <label class="input_capas"> <input type="file" class="principal" name="arquivoCapa"></label>
-                            </div>
-                            <div class="input_div">
-                                <label>Banner principal</label>
-                                <label class="input_capas"> <input type="file" class="banners" name="arquivoBanner"></label>
-                            </div>
+                    <div class="div_list_inputs ">
+                        <div class="input_div_grid desc_area">
+                            <label>Descrição</label>
+                            <label class="input_capas"> <textarea class="descr_input" name="sinopse"></textarea></label>
                         </div>
-                        <div class="inputs_area linear ">
-                            <h1> Informações</h1>
-                            <div class="div_list_inputs">
-                                <div class="input_div_grid">
-                                    <label>Nome</label>
-                                    <label class="input_capas"> <input type="text" class=" principal" name="nome" required></label>
-                                </div>
-                                <div class="input_div_grid">
-                                    <label>Categoria</label>
-                                    <label class="input_capas"> <input list="cat" class="principal" name="categoria">
-                                        <datalist id="cat"> 
-                                            <option value="Românce">
-                                            <option value="Ação">
-                                            <option value="Aventura">
-                                            <option value="Desenho">
-                                            <option value="Ficção">
-                                            <option value="Comédia">
-                                        </datalist></label>
-                                </div>
-                                <div class="input_div_grid">
-                                    <label>Ano de Lançamento</label>
-                                    <label class="input_capas"> <input type="date" class=" principal" name="data"></label>
-                                </div>
-                                <div class="input_div_grid">
-                                    <label>Duração em minutos</label>
-                                    <label class="input_capas"> <input type="text" class=" principal" name="duracao"></label>
-                                </div>
-                                <div class="input_div_grid">
-                                    <label>Avaliações</label>
-                                    <label class="input_capas"> <input type="text" class=" principal" name="avaliacao"></label>
-                                </div>
-                                <div class="input_div_grid">
-                                    <label>Restrição de idade</label>
-                                    <label class="input_capas"> <input list="rest" class=" principal" name="classificacao">
-                                        <datalist id="rest">
-                                            <option value="+12" name="1">
-                                            <option value="+14" name="2">
-                                            <option value="+16" name="3">
-                                            <option value="+18" name="4">
-                                            <option value="Livre" name="0">
-                                        </datalist></label>
-                                </div>
-
-                            </div>
-                            <div class="div_list_inputs ">
-                                <div class="input_div_grid desc_area">
-                                    <label>Descrição</label>
-                                    <label class="input_capas"> <textarea class="descr_input" name="sinopse"></textarea></label>
-                                </div>
-
-                            </div>
-                            <div class="div_list_inputs colunm">
-                                <div class="input_div_grid desc_area">
-                                    <label>Atores Principais</label>
-                                    <label class="input_capas"> <button>Adicionar Ator</button></label>
-                                    <div class="container_actores_list ">
-                                        <div class="actors_div_film">
-                                            <!-- <img src="../imgs/foto34.png" alt=""> -->
-                                            <div class="box_color_bg">
-                                            </div>
-                                            <div class="container_names_actors">
-
-                                                <p class="title_persona_name location">Nome do Personagem</p>
-                                                <p class="title_actor_name location">Nome do Ator</p>
-                                            </div>
 
 
-                                        </div>
-                                        <div class="actors_div_film">
-                                            <!-- <img src="../imgs/foto34.png" alt=""> -->
-                                            <div class="box_color_bg">
-                                            </div>
-                                            <div class="container_names_actors">
+                    </div>
+                    <div class="div_list_inputs colunm">
+                        <div class="input_div_grid desc_area">
+                            <label>Atores Principais</label>
+                            <label class="input_capas"> <button type="button" onclick="openCloseModal('.modal_add_ator')">Adicionar Ator</button>
+                            </label>
+                            <div class="container_actores_list ">
+                                <div class="actors_div_film">
 
-                                                <p class="title_persona_name location">Nome do Personagem</p>
-                                                <p class="title_actor_name location">Nome do Ator</p>
-                                            </div>
-
-
-                                        </div>
+                                    <div class="box_color_bg">
                                     </div>
-                                </div>
+                                    <div class="container_names_actors">
 
+                                        <p class="title_persona_name location">Nome do Personagem</p>
+                                        <p class="title_actor_name location">Nome do Ator</p>
+                                    </div>
+
+
+                                </div>
+                                
                             </div>
                         </div>
-                    </section>
+
+                    </div>
+                    <div class="footer" >
+    
+                        <div class="footer_container_area ">
+                            <button class="cancel_btn" type="reset">
+                
+                                Cancelar
+                            </button>
+                
+                            <button class="add_btn">
+                                <i class="fa-solid fa-plus"></i>
+                                Adicionar
+                            </button>
+                        </div>
+                
+                
+                    </div>
+                </div>
+            </form>
+
+        </div>
+
+
+    </main>
+    
+
+
+
+    <!-- MODAL TEST -->
+
+    <!--<button class="edit_button" id="edit_user_info_button" onclick="openCloseModal('.modal_edit_user_name')">edit</button>-->
+
+    <div class="modal modal_add_ator hidden">
+        <div class="modal_header">
+            <p>Adicionar ator</p>
+            <button class="close" data-modal-close>X</button>
+        </div>
+        <div class="modal_content">
+            <form class="flex">
+                <div class="atorModalLeft">
+                    <div class="input_div">
+                        <!-- A imagem atua como botão para selecionar o arquivo -->
+                        <label class="input_capas">
+                  
+                            <!-- Campo de input de arquivo escondido -->
+                            <input type="file" class="banners" id="file-input" data-id="3" accept="image/*"
+                                onclick="handleFileChange(event)">
+                        </label>
+                    </div>
+
+                    
 
                 </div>
-            </main>
+                <div class="atorModalRight">
+                    <div class="atorModalLabel">
+                        <!-- <label>
+                            <p>Nome:</p>
+                            <input class="input_style" type="text" id="nome" name="nome">
+                        </label> -->
+                        <label>
+                            <p>Nome:</p>
+                            <input class="input_style" list="actoresCad" id="nome" name="nome" autocomplete="off"autocomplete="off">
+                            <datalist id="actoresCad">
+                                <option value="Leonardo DiCaprio">
+                                <option value="Johnny Depp">
+                                <option value="Tom Hanks">
+                                <option value="Brad Pitt">
+                                <option value="Dwayne Johnson">
+                                <option value="Robert Downey Jr.">
+                                <option value="Chris Hemsworth">
+                                <option value="Will Smith">
+                                <option value="Keanu Reeves">
+                                <option value="Hugh Jackman">
+                                <option value="Ryan Reynolds">
+                                <option value="Chris Evans">
+                                <option value="Jason Momoa">
+                                <option value="Adam Sandler">
+                                <option value="Morgan Freeman">
+                              </datalist>
+                        </label>
+                    </div>
+                    <div class="atorModalLabel">
+                        <label class="atorModalLabel">
+                            <p>Nome fictício:</p>
+                            <input class="input_style" type="text" id="nome-ficticio" name="nome-ficticio">
+                        </label>
+                    </div>
 
-            <div class="footer_container_area ">
-
-                <!-- <button class="add_btn">
-                    <i class="fa-solid fa-pen"></i>
-                    Editar
-                </button> -->
-
-            </div>
-            <div class="footer_container_area ">
-                <button class="cancel_btn">
-                    <!-- <i class="fa-solid fa-xmark"></i> -->
-                    Cancelar
-                </button>
-
-                <input class="add_btn" type="submit" value="Adicionar" onclick="formreg.oper.value = '1';">
-            </div>
+                </div>
+        </div>
         </form>
+    </div>
+    </div>
 
-        <footer class="">
+    <div id="modal_blur" class="hidden">
+    </div>
 
-        </footer>
 
-        <script src="https://kit.fontawesome.com/3d5034d18d.js" crossorigin="anonymous"></script>
+    <!-- fim do modal -->
+    <script src="/Projeto Catalogo Filmes/web/scriptGlobal.js"></script>
+    <script src="https://kit.fontawesome.com/3d5034d18d.js" crossorigin="anonymous"></script>
 
-    </body>
+</body>
 
 </html>
 
