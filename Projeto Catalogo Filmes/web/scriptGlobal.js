@@ -44,18 +44,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 function handleFileChange(event, idImgSrc) {
-    const file = event.target.files[0]; 
-    const preview = document.querySelector(`#${idImgSrc}`);
+    const input = event.target; // Referência ao input
+    const file = input.files[0]; // Arquivo selecionado
+    const preview = document.querySelector(`#${idImgSrc}`); // Elemento de imagem para pré-visualização
 
     if (file) {
         const reader = new FileReader();
-        
-        // Quando o arquivo for carregado, exibe-o na imagem de pré-visualização
+
         reader.onload = function(e) {
-            preview.src = e.target.result;
+            preview.src = e.target.result; // Define a URL da imagem
+            preview.style.display = "block"; // Exibe a imagem
         };
-        
-        reader.readAsDataURL(file); // Ler o arquivo como uma URL de dados
+
+        reader.readAsDataURL(file); // Lê o arquivo como URL base64
+    } else {
+        preview.src = ""; // Remove a imagem
+        preview.style.display = "none"; // Esconde o elemento da imagem
     }
-   
 }
+
+
+

@@ -36,36 +36,34 @@
   max-width: 400px;
 }
 .inputs_area .input_div .input_capas {
+  position: relative;
   height: 100%;
+  width: 400px;
   background-color: #171317;
-  border: none;
   margin-top: 16px;
   aspect-ratio: 16/9;
   border-radius: 8px;
   overflow: hidden;
+  cursor: pointer;
 }
-.inputs_area .input_div .input_capas .banners {
-  width: 433px;
-  aspect-ratio: 16/9;
-}
-.inputs_area .input_div .input_capas .principal {
-  width: 272px;
-  aspect-ratio: 16/9;
-}
-.inputs_area .input_div .input_capas .cad_actors {
-  width: 472px;
-  aspect-ratio: 16/9;
-}
-.inputs_area .input_div .input_capas > input[type=file] {
-  height: 100%;
+.inputs_area .input_div .input_capas .img_preview {
   width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.inputs_area .input_div .input_capas input[type=file] {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   opacity: 0;
   cursor: pointer;
-  background-color: #171317;
-  border: none;
-}
-.inputs_area .input_div .input_capas > input[type=file]:focus-within {
-  border: 10px solid #8501B0;
 }
 
 .inputs_area.linear {
