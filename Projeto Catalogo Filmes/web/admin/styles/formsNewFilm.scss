@@ -56,6 +56,10 @@
                 width: 272px;
                 aspect-ratio: 16 / 9;
             }
+            .cad_actors{
+                width: 472px;
+                aspect-ratio: 16 / 9;
+            }
         }
 
         .input_capas>input[type="file"] {
@@ -425,13 +429,39 @@
             color: #E7E7E7;
             font-size: 22px;
             text-align: center;
+            margin-bottom: 8px;
 
-            i {
-                font-size: 16px;
-                margin-right: 6px;
-                margin-bottom: 8px;
-            }
-        }
+       
+    }
+}
+
+.cancel_btn {
+    background-color: transparent;
+    border: 1px solid #878387;
+    color: #878387;
+    font-size: 22px;
+    text-align: center;
+}
+
+.delet_btn {
+    background-color: transparent;
+    border: 1px solid #FF2929;
+    color: #FF2929;
+    font-size: 22px;
+    text-align: center;
+}
+
+.add_btn {
+    background-color: #8501B0 !important;
+    border: none;
+    color: #E7E7E7 !important;
+    font-size: 22px;
+    text-align: center;
+
+    i {
+        font-size: 16px;
+        margin-right: 6px;
+        margin-bottom: 8px;
     }
 }
 
@@ -481,6 +511,7 @@ label {
         color: #E7E7E7 !important;
     }
 
+}
 
 }
 
@@ -491,7 +522,6 @@ label {
     display: inline-flex;
     .atorModalRight{
       margin-bottom: 20px;
-      // text-align: left;
     }
   }
 
@@ -503,8 +533,24 @@ label {
     align-items: center;
     justify-content: flex-start;
     flex-wrap: wrap;
-    margin-top: 48px;
+    margin-top: 28px;
     gap: 16px;
+    .btn_favoritar_filmes {
+        position: absolute;  
+        top: 5px; 
+        left: 5px; 
+        background-color: #ff2929af;  
+        border: none; width: 30px;
+       height: 30px;
+       border-radius: 50%;
+        cursor: pointer;  
+        z-index: 100;  
+      }
+      
+      .btn_favoritar_filmes i {
+        font-size: 14px; /* Ajusta o tamanho do ícone */
+        color: #E7E7E7;
+      }
 }
 
 .actors_div_film {
@@ -704,3 +750,99 @@ label {
         }
     }
 }
+
+// TOP AREA
+.container_topArea{
+    aspect-ratio: 16/9;
+    margin-top: 30px;
+    // display: flex;
+    height: 480px;
+    width: 100%;
+   
+    .inputs_areas {
+
+        width: 100%;
+        display: flex;
+        gap: 24px;
+        flex-direction: row;
+
+        .area_input{
+            margin-top: 40px;
+            display: flex;
+            flex-direction: column;
+            
+        }
+        .input_div_grid{
+            height: fit-content;
+            display: flex;
+            flex-direction: column;
+            
+            input,
+            .button
+             {
+                margin-top: 13px;
+                height: 48px;
+                width: 264px;
+                color: #878387;
+                padding: 16px;
+                cursor: pointer;
+                background-color: #171317;
+                border: none;
+                border-radius: 8px;
+                
+            }
+        }
+        .input_div {
+            display: flex;
+            max-width: 400px;
+            .input_capas {
+                height: 409px;
+                background-color: #171317;
+                border: none;
+                margin-top: 16px;
+                aspect-ratio: 16 / 9;
+                border-radius: 8px;
+                overflow: hidden;
+                
+                .cad_actors{
+                    width: 472px;
+                    aspect-ratio: 16 / 9;
+                }
+            }
+    
+            .input_capas>input[type="file"] {
+                height: 100%;
+                width: 100%;
+                opacity: 0;
+                cursor: pointer;
+                background-color: #171317;
+                border: none;
+    
+    
+            }
+    
+            .input_capas>input[type="file"]:focus-within {
+                border: 10px solid #8501B0;
+            }
+        }
+    
+    }
+}
+// .btn_favoritar_filmes {
+//     position: absolute; /* Posiciona o botão em relação ao contêiner pai */
+//     top: 5px; /* Alinha ao topo */
+//     right: 5px; /* Alinha à direita */
+//     background-color: #fff; /* Fundo branco para contraste */
+//     border: none; /* Remove bordas */
+//     color: #555; /* Cor do ícone/texto */
+//     padding: 5px 8px; /* Tamanho ajustável */
+//     border-radius: 50%; /* Deixa o botão arredondado */
+//     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Adiciona sombra para destaque */
+//     cursor: pointer; /* Mostra um cursor clicável */
+//     z-index: 10; /* Garante que o botão fique sobre os outros elementos */
+//     transition: background-color 0.3s ease, color 0.3s ease; /* Animações suaves */
+//   }
+  
+//   .btn_favoritar_filmes i {
+//     font-size: 14px; /* Ajusta o tamanho do ícone */
+//   }
