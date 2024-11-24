@@ -28,7 +28,7 @@
         if(user.getLogin() == true){
             response.sendRedirect("login.jsp");
         }
-    }else{
+    }else if ("1".equals(buttonval)){
     sHTML = "<br><br><center><div class=\" popup-erro\">Erro! senha Invalida!<br>"
                     + "</center>";
     out.print(sHTML);

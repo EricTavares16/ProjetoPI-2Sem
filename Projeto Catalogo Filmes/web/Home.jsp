@@ -11,7 +11,9 @@ Usuario userLogado = (Usuario) session.getAttribute("usuarioLogado");
 String nomeUser = (String) session.getAttribute("nome");
 
 Filme filmeT = new Filme();
-ArrayList<Filme> lista = new ArrayList<>();
+int idFilme = 3;
+
+ArrayList<Filme> lista = filmeT.listarFilmes();   
  
 String genero = request.getParameter("genero");
 
@@ -69,7 +71,7 @@ if(genero != null && !genero.trim().isEmpty()){
 
             <img src="data:image/png;base64,<%if(userLogado.imagemBase64 != null)out.print(userLogado.imagemBase64);%>" alt="<%out.print(userLogado.email);%>">
             </a>
-            <a href="Details.jsp" class="input_style btn_detalhes_destaque">Detalhes</a>
+            <a href="Details.jsp" class="input_style btn_detalhes_destaque" onclick="window.location.href='Details.jsp?valor=<%=idFilme%>'; return false;">Detalhes</a>
         </div>
     </header>
     <main class="big_container flex-center">
@@ -106,9 +108,10 @@ if(genero != null && !genero.trim().isEmpty()){
             </div>
 
             <section id="filmes_container">
-                <% for(Filme filme:lista){%>
+                <% for(Filme filme:lista){
+                %>
                     <div class="filme_content flex-center">
-                        <img src="data:image/png;base64,<%if(filme.capaimagemBase64 != null)out.print(filme.capaimagemBase64);%>" alt="<%out.print(filme.getNome());%>">
+                       <img src="data:image/png;base64,<%if(filme.capaimagemBase64 != null)out.print(filme.capaimagemBase64);%>" alt="<%out.print(filme.getNome());%>"  onclick="window.location.href='Details.jsp?valor=<%=filme.getId() %>'; return false;"></img>
                         <p style="color: blue;"><%= filme.getNome() %></p>
                         <button class="btn_favoritar_filme flex-center">
                             <svg width="16" height="14" viewBox="0 0 16 14" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -116,7 +119,9 @@ if(genero != null && !genero.trim().isEmpty()){
                             </svg>                            
                         </button>
                     </div>
-                <%}%>
+                <%} 
+                
+                %>
                 <div class="filme_content flex-center">
                     <img src="./imgs/bg_filme.png" alt="Nome do filme">
                     <button class="btn_favoritar_filme flex-center">

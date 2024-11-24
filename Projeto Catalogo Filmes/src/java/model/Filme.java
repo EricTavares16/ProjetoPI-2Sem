@@ -175,8 +175,7 @@ public class Filme extends ConectarDao implements IcrudDao {
     public void incluirFilme() {
 
         try {
-            sql = "INSERT INTO TB_FILME (NM_FILME, DS_SINOPSE, HR_DURACAO, DT_LANCAMENTO, VL_AVALIACAO, "
-                    + "NR_CLASSIFICACAO_INDICATIVA, IMG_CAPA, IMG_BANNER) VALUES (?,?,?,?,?,?,?,?)";
+            sql = "INSERT INTO TB_FILME (NM_FILME, DS_SINOPSE, HR_DURACAO, DT_LANCAMENTO, VL_AVALIACAO, NR_CLASSIFICACAO_INDICATIVA, IMG_CAPA, IMG_BANNER) VALUES (?,?,?,?,?,?,?,?)";
 
             ps = con.prepareStatement(sql);
             ps.setString(1, nome); // Configura Parametros
@@ -325,6 +324,56 @@ public class Filme extends ConectarDao implements IcrudDao {
     public void alterar(){
         sql= "UPDATE TB_FILME SET NM_FILME= ";
     
+    }
+    
+    public Filme getFilmeById(int id) throws IOException{
+        Filme FilmeBuscado = new Filme();
+         try {
+            sql = "SELECT * FROM TB_FILME WHERE ID_FILME = ? ";
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            tab = ps.executeQuery();
+            String nome = "";
+            String sinopse = "";
+            String duracao = "";
+            String dataLancamento = "";
+            double avaliacao = 0;
+            int classificacao = 0;
+            String fotinho = "";
+
+            if (tab.next()) {
+                nome = tab.getString(2);
+                sinopse = tab.getString(3);
+                duracao = tab.getString(4);
+                dataLancamento = tab.getString(5);
+                avaliacao = tab.getDouble(6);
+                classificacao = tab.getInt(7);
+                Blob blob = (Blob) tab.getBlob(8);
+                
+                FilmeBuscado.setNome(nome);
+                FilmeBuscado.setSinopse(sinopse);
+                FilmeBuscado.setDuracao(duracao);
+                FilmeBuscado.setDataLancamento(dataLancamento);
+                FilmeBuscado.setAvaliacao(avaliacao);
+                FilmeBuscado.setClassificacao(classificacao);
+
+                if (blob == null) {
+                    capaimagemBase64 = null;
+                } else {
+                    capa = blob.getBinaryStream();
+                    byte[] buffer = new byte[(int) blob.length()];
+                    capa.read(buffer);
+                    fotinho = capaimagemBase64 = Base64.getEncoder().encodeToString(buffer);
+                }
+                FilmeBuscado.setCapaimagemBase64(fotinho);  
+            }else {
+            return null; // Retorna null se nenhum usuário foi encontrado
+        }
+        } catch (SQLException ex) {
+            this.statusSQL = "Erro ao buscar filme: " + ex.getMessage();
+            return null;
+        }
+         return FilmeBuscado;
     }
 
     @Override

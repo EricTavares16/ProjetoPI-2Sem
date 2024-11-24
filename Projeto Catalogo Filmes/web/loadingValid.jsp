@@ -77,7 +77,7 @@
  <script>
         // Redireciona para uma nova aba após 2 segundos
         setTimeout(function() {
-            window.open('Home.jsp');
+           window.location.replace('Home.jsp');
         }, 2000); // Tempo em milissegundos (2 segundos)
     </script>
 </html>
