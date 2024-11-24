@@ -62,7 +62,7 @@ if(genero != null && !genero.trim().isEmpty()){
             <img src="./imgs/destaque_foto.png" alt="Foto do filme destaque do sistema">
         </div>
         <div class="container">
-            <a href="userPage.jsp" class="avatar_image flex-center">
+            <a href="userPage.jsp" class="avatar_image">
                 <%
                     if (userLogado == null) {
                         response.sendRedirect("login.jsp"); // Substitua "login.jsp" pela página de destino
