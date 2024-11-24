@@ -1,16 +1,15 @@
+@import "../../colors";
+
 .div_security_area {
-    min-height: 1460px;
+    height: fit-content;
 }
 
 #container_G_Film {
-    // flex-direction:column ;
     min-height: 100vh;
 }
 
 .cockpit_filmes_form {
     flex: 1;
-    padding-left: 22px;
-    padding-right: 20px;
     justify-content: space-between;
     margin: 48px 0;
     align-items: center;
@@ -30,42 +29,38 @@
 
 .inputs_area {
 
-    width: 800px;
-    max-width: 1320px;
-    height: 300px;
-    display: inline-flex;
+    width: 100%;
+    display: flex;
+    gap: 24px;
 
     .input_div {
         display: flex;
         flex-direction: column;
-        margin-left: 30px;
+        max-width: 400px;
 
         .input_capas {
-            height: 182px;
+            height: 100%;
             background-color: #171317;
             border: none;
             margin-top: 16px;
+            aspect-ratio: 16 / 9;
             border-radius: 8px;
-
+            overflow: hidden;
+            
             .banners {
                 width: 433px;
-
+                aspect-ratio: 16 / 9;
             }
 
             .principal {
                 width: 272px;
-
-
+                aspect-ratio: 16 / 9;
             }
             .cad_actors{
                 width: 472px;
                 aspect-ratio: 16 / 9;
             }
         }
-
-
-
-
 
         .input_capas>input[type="file"] {
             height: 100%;
@@ -88,34 +83,24 @@
 .inputs_area.linear {
     display: flex;
     flex-direction: column;
-    padding-left: 22px;
-    padding-right: 20px;
     margin: 48px 0;
-    width: 1200px;
-    height: 560px;
-
-    h1 {
-        padding-left: 22px;
-        padding-right: 20px;
-    }
+    height: fit-content;
 
     .div_list_inputs {
         display: flex;
-
         flex-wrap: wrap;
         margin-top: 40px;
+        gap: 24px;
 
         .input_div_grid {
-            min-width: 264px;
-            min-height: 88px;
             display: flex;
             flex-direction: column;
-            margin-left: 24px;
             margin-bottom: 32px;
 
             input,
             textarea,
-            button {
+            button,
+            select {
                 margin-top: 16px;
                 height: 48px;
                 width: 264px;
@@ -125,8 +110,6 @@
                 background-color: #171317;
                 border: none;
                 border-radius: 8px;
-
-
             }
 
             button {
@@ -142,43 +125,34 @@
             .descr_input {
                 width: 550px;
                 height: 200px;
+                resize: none;
             }
 
 
         }
 
         .input_div_grid.desc_area {
-
+            width: 100%;
             max-height: 450px;
-
-
         }
 
         .container_actores_list {
+            position: relative;
             width: 100%;
-            height: 90%;
+            height: fit-content;
             display: flex;
             align-items: center;
+            justify-content: flex-start;
+            flex-wrap: wrap;
             margin-top: 48px;
-
+            gap: 16px;
         }
 
         .actors_div_film {
             width: 210px;
             height: 280px;
-            margin-bottom: 30px;
-            margin-left: 26px;
-
-            background-image: url("../../imgs/foto34.png");
+            background-color: $gray-800;
             border-radius: 8px;
-        }
-
-        .box_color_bg {
-            visibility: hidden;
-            background-color: #171317;
-            opacity: 1;
-            width: 100%;
-            height: 100%;
         }
 
         .actors_div_film:hover .box_color_bg {
@@ -217,9 +191,7 @@
 
             .div_picture_actor_input {
                 display: flex;
-                flex-direction: column;
-                // margin-right: 34px;
-                
+                flex-direction: column;                
 
                 .input_capas_picture {
                     height: 348px;
@@ -235,8 +207,8 @@
                 }
             }
             .input_capas_picture>input[type="file"] {
-                height: 100%;
                 width: 100%;
+                max-height: 348px;
                 opacity: 0;
                 cursor: pointer;
                 background-color: #171317;
@@ -265,42 +237,182 @@
 
 }
 
-.footer {
-    min-width: 100%;
-    margin-left: 80px;
-    height: 256px;
+.div_list_inputs.actors {
     display: flex;
-    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-top: 40px;
+    gap: 24px;
+
+    .add_atores{
+        display: flex;
+        flex-direction: column;
+        
+        button:active {
+            filter: brightness(0.9);
+        }
+    
+        button {
+            transition: .3s;
+            margin-top: 16px;
+            width: 264px;
+            color: #878387;
+            padding: 16px;
+            cursor: pointer;
+            background-color: #171317;
+            border: none;
+            border-radius: 8px;
+            font-weight: 500;
+            font-size: 20px;
+        }
+
+    }
+
+    .container_actores_list {
+        position: relative;
+        min-width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 24px;
+    }
+
+    .actors_div_film {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        width: 210px;
+        height: 280px;
+        background-color: $gray-800;
+        border-radius: 8px;
+        overflow: hidden;
+        img{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+            filter: brightness(0.8);
+        }
+        .content{
+            position: absolute;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            width: 100%;
+            height: 100%;
+            z-index: 10;
+        }
+
+        &::after{
+            content: '';
+            display: block;
+            opacity: 0;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.4));
+            z-index: 5;
+            transition: .2s;
+        }
+
+        &:hover::after{
+            opacity: 1;
+        }
+    }
+
+    .title_persona_name {
+        font-size: 16px;
+    }
+
+    .title_actor_name {
+        font-size: 20px;
+    }
+
+    .container_inputs_edit_actor {
+        width: 560px;
+        height: 348px;
+        // background-color: #8501B0;
+        display: flex;
+        // justify-content: space-between;
+        align-items: center;
+        // flex-direction: row;
+
+        .div_picture_actor_input {
+            display: flex;
+            flex-direction: column;
+            // margin-right: 34px;
+            
+
+            .input_capas_picture {
+                height: 348px;
+                background-color: #171317;
+                border: none;
+                width: 260px;
+
+                border-radius: 8px;
+
+                .actor_picture {
+                    width: 184px;
+                }
+            }
+        }
+        .input_capas_picture>input[type="file"] {
+            height: 100%;
+            width: 100%;
+            opacity: 0;
+            cursor: pointer;
+            background-color: #171317;
+            border: none;
+
+
+        }
+
+        .input_capas_picture>input[type="file"]:focus-within {
+            border: 10px solid #8501B0;
+        }
+       .div_input_infos_actor{
+        height: 280px;
+        width: 360px;
+        margin-left: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: -65px;
+       
+       }
+    }
+   
+
+}
+
+.footer {
+    display: flex;
+    justify-content: flex-end;
+    margin: 40px 0;
     
     .footer_container_area {
         display: flex;
         align-items: center;
         justify-content: space-between;
-
-        max-width: 80%;
-        min-height: 56px;
-        padding: 16px;
-        // background-color: #8501B0;
-        margin-right: 72px;
+        gap: 32px;
 
         button {
-            width: 198px;
-            height: 54px;
+            width: 200px;
+            padding: 16px 0;
             border-radius: 100px;
-            margin-right: 32px;
+            cursor: pointer;
+            transition: .3s;
+            &:hover{
+                filter: brightness(1.3);
+            }
         }
 
-<<<<<<< Updated upstream
         .cancel_btn {
             background-color: transparent;
             border: 1px solid #878387;
             color: #878387;
             font-size: 22px;
             text-align: center;
-            margin-bottom: 8px;
-
-
-
         }
 
         .delet_btn {
@@ -309,10 +421,6 @@
             color: #FF2929;
             font-size: 22px;
             text-align: center;
-            margin-bottom: 8px;
-
-
-
         }
 
         .add_btn {
@@ -322,7 +430,7 @@
             font-size: 22px;
             text-align: center;
             margin-bottom: 8px;
-=======
+
        
     }
 }
@@ -342,7 +450,6 @@
     font-size: 22px;
     text-align: center;
 }
->>>>>>> Stashed changes
 
 .add_btn {
     background-color: #8501B0 !important;
@@ -356,11 +463,6 @@
         margin-right: 6px;
         margin-bottom: 8px;
     }
-}
-
-.div_list_inputs.colunm {
-    flex-direction: column;
-    margin-bottom: 60px;
 }
 
 label {
@@ -409,10 +511,8 @@ label {
         color: #E7E7E7 !important;
     }
 
-
-<<<<<<< Updated upstream
 }
-=======
+
 }
 
 .atorModalLeft {
@@ -422,7 +522,6 @@ label {
     display: inline-flex;
     .atorModalRight{
       margin-bottom: 20px;
-     
     }
   }
 
@@ -651,6 +750,7 @@ label {
         }
     }
 }
+
 // TOP AREA
 .container_topArea{
     aspect-ratio: 16/9;
@@ -746,4 +846,3 @@ label {
 //   .btn_favoritar_filmes i {
 //     font-size: 14px; /* Ajusta o tamanho do ícone */
 //   }
->>>>>>> Stashed changes

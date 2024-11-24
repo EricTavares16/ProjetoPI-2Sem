@@ -1,11 +1,25 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="model.Usuario"%>
+<%@page import="model.Filme"%>
+<%
+  Filme film = new Filme();
+  String idzinho = request.getParameter("valor");
+  int id =  Integer.parseInt(idzinho);
+  Filme FilmeBuscado = film.getFilmeById(id);
+  
+  String LancamentoBruto = FilmeBuscado.getDataLancamento();
+  String Lancamento = LancamentoBruto.substring(0, 4);
+  String HorasBrutas = "";
+             
+    int a = 0;
+%>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Titulo do filme - Feedback Cinema</title>
+    <title><%=FilmeBuscado.getNome()%> - Feedback Cinema</title>
     <link rel="stylesheet" href="./global.css">
     <link rel="stylesheet" href="./details.css">
 
@@ -14,22 +28,22 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100,200,300,400,500,600,700,800,900;1,100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="big_container flex-center" id="banner_details" style="background-image: url(./imgs/destaque_foto.png);">
+    <div class="big_container flex-center" id="banner_details" >
         <div class="gradient"></div>
         <div class="container">
             <div class="content">
                 <a href="./Home.jsp" class="voltar_btn input_style flex-center">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg>
                 </a>
-                <h1>Nome do filme</h1>
+                <h1><%= FilmeBuscado.getNome() %> </h1>
                 <div class="info_details flex">
                     <span>Documentario</span>
-                    <span>4.5</span>
-                    <span>2016</span>
-                    <span>12</span>
-                    <span>2h40</span>
+                    <span><%= FilmeBuscado.getAvaliacao()%></span>
+                    <span><%= Lancamento%></span>
+                    <span><%= FilmeBuscado.getClassificacao()%></span>
+                    <span><%= FilmeBuscado.getDuracao() %></span>
                 </div>
-                <p>O filme destaca momentos decisivos na vida de Steve Jobs, desde o lançamento do primeiro Macintosh, em 1984, e a criação da NeXT Inc, até a introdução revolucionária do iMac. Fatos da vida pessoal de Jobs também são revelados, especialmente o conturbado relacionamento com sua primeira filha Lisa.</p>
+                <p><%= FilmeBuscado.getSinopse() %> </p>
                 <div class="buttons_container flex">
                     <button class="favoritar input_style">Favoritar</button>
                     <a href="#comentar_no_filme" class="comentar input_style">Comentar</a>

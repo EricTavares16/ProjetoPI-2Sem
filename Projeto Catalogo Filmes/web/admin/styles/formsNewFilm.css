@@ -1,5 +1,7 @@
+@charset "UTF-8";
 .div_security_area {
-  min-height: 1460px;
+  height: -moz-fit-content;
+  height: fit-content;
 }
 
 #container_G_Film {
@@ -8,8 +10,6 @@
 
 .cockpit_filmes_form {
   flex: 1;
-  padding-left: 22px;
-  padding-right: 20px;
   justify-content: space-between;
   margin: 48px 0;
   align-items: center;
@@ -26,28 +26,31 @@
 }
 
 .inputs_area {
-  width: 800px;
-  max-width: 1320px;
-  height: 300px;
-  display: inline-flex;
+  width: 100%;
+  display: flex;
+  gap: 24px;
 }
 .inputs_area .input_div {
   display: flex;
   flex-direction: column;
-  margin-left: 30px;
+  max-width: 400px;
 }
 .inputs_area .input_div .input_capas {
-  height: 182px;
+  height: 100%;
   background-color: #171317;
   border: none;
   margin-top: 16px;
+  aspect-ratio: 16/9;
   border-radius: 8px;
+  overflow: hidden;
 }
 .inputs_area .input_div .input_capas .banners {
   width: 433px;
+  aspect-ratio: 16/9;
 }
 .inputs_area .input_div .input_capas .principal {
   width: 272px;
+  aspect-ratio: 16/9;
 }
 .inputs_area .input_div .input_capas .cad_actors {
   width: 472px;
@@ -68,32 +71,25 @@
 .inputs_area.linear {
   display: flex;
   flex-direction: column;
-  padding-left: 22px;
-  padding-right: 20px;
   margin: 48px 0;
-  width: 1200px;
-  height: 560px;
-}
-.inputs_area.linear h1 {
-  padding-left: 22px;
-  padding-right: 20px;
+  height: -moz-fit-content;
+  height: fit-content;
 }
 .inputs_area.linear .div_list_inputs {
   display: flex;
   flex-wrap: wrap;
   margin-top: 40px;
+  gap: 24px;
 }
 .inputs_area.linear .div_list_inputs .input_div_grid {
-  min-width: 264px;
-  min-height: 88px;
   display: flex;
   flex-direction: column;
-  margin-left: 24px;
   margin-bottom: 32px;
 }
 .inputs_area.linear .div_list_inputs .input_div_grid input,
 .inputs_area.linear .div_list_inputs .input_div_grid textarea,
-.inputs_area.linear .div_list_inputs .input_div_grid button {
+.inputs_area.linear .div_list_inputs .input_div_grid button,
+.inputs_area.linear .div_list_inputs .input_div_grid select {
   margin-top: 16px;
   height: 48px;
   width: 264px;
@@ -115,31 +111,29 @@
 .inputs_area.linear .div_list_inputs .input_div_grid .descr_input {
   width: 550px;
   height: 200px;
+  resize: none;
 }
 .inputs_area.linear .div_list_inputs .input_div_grid.desc_area {
+  width: 100%;
   max-height: 450px;
 }
 .inputs_area.linear .div_list_inputs .container_actores_list {
+  position: relative;
   width: 100%;
-  height: 90%;
+  height: -moz-fit-content;
+  height: fit-content;
   display: flex;
   align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
   margin-top: 48px;
+  gap: 16px;
 }
 .inputs_area.linear .div_list_inputs .actors_div_film {
   width: 210px;
   height: 280px;
-  margin-bottom: 30px;
-  margin-left: 26px;
-  background-image: url("../../imgs/foto34.png");
-  border-radius: 8px;
-}
-.inputs_area.linear .div_list_inputs .box_color_bg {
-  visibility: hidden;
   background-color: #171317;
-  opacity: 1;
-  width: 100%;
-  height: 100%;
+  border-radius: 8px;
 }
 .inputs_area.linear .div_list_inputs .actors_div_film:hover .box_color_bg {
   visibility: visible;
@@ -182,8 +176,8 @@
   width: 184px;
 }
 .inputs_area.linear .div_list_inputs .container_inputs_edit_actor .input_capas_picture > input[type=file] {
-  height: 100%;
   width: 100%;
+  max-height: 348px;
   opacity: 0;
   cursor: pointer;
   background-color: #171317;
@@ -202,27 +196,148 @@
   margin-top: -65px;
 }
 
-.footer {
-  min-width: 100%;
-  margin-left: 80px;
-  height: 256px;
+.div_list_inputs.actors {
   display: flex;
-  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-top: 40px;
+  gap: 24px;
+}
+.div_list_inputs.actors .add_atores {
+  display: flex;
+  flex-direction: column;
+}
+.div_list_inputs.actors .add_atores button:active {
+  filter: brightness(0.9);
+}
+.div_list_inputs.actors .add_atores button {
+  transition: 0.3s;
+  margin-top: 16px;
+  width: 264px;
+  color: #878387;
+  padding: 16px;
+  cursor: pointer;
+  background-color: #171317;
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 20px;
+}
+.div_list_inputs.actors .container_actores_list {
+  position: relative;
+  min-width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+.div_list_inputs.actors .actors_div_film {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  width: 210px;
+  height: 280px;
+  background-color: #171317;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.div_list_inputs.actors .actors_div_film img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  filter: brightness(0.8);
+}
+.div_list_inputs.actors .actors_div_film .content {
+  position: absolute;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+}
+.div_list_inputs.actors .actors_div_film::after {
+  content: "";
+  display: block;
+  opacity: 0;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.4));
+  z-index: 5;
+  transition: 0.2s;
+}
+.div_list_inputs.actors .actors_div_film:hover::after {
+  opacity: 1;
+}
+.div_list_inputs.actors .title_persona_name {
+  font-size: 16px;
+}
+.div_list_inputs.actors .title_actor_name {
+  font-size: 20px;
+}
+.div_list_inputs.actors .container_inputs_edit_actor {
+  width: 560px;
+  height: 348px;
+  display: flex;
+  align-items: center;
+}
+.div_list_inputs.actors .container_inputs_edit_actor .div_picture_actor_input {
+  display: flex;
+  flex-direction: column;
+}
+.div_list_inputs.actors .container_inputs_edit_actor .div_picture_actor_input .input_capas_picture {
+  height: 348px;
+  background-color: #171317;
+  border: none;
+  width: 260px;
+  border-radius: 8px;
+}
+.div_list_inputs.actors .container_inputs_edit_actor .div_picture_actor_input .input_capas_picture .actor_picture {
+  width: 184px;
+}
+.div_list_inputs.actors .container_inputs_edit_actor .input_capas_picture > input[type=file] {
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  cursor: pointer;
+  background-color: #171317;
+  border: none;
+}
+.div_list_inputs.actors .container_inputs_edit_actor .input_capas_picture > input[type=file]:focus-within {
+  border: 10px solid #8501B0;
+}
+.div_list_inputs.actors .container_inputs_edit_actor .div_input_infos_actor {
+  height: 280px;
+  width: 360px;
+  margin-left: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: -65px;
+}
+
+.footer {
+  display: flex;
+  justify-content: flex-end;
+  margin: 40px 0;
 }
 .footer .footer_container_area {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  max-width: 80%;
-  min-height: 56px;
-  padding: 16px;
-  margin-right: 72px;
+  gap: 32px;
 }
 .footer .footer_container_area button {
-  width: 198px;
-  height: 54px;
+  width: 200px;
+  padding: 16px 0;
   border-radius: 100px;
-  margin-right: 32px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.footer .footer_container_area button:hover {
+  filter: brightness(1.3);
 }
 
 .cancel_btn {
@@ -231,7 +346,6 @@
   color: #878387;
   font-size: 22px;
   text-align: center;
-  margin-bottom: 8px;
 }
 
 .delet_btn {
@@ -240,7 +354,6 @@
   color: #FF2929;
   font-size: 22px;
   text-align: center;
-  margin-bottom: 8px;
 }
 
 .add_btn {
@@ -249,17 +362,11 @@
   color: #E7E7E7 !important;
   font-size: 22px;
   text-align: center;
-  margin-bottom: 8px;
 }
 .add_btn i {
   font-size: 16px;
   margin-right: 6px;
   margin-bottom: 8px;
-}
-
-.div_list_inputs.colunm {
-  flex-direction: column;
-  margin-bottom: 60px;
 }
 
 label {
@@ -303,9 +410,8 @@ label {
   color: #E7E7E7 !important;
 }
 
-<<<<<<< Updated upstream
 /*# sourceMappingURL=formsNewFilm.css.map */
-=======
+
 .atorModalLeft {
   width: 800px;
   max-width: 320px;
@@ -581,4 +687,3 @@ label {
 .container_topArea .inputs_areas .input_div .input_capas > input[type=file]:focus-within {
   border: 10px solid #8501B0;
 }/*# sourceMappingURL=formsNewFilm.css.map */
->>>>>>> Stashed changes

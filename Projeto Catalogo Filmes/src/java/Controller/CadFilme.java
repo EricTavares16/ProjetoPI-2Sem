@@ -130,7 +130,7 @@ public class CadFilme extends HttpServlet {
         
         
         try (PrintWriter out = response.getWriter()) {
-            response.sendRedirect("../Home.jsp");
+            response.sendRedirect("./loadingFilm.html");
         }
     }
 
