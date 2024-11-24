@@ -123,3 +123,12 @@
         }
     }
 }
+
+.filters_button{
+    transition: .3s;
+    border: none;
+    :active{
+        background: $purple-normal;
+        color: $gray-900;
+    }
+}

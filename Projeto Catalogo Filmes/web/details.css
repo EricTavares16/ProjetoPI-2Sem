@@ -6,6 +6,9 @@
   min-height: 550px;
   position: relative;
   padding: 0 40px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 #banner_details .gradient {
   position: absolute;

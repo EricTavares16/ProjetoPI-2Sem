@@ -81,28 +81,32 @@ if(genero != null && !genero.trim().isEmpty()){
             <div class="cockpit_filmes flex">
                 <div class="cockpit_item flex-center">
                     <input type="text" placeholder="Pesquisar" class="input_style">
-                    <a href="#" class="input_style">?</a>
+                    <a href="#" class="input_style">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="22" viewBox="0 0 18 22" fill="none">
+                            <path d="M17 21L9 15.4444L1 21V3.22222C1 2.63285 1.24082 2.06762 1.66947 1.65087C2.09812 1.23413 2.67951 1 3.28571 1H14.7143C15.3205 1 15.9019 1.23413 16.3305 1.65087C16.7592 2.06762 17 2.63285 17 3.22222V21Z" stroke="#665E66" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
                 </div>
                <ul class="cockpit_item flex-center">
                     <form method="GET">
                         <input type="hidden" name="genero" value="Romance">
-                        <button type="submit" class="input_style">Romance</button>
+                        <button type="submit" class="input_style filters_button">Romance</button>
                     </form>
                     <form method="GET">
                         <input type="hidden" name="genero" value="Acao">
-                        <button type="submit" class="input_style">Ação</button>
+                        <button type="submit" class="input_style filters_button">Ação</button>
                     </form>
                     <form method="GET">
                         <input type="hidden" name="genero" value="Aventura">
-                        <button type="submit" class="input_style">Aventura</button>
+                        <button type="submit" class="input_style filters_button">Aventura</button>
                     </form>
                     <form method="GET">
                         <input type="hidden" name="genero" value="Desenho">
-                        <button type="submit" class="input_style">Desenho</button>
+                        <button type="submit" class="input_style filters_button">Desenho</button>
                     </form>
                     <form method="GET">
                         <input type="hidden" name="genero" value="Ficcao">
-                        <button type="submit" class="input_style">Ficção</button>
+                        <button type="submit" class="input_style filters_button">Ficção</button>
                     </form>
                 </ul>
             </div>

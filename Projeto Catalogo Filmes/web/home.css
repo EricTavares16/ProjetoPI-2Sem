@@ -102,3 +102,11 @@
     margin-bottom: 12px;
   }
 }
+.filters_button {
+  transition: 0.3s;
+  border: none;
+}
+.filters_button :active {
+  background: #A411D4;
+  color: #0F0C0F;
+}

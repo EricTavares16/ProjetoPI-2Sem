@@ -171,3 +171,67 @@ i{
     color: #878387;
     font-size: 1.1rem;
   }
+
+  .toast {
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin: 1rem 0;
+    color: #fff;
+    width: 300px;
+    text-align: center;
+    position: fixed;
+    top: 24px;
+    font-weight: 700;
+    transform: translateY(-300px);
+    animation: toast-in 0.5s ease-out forwards, toast-out 0.5s ease-in forwards 5.5s;
+  
+    &-success {
+      background-color: #28a745;
+      border: 1px solid #218838;
+    }
+  
+    &-warning {
+      background-color: #ffc107;
+      border: 1px solid #e0a800;
+      color: #212529;
+    }
+  
+    &-error {
+      background-color: #dc3545;
+      border: 1px solid #bd2130;
+    }
+  
+    p {
+      margin: 0;
+      flex: 1;
+    }
+  }
+  
+
+  // Animação de entrada
+@keyframes toast-in {
+    0% {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  // Animação de saída
+  @keyframes toast-out {
+    0% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+  }
