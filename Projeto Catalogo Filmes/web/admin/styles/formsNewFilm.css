@@ -49,6 +49,10 @@
 .inputs_area .input_div .input_capas .principal {
   width: 272px;
 }
+.inputs_area .input_div .input_capas .cad_actors {
+  width: 472px;
+  aspect-ratio: 16/9;
+}
 .inputs_area .input_div .input_capas > input[type=file] {
   height: 100%;
   width: 100%;
@@ -220,7 +224,8 @@
   border-radius: 100px;
   margin-right: 32px;
 }
-.footer .footer_container_area .cancel_btn {
+
+.cancel_btn {
   background-color: transparent;
   border: 1px solid #878387;
   color: #878387;
@@ -228,7 +233,8 @@
   text-align: center;
   margin-bottom: 8px;
 }
-.footer .footer_container_area .delet_btn {
+
+.delet_btn {
   background-color: transparent;
   border: 1px solid #FF2929;
   color: #FF2929;
@@ -236,15 +242,16 @@
   text-align: center;
   margin-bottom: 8px;
 }
-.footer .footer_container_area .add_btn {
-  background-color: #8501B0;
+
+.add_btn {
+  background-color: #8501B0 !important;
   border: none;
-  color: #E7E7E7;
+  color: #E7E7E7 !important;
   font-size: 22px;
   text-align: center;
   margin-bottom: 8px;
 }
-.footer .footer_container_area .add_btn i {
+.add_btn i {
   font-size: 16px;
   margin-right: 6px;
   margin-bottom: 8px;
@@ -296,4 +303,282 @@ label {
   color: #E7E7E7 !important;
 }
 
+<<<<<<< Updated upstream
 /*# sourceMappingURL=formsNewFilm.css.map */
+=======
+.atorModalLeft {
+  width: 800px;
+  max-width: 320px;
+  height: 380px;
+  display: inline-flex;
+}
+.atorModalLeft .atorModalRight {
+  margin-bottom: 20px;
+}
+
+.container_actores_list {
+  width: 100%;
+  max-width: 1080px;
+  height: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  margin-top: 28px;
+  gap: 16px;
+}
+.container_actores_list .btn_favoritar_filmes {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  background-color: rgba(255, 41, 41, 0.6862745098);
+  border: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 100;
+}
+.container_actores_list .btn_favoritar_filmes i {
+  font-size: 14px; /* Ajusta o tamanho do ícone */
+  color: #E7E7E7;
+}
+
+.actors_div_film {
+  width: 210px;
+  height: 280px;
+  margin-bottom: 30px;
+  background-color: #171317;
+  border-radius: 8px;
+}
+
+.atorModalLeft .input_div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.atorModalLeft .input_div .input_capas {
+  height: 362px;
+  background-color: #171317;
+  border: none;
+  margin-top: 10px;
+  border-radius: 8px;
+}
+
+.input_capas img {
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.atorModalLeft .input_div .input_capas .banners {
+  width: 433px;
+}
+
+.atorModalLeft .input_div .input_capas > input[type=file] {
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  cursor: pointer;
+  background-color: #171317;
+  border: none;
+}
+
+.atorModalLeft .input_div .input_capas > input[type=file]:visited {
+  border: 10px solid #8501B0;
+}
+
+#preview {
+  max-width: 250px;
+  max-height: 330px;
+  display: none;
+  /* Escondido inicialmente */
+}
+
+.modal_add_ator {
+  width: 950px;
+}
+.modal_add_ator .modal_content form {
+  width: 100%;
+}
+.modal_add_ator .modal_content form .nome_ficticio_label {
+  min-width: 100%;
+  width: 100%;
+}
+.modal_add_ator .modal_content form .nome_ficticio_label span {
+  width: 100%;
+}
+.modal_add_ator .modal_content form .nome_ficticio_label input {
+  width: 100%;
+  margin-top: 8px;
+}
+.modal_add_ator .modal_content form .search {
+  margin-top: 24px;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+.modal_add_ator .modal_content form .container_actores_list {
+  position: relative;
+  min-width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.modal_add_ator .modal_content form .actors_div_film {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  width: 210px;
+  height: 280px;
+  background-color: #171317;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: border 0.3s ease;
+  /* Estilo para a borda roxa quando o rádio está selecionado */
+}
+.modal_add_ator .modal_content form .actors_div_film input[type=radio] {
+  display: none;
+}
+.modal_add_ator .modal_content form .actors_div_film .title_persona_name, .modal_add_ator .modal_content form .actors_div_film .title_actor_name {
+  font-size: 16px;
+  color: white;
+}
+.modal_add_ator .modal_content form .actors_div_film .label_input_radio {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  border: 3px solid transparent;
+}
+.modal_add_ator .modal_content form .actors_div_film .label_input_radio img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  filter: brightness(0.8);
+}
+.modal_add_ator .modal_content form .actors_div_film .label_input_radio .content {
+  position: absolute;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+}
+.modal_add_ator .modal_content form .actors_div_film .label_input_radio::after {
+  content: "";
+  display: block;
+  opacity: 0;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.4));
+  z-index: 9;
+  transition: 0.2s;
+}
+.modal_add_ator .modal_content form .actors_div_film .label_input_radio:hover::after {
+  opacity: 1;
+}
+.modal_add_ator .modal_content form .actors_div_film input[type=radio]:checked + label {
+  border: 3px solid purple;
+}
+.modal_add_ator .modal_content form .submit {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+.modal_add_ator .modal_content form .submit .add_btn {
+  padding: 16px 24px;
+  background-color: #8501B0;
+  border: none;
+  color: #E7E7E7;
+  font-size: 16px;
+  text-align: center;
+  border-radius: 9999px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.modal_add_ator .modal_content form .submit .add_btn i {
+  font-size: 16px;
+  margin-right: 8px;
+}
+
+.container_topArea {
+  aspect-ratio: 16/9;
+  margin-top: 30px;
+  height: 480px;
+  width: 100%;
+}
+.container_topArea .inputs_areas {
+  width: 100%;
+  display: flex;
+  gap: 24px;
+  flex-direction: row;
+}
+.container_topArea .inputs_areas .area_input {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+}
+.container_topArea .inputs_areas .input_div_grid {
+  height: -moz-fit-content;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+}
+.container_topArea .inputs_areas .input_div_grid input,
+.container_topArea .inputs_areas .input_div_grid .button {
+  margin-top: 13px;
+  height: 48px;
+  width: 264px;
+  color: #878387;
+  padding: 16px;
+  cursor: pointer;
+  background-color: #171317;
+  border: none;
+  border-radius: 8px;
+}
+.container_topArea .inputs_areas .input_div {
+  display: flex;
+  max-width: 400px;
+}
+.container_topArea .inputs_areas .input_div .input_capas {
+  height: 409px;
+  background-color: #171317;
+  border: none;
+  margin-top: 16px;
+  aspect-ratio: 16/9;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.container_topArea .inputs_areas .input_div .input_capas .cad_actors {
+  width: 472px;
+  aspect-ratio: 16/9;
+}
+.container_topArea .inputs_areas .input_div .input_capas > input[type=file] {
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  cursor: pointer;
+  background-color: #171317;
+  border: none;
+}
+.container_topArea .inputs_areas .input_div .input_capas > input[type=file]:focus-within {
+  border: 10px solid #8501B0;
+}/*# sourceMappingURL=formsNewFilm.css.map */
+>>>>>>> Stashed changes
