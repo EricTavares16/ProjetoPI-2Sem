@@ -28,7 +28,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100,200,300,400,500,600,700,800,900;1,100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="big_container flex-center" id="banner_details" >
+    <div class="big_container flex-center" id="banner_details" style="background-image: url('data:image/png;base64,<% if (FilmeBuscado.capaimagemBase64 != null) out.print(FilmeBuscado.capaimagemBase64); %>');">
         <div class="gradient"></div>
         <div class="container">
             <div class="content">
