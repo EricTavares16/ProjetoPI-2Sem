@@ -250,7 +250,7 @@ public class Filme extends ConectarDao implements IcrudDao {
         return filmes;
     }
     
-     public ArrayList<Filme> listarFilmes_PorGenero(){
+    public ArrayList<Filme> listarFilmes_PorGenero(){
         
         ArrayList<Filme> filmes = new ArrayList<>();
         
@@ -272,6 +272,54 @@ public class Filme extends ConectarDao implements IcrudDao {
             ps = con.prepareStatement(sql);
             
             ps.setString(1, genero); // Configura Parametros
+           
+            tab = ps.executeQuery();
+            
+            String fotinho = "";
+
+            while(tab.next()){
+                int id = tab.getInt(1);
+                String nome = tab.getString(2);
+                String sinopse = tab.getString(3);
+                String duracao = tab.getString(4);
+                String dtLancamento = tab.getString(5);
+                double avaliacao = tab.getDouble(6);
+                int classificacao = tab.getInt(7);
+                Blob blob = (Blob) tab.getBlob(8);
+                
+                if (blob == null) {
+                    capaimagemBase64 = null; }
+                else {
+                    capa = blob.getBinaryStream();
+                    byte[] buffer = new byte[(int) blob.length()];
+                    capa.read(buffer);
+                    fotinho = capaimagemBase64 = Base64.getEncoder().encodeToString(buffer);
+                }
+                
+                filmes.add(new Filme(id, nome, sinopse, duracao, dtLancamento, avaliacao, classificacao, fotinho));
+            }
+
+            this.statusSQL = null; 
+        } catch (SQLException ex) {
+            this.statusSQL = "Erro ao incluir usuario ! <br> " + ex.getMessage();
+        } catch (IOException ex) {
+            Logger.getLogger(Filme.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return filmes;
+    }
+    
+     public ArrayList<Filme> listarFilmes_PorNome(){
+        
+        ArrayList<Filme> filmes = new ArrayList<>();
+    
+        try { 
+
+            sql = "SELECT * FROM TB_FILME WHERE NM_FILME LIKE ?";
+
+            ps = con.prepareStatement(sql);
+            
+            ps.setString(1, "%" + nome + "%");
            
             tab = ps.executeQuery();
             
