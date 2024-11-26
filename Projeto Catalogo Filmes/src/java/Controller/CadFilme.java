@@ -106,9 +106,9 @@ public class CadFilme extends HttpServlet {
         film.capa = arquivoCapa; }
         
         Part part2 = request.getPart("arquivoBanner");
-        if(part != null){
-        InputStream arquivoBanner = part.getInputStream();
-        film.bannertamanho = part.getSize();
+        if(part2 != null){
+        InputStream arquivoBanner = part2.getInputStream();
+        film.bannertamanho = part2.getSize();
         film.banner = arquivoBanner; }
 /* Código para trazer a requisição do arquivo e colocar na objeto user */
         if (request.getParameter("oper") != null) {

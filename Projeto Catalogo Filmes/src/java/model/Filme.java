@@ -275,7 +275,7 @@ public class Filme extends ConectarDao implements IcrudDao {
            
             tab = ps.executeQuery();
             
-            String fotinho = "";
+            String capaFilm = "";
 
             while(tab.next()){
                 int id = tab.getInt(1);
@@ -288,15 +288,17 @@ public class Filme extends ConectarDao implements IcrudDao {
                 Blob blob = (Blob) tab.getBlob(8);
                 
                 if (blob == null) {
-                    capaimagemBase64 = null; }
+                    capaimagemBase64 = null; 
+                    bannerimagemBase64 = null;
+                }
                 else {
                     capa = blob.getBinaryStream();
                     byte[] buffer = new byte[(int) blob.length()];
                     capa.read(buffer);
-                    fotinho = capaimagemBase64 = Base64.getEncoder().encodeToString(buffer);
+                    capaFilm = capaimagemBase64 = Base64.getEncoder().encodeToString(buffer);
                 }
                 
-                filmes.add(new Filme(id, nome, sinopse, duracao, dtLancamento, avaliacao, classificacao, fotinho));
+                filmes.add(new Filme(id, nome, sinopse, duracao, dtLancamento, avaliacao, classificacao, capaFilm));
             }
 
             this.statusSQL = null; 
@@ -381,13 +383,9 @@ public class Filme extends ConectarDao implements IcrudDao {
             ps = con.prepareStatement(sql);
             ps.setInt(1, id);
             tab = ps.executeQuery();
-            String nome = "";
-            String sinopse = "";
-            String duracao = "";
-            String dataLancamento = "";
-            double avaliacao = 0;
-            int classificacao = 0;
-            String fotinho = "";
+            
+            String capaFilm = "";
+            String bannerFilm = "";
 
             if (tab.next()) {
                 nome = tab.getString(2);
@@ -396,7 +394,8 @@ public class Filme extends ConectarDao implements IcrudDao {
                 dataLancamento = tab.getString(5);
                 avaliacao = tab.getDouble(6);
                 classificacao = tab.getInt(7);
-                Blob blob = (Blob) tab.getBlob(8);
+                Blob blobCapa = (Blob) tab.getBlob(8);
+                Blob blobBanner = (Blob) tab.getBlob(9);
                 
                 FilmeBuscado.setNome(nome);
                 FilmeBuscado.setSinopse(sinopse);
@@ -405,15 +404,22 @@ public class Filme extends ConectarDao implements IcrudDao {
                 FilmeBuscado.setAvaliacao(avaliacao);
                 FilmeBuscado.setClassificacao(classificacao);
 
-                if (blob == null) {
+                if (blobCapa == null && blobBanner == null) {
                     capaimagemBase64 = null;
+                    bannerimagemBase64 = null;
                 } else {
-                    capa = blob.getBinaryStream();
-                    byte[] buffer = new byte[(int) blob.length()];
+                    capa = blobCapa.getBinaryStream();
+                    byte[] buffer = new byte[(int) blobCapa.length()];
                     capa.read(buffer);
-                    fotinho = capaimagemBase64 = Base64.getEncoder().encodeToString(buffer);
+                    capaFilm = capaimagemBase64 = Base64.getEncoder().encodeToString(buffer);
+                    
+                    banner = blobBanner.getBinaryStream();
+                    byte[] buffer2 = new byte[(int) blobBanner.length()];
+                    banner.read(buffer2);
+                    bannerFilm = Base64.getEncoder().encodeToString(buffer2);
                 }
-                FilmeBuscado.setCapaimagemBase64(fotinho);  
+                FilmeBuscado.setCapaimagemBase64(capaFilm);  
+                FilmeBuscado.setBannerimagemBase64(bannerFilm);
             }else {
             return null; // Retorna null se nenhum usuário foi encontrado
         }
