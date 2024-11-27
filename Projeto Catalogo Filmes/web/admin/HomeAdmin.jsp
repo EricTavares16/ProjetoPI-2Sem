@@ -1,9 +1,16 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="model.Usuario"%>
+<%@page import="model.Filme"%>
+<%@page import="java.util.ArrayList"%>
 <%
     Usuario user = new Usuario();
     Usuario userLogado = (Usuario) session.getAttribute("usuarioLogado");
     String nomeUser = (String) session.getAttribute("nome");
+    
+    
+    Filme filmeT = new Filme();
+    ArrayList<Filme> lista = filmeT.listarFilmes();   
+    
     if("admin".equals(nomeUser)){
     }else{
         response.sendRedirect("../Home.jsp");
@@ -51,54 +58,14 @@
                 
             </div>
             <section id="filmes_container">
+                <% for(Filme filme:lista){%>
                 <div class="filme_content flex-center">
-                    <img src="../imgs/bg_filme.png" alt="Nome do filme">
-                    <button class="btn_favoritar_filme flex-center" onclick="window.location.href='./EditFilm.jsp'">
+                    <img src="data:image/png;base64,<%if(filme.capaimagemBase64 != null)out.print(filme.capaimagemBase64);%>" alt="<%out.print(filme.getNome());%>"  ></img>
+                    <button class="btn_favoritar_filme flex-center" onclick="window.location.href='EditFilm.jsp?valor=<%=filme.getId() %>'; return false;">
                         <i class="fa-solid fa-pen"></i>                           
                     </button>
                 </div>
-                <div class="filme_content flex-center">
-                    <img src="../imgs/bg_filme.png" alt="Nome do filme">
-                    <button class="btn_favoritar_filme flex-center" onclick="window.location.href='./EditFilm.jsp'">
-                        <i class="fa-solid fa-pen"></i>                           
-                    </button>
-                </div>
-                <div class="filme_content flex-center">
-                    <img src="../imgs/bg_filme.png" alt="Nome do filme" onclick="window.location.href='./EditFilm.jsp'">
-                    <button class="btn_favoritar_filme flex-center">
-                        <i class="fa-solid fa-pen"></i>                           
-                    </button>
-                </div>
-                <div class="filme_content flex-center">
-                    <img src="../imgs/bg_filme.png" alt="Nome do filme" onclick="window.location.href='./EditFilm.jsp'">
-                    <button class="btn_favoritar_filme flex-center">
-                        <i class="fa-solid fa-pen"></i>                           
-                    </button>
-                </div>
-                <div class="filme_content flex-center">
-                    <img src="../imgs/bg_filme.png" alt="Nome do filme" onclick="window.location.href='./EditFilm.jsp'">
-                    <button class="btn_favoritar_filme flex-center">
-                        <i class="fa-solid fa-pen"></i>                           
-                    </button>
-                </div>
-                <div class="filme_content flex-center">
-                    <img src="../imgs/bg_filme.png" alt="Nome do filme" onclick="window.location.href='./EditFilm.jsp'">
-                    <button class="btn_favoritar_filme flex-center">
-                        <i class="fa-solid fa-pen"></i>                           
-                    </button>
-                </div>
-                <div class="filme_content flex-center">
-                    <img src="../imgs/bg_filme.png" alt="Nome do filme" onclick="window.location.href='./EditFilm.jsp'">
-                    <button class="btn_favoritar_filme flex-center">
-                        <i class="fa-solid fa-pen"></i>                           
-                    </button>
-                </div>
-                <div class="filme_content flex-center">
-                    <img src="../imgs/bg_filme.png" alt="Nome do filme" onclick="window.location.href='./EditFilm.jsp'">
-                    <button class="btn_favoritar_filme flex-center">
-                        <i class="fa-solid fa-pen"></i>                           
-                    </button>
-                </div>
+                <%}%>
             </section>
         </div>
     </main>
