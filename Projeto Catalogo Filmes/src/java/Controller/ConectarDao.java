@@ -58,7 +58,7 @@ Pela excessão da clausula try. */
             sql = "CREATE TABLE IF NOT EXISTS TB_FILME ("
                     + "ID_FILME INT NOT NULL AUTO_INCREMENT,"
                     + "NM_FILME VARCHAR(200) NOT NULL,"
-                    + "DS_SINOPSE VARCHAR(500) NULL,"
+                    + "DS_SINOPSE VARCHAR(1000) NULL,"
                     + "HR_DURACAO VARCHAR(200) NULL,"
                     + "DT_LANCAMENTO DATE  NULL,"
                     + "VL_AVALIACAO DECIMAL(2, 1) NULL,"
