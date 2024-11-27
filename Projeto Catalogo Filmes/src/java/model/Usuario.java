@@ -133,18 +133,24 @@ public class Usuario extends ConectarDao implements IcrudDao  {
     
     
     public void incluir(){
-    try { sql = "insert into TB_USUARIO (NM_USUARIO, DS_EMAIL, DS_SENHA,IMG_FOTO) "
-        + "values (?,?,?,?)";
-    ps = con.prepareStatement(sql);
-    ps.setString(1, nome); // Configura Parametros
-    ps.setString(2, email); // Configura Parametros
-    ps.setString(3, senha); // Configura Parametros
-    ps.setBlob(4, foto,tamanho ); // Configura Parametros
-    ps.executeUpdate(); // executa comando SQL
- this.statusSQL = null; // armazena null se deu tudo certo
- } catch (SQLException ex) {
- this.statusSQL = "Erro ao incluir usuario ! <br> " + ex.getMessage();
- } }
+        try { 
+            sql = "insert into TB_USUARIO (NM_USUARIO, DS_EMAIL, DS_SENHA,IMG_FOTO) "
+            + "values (?,?,?,?)";
+
+            ps = con.prepareStatement(sql);
+
+            ps.setString(1, nome); // Configura Parametros
+            ps.setString(2, email); // Configura Parametros
+            ps.setString(3, senha); // Configura Parametros
+            ps.setBlob(4, foto,tamanho ); // Configura Parametros
+
+            ps.executeUpdate(); // executa comando SQL
+
+            this.statusSQL = null; // armazena null se deu tudo certo
+        } catch (SQLException ex) {
+            this.statusSQL = "Erro ao incluir usuario ! <br> " + ex.getMessage();
+        } 
+    }
     
     public boolean getLogin() throws IOException {
         
@@ -193,53 +199,55 @@ public class Usuario extends ConectarDao implements IcrudDao  {
     }
     
     public Usuario retornarUserLogado() throws IOException {
-    Usuario userLogado = new Usuario();
+        
+        Usuario userLogado = new Usuario();
     
-    try {
-        sql = "SELECT * FROM TB_USUARIO WHERE DS_EMAIL = ?";
-        ps = con.prepareStatement(sql); // prepara SQL
-        ps.setString(1, email); // Configura Parametros
-//        ps.setString(2, senha); // Configura Parametros
-        tab = ps.executeQuery(); // Executa comando SQL
-        
-        int pkUser = 0 ;
-        String idUser = "";
-        String nmUser = "";
-        String emailUser = "";
-        String fotinho = "";
-  
-        
-        if(tab.next()) { // Usa if para verificar se há um usuário encontrado
-            idUser = tab.getString(1);  // Corrige o índice para começar de 1
-            pkUser = tab.getInt(1);
-            nmUser = tab.getString(2);
-            emailUser = tab.getString(3);
-            Blob blob = (Blob) tab.getBlob(5);
-            
-            userLogado.setPkuser(pkUser);
-            userLogado.setId(idUser);
-            userLogado.setNome(nmUser);
-            userLogado.setEmail(emailUser);
-            
-            if (blob == null) {
-                imagemBase64 = null; }
-            else {
-                foto = blob.getBinaryStream();
-                byte[] buffer = new byte[(int) blob.length()];
-                foto.read(buffer);
-               fotinho = imagemBase64 = Base64.getEncoder().encodeToString(buffer);
-                
+        try {
+            sql = "SELECT * FROM TB_USUARIO WHERE DS_EMAIL = ?";
+            ps = con.prepareStatement(sql); // prepara SQL
+            ps.setString(1, email); // Configura Parametros
+
+            tab = ps.executeQuery(); // Executa comando SQL
+
+            int pkUser = 0 ;
+            String idUser = "";
+            String nmUser = "";
+            String emailUser = "";
+            String fotinho = "";
+
+
+            if(tab.next()) { // Usa if para verificar se há um usuário encontrado
+                idUser = tab.getString(1);  // Corrige o índice para começar de 1
+                pkUser = tab.getInt(1);
+                nmUser = tab.getString(2);
+                emailUser = tab.getString(3);
+                Blob blob = (Blob) tab.getBlob(5);
+
+                userLogado.setPkuser(pkUser);
+                userLogado.setId(idUser);
+                userLogado.setNome(nmUser);
+                userLogado.setEmail(emailUser);
+
+                if (blob == null) {
+                    imagemBase64 = null; }
+                else {
+                    foto = blob.getBinaryStream();
+                    byte[] buffer = new byte[(int) blob.length()];
+                    foto.read(buffer);
+                   fotinho = imagemBase64 = Base64.getEncoder().encodeToString(buffer);
+
+                }
+                userLogado.setImagemBase64(fotinho);
+            } else {
+                return null; // Retorna null se nenhum usuário foi encontrado
             }
-            userLogado.setImagemBase64(fotinho);
-        } else {
-            return null; // Retorna null se nenhum usuário foi encontrado
-        }
-    } catch (SQLException ex) {
-        this.statusSQL = "Erro ao tentar buscar Usuário! " + ex.getMessage();
-        return null;
-    }       
-    return userLogado;
-}
+        } catch (SQLException ex) {
+            this.statusSQL = "Erro ao tentar buscar Usuário! " + ex.getMessage();
+            return null;
+        }       
+    
+        return userLogado;
+    }
 
     //esse aqui a gente vai usar isso aqui pra outra coisa, pra substituir a imagem.
     public void alterar(){
