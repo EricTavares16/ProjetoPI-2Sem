@@ -421,7 +421,7 @@ public class Filme extends ConectarDao implements IcrudDao {
                 FilmeBuscado.setCapaimagemBase64(capaFilm);  
                 FilmeBuscado.setBannerimagemBase64(bannerFilm);
             }else {
-            return null; // Retorna null se nenhum usuário foi encontrado
+            return null;
         }
         } catch (SQLException ex) {
             this.statusSQL = "Erro ao buscar filme: " + ex.getMessage();

@@ -6,6 +6,7 @@ package model;
 
 import Controller.ConectarDao;
 import Controller.IcrudDao;
+import java.io.IOException;
 import java.sql.SQLException;
 
 /**
@@ -34,18 +35,22 @@ public class GeneroFilme extends ConectarDao implements IcrudDao {
     }
     
     public void incluir(){
-     try { sql = "insert into TB_GENERO_FILME (ID_FILME, ID_GENERO)"
-        + "values (?,?);";
-    ps = con.prepareStatement(sql);
-    ps.setInt(1, idFilme); // Configura Parametros
-    ps.setInt(2,idGenero); // Configura Parametros
-    ps.executeUpdate(); // executa comando SQL
- this.statusSQL = null; // armazena null se deu tudo certo
- } catch (SQLException ex) {
- this.statusSQL = "Erro ao incluir usuario ! <br> " + ex.getMessage();
- }
-     
+        try { sql = "insert into TB_GENERO_FILME (ID_FILME, ID_GENERO)"
+           + "values (?,?);";
+        
+           ps = con.prepareStatement(sql);
+           
+           ps.setInt(1, idFilme); // Configura Parametros
+           ps.setInt(2,idGenero); // Configura Parametros
+           
+           ps.executeUpdate(); // executa comando SQL
+           
+           this.statusSQL = null; // armazena null se deu tudo certo
+       } catch (SQLException ex) {
+           this.statusSQL = "Erro ao incluir usuario ! <br> " + ex.getMessage();
+       } 
     }
+    
     
      public int buscarUltimoFilme(){
     try {
@@ -68,6 +73,34 @@ public class GeneroFilme extends ConectarDao implements IcrudDao {
     }
     return 0; // Retorna 0 se algo falhar
 }
+     
+     public String buscarGeneroPorId_Filme (int id) throws IOException{
+         
+         String nomeGenero = "";
+         
+         try {
+            sql = "SELECT       NM_GENERO\n" +
+                  "FROM 	TB_GENERO_FILME\n" +
+                  "INNER JOIN   TB_GENERO ON TB_GENERO_FILME.ID_GENERO = TB_GENERO.ID_GENERO\n" +
+                  "WHERE ID_FILME = ?";
+            
+            ps = con.prepareStatement(sql);
+            
+            ps.setInt(1, id);
+            
+            tab = ps.executeQuery();
+
+            if (tab.next()) {
+                nomeGenero = tab.getString(1);
+            }
+            
+            this.statusSQL = null;
+        } catch (SQLException ex) {
+            this.statusSQL = "Erro ao buscar filme: " + ex.getMessage();
+            return null;
+        }
+         return nomeGenero;
+    }
 
     @Override
     public boolean salvar() {

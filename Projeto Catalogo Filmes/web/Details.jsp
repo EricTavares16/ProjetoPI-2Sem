@@ -1,6 +1,7 @@
 
 <%@page import="model.Usuario"%>
 <%@page import="model.Filme"%>
+<%@page import="model.GeneroFilme"%>
 <%@page import="model.Comentario"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -14,6 +15,11 @@
   
   String LancamentoBruto = FilmeBuscado.getDataLancamento();
   String Lancamento = LancamentoBruto.substring(0, 4);
+  
+  GeneroFilme generoObj = new GeneroFilme();
+  String nmGenero = generoObj.buscarGeneroPorId_Filme(id);
+  
+  nmGenero =  nmGenero.substring(0, 1).toUpperCase() + nmGenero.substring(1).toLowerCase();
   
   String comentInput = request.getParameter("comentario");
   
@@ -57,7 +63,7 @@
                 </a>
                 <h1><%= FilmeBuscado.getNome() %> </h1>
                 <div class="info_details flex">
-                    <span>Documentario</span>
+                    <span><%= nmGenero %></span>
                     <span><%= FilmeBuscado.getAvaliacao()%></span>
                     <span><%= Lancamento%></span>
                     <span><%= FilmeBuscado.getClassificacao()%></span>
