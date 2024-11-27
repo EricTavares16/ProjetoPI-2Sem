@@ -28,7 +28,8 @@
   display: flex;
   flex-direction: column;
 }
-.form_content .form_container .input_style, .form_content .form_container .table_form_login {
+.form_content .form_container .input_style,
+.form_content .form_container .table_form_login {
   width: 100% !important;
 }
 
@@ -77,3 +78,18 @@
 .SenacBusterLogin {
   padding-bottom: 44px;
 }
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  border: 1px solid none;
+  -webkit-text-fill-color: #878387 !important;
+  -webkit-box-shadow: 0 0 0px 1000px #171317 inset;
+  -webkit-transition: background-color 5000s ease-in-out 0s;
+  transition: background-color 5000s ease-in-out 0s;
+}/*# sourceMappingURL=Login.css.map */

@@ -74,6 +74,9 @@
 
     .cockpit_item{
         gap: 16px;
+        span{
+            color: $gray-400;
+        }
     }
 }
 
@@ -177,4 +180,5 @@
         background: $purple-normal;
         color: $gray-900;
     }
+   
 }
