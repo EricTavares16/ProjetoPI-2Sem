@@ -136,4 +136,9 @@
      object-fit: cover;
   -o-object-position: center;
      object-position: center;
+}
+
+.area_admin_link, .input_style {
+  font-size: 14px;
+  font-weight: 600;
 }/*# sourceMappingURL=userPage.css.map */
