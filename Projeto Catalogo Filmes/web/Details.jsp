@@ -3,10 +3,13 @@
 <%@page import="model.Filme"%>
 <%@page import="model.GeneroFilme"%>
 <%@page import="model.Comentario"%>
+<%@page import="model.Favorito"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
   request.setCharacterEncoding("UTF-8");
+  
+  //Buscar Filme infos ----------------------------------------------------------------------------------------
   
   Filme film = new Filme();
   String idzinho = request.getParameter("valor");
@@ -20,6 +23,8 @@
   String nmGenero = generoObj.buscarGeneroPorId_Filme(id);
   
   nmGenero =  nmGenero.substring(0, 1).toUpperCase() + nmGenero.substring(1).toLowerCase();
+  
+  //Manipulando coments ----------------------------------------------------------------------------------------
   
   String comentInput = request.getParameter("comentario");
   
@@ -38,6 +43,27 @@
     
   ArrayList<Comentario> listaComent = coment.listarComentarios();
   
+  //Manipulando favoritos ----------------------------------------------------------------------------------------
+  
+  String favInput = request.getParameter("Favoritar");
+  
+  Favorito fav = new Favorito(id, userLogado.getPkuser());
+  
+  boolean isFav = false;
+  
+  if(favInput != null && !favInput.trim().isEmpty()){
+    
+    isFav = fav.getFavorito();
+    
+    if(isFav != false){
+        fav.deletar();
+    } else {
+        fav.IncluirFavorito();
+    }
+  
+
+  }
+    
 
 %>
 <!DOCTYPE html>
@@ -71,7 +97,10 @@
                 </div>
                 <p><%= FilmeBuscado.getSinopse() %> </p>
                 <div class="buttons_container flex">
-                    <button class="favoritar input_style">Favoritar</button>
+                    <form method="POST">
+                        <input type="hidden" name="Favoritar" value="true">
+                        <button class="favoritar input_style" type="submit">Favoritar</button>
+                    </form>
                     <a href="#comentar_no_filme" class="comentar input_style">Comentar</a>
                 </div>
             </div>

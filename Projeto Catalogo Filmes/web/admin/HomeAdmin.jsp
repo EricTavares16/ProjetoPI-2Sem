@@ -7,7 +7,7 @@
     Usuario userLogado = (Usuario) session.getAttribute("usuarioLogado");
     String nomeUser = (String) session.getAttribute("nome");
     
-    
+
     Filme filmeT = new Filme();
     ArrayList<Filme> lista = filmeT.listarFilmes();   
     

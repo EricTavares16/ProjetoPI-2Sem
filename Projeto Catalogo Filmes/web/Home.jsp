@@ -11,7 +11,7 @@ Usuario userLogado = (Usuario) session.getAttribute("usuarioLogado");
 String nomeUser = (String) session.getAttribute("nome");
 
 Filme filmeT = new Filme();
-int idFilme = 3;
+int idFilme = 0;
 
 ArrayList<Filme> lista = filmeT.listarFilmes();   
  
