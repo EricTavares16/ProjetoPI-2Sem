@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 /**
  *
  * @author Megas-XRL8
@@ -19,27 +20,10 @@ public class Comentario extends ConectarDao implements IcrudDao {
     public int idComent;
     public int idFilme;
     public int idUser;
+    public String nomeUser;
     public String comentario;
     public String dataComentario;
     
-    
-    
-    public void IncluiComentarios(){
-        try{setSql("insert into TB_COMENTARIO (ID_FILME, ID_USUARIO, DS_COMENTARIO, DT_COMENTARIO)"
-             + "values (?,?,?,?);");
-     setPs(getCon().prepareStatement(getSql()));
-     getPs().setInt(1, idFilme); // Configura Parametros
-     getPs().setInt(2, idUser); // Configura Parametros
-     getPs().setString(3,comentario); // Configura Parametros
-     getPs().setString(4, dataComentario); // Configura Parametros
-     getPs().executeUpdate(); // executa comando SQL
-        this.setStatusSQL(null);
-            
-        }catch(SQLException ex){
-            this.setStatusSQL("Erro ao incluir Comentario ! <br> " + ex.getMessage());
-        }
-    
-    }
 
     public int getIdComent() {
         return idComent;
@@ -63,6 +47,22 @@ public class Comentario extends ConectarDao implements IcrudDao {
 
     public void setIdUser(int idUser) {
         this.idUser = idUser;
+    }
+    
+     public String getNomeUser() {
+        return nomeUser;
+    }
+
+    public void setNomeUser(String nomeUser) {
+        this.nomeUser = nomeUser;
+    }
+    
+    public String getComentario() {
+        return comentario;
+    }
+
+    public void setComentario(String comentario) {
+        this.comentario = comentario;
     }
 
     public String getDataComentario() {
@@ -129,53 +129,74 @@ public class Comentario extends ConectarDao implements IcrudDao {
         this.statusSQL = statusSQL;
     }
     
-        public int buscarUltimoComent(){
-        try{
-            setSql("SELECT * FROM TB_COMENTARIO ORDER BY ID_FILME DESC LIMIT 1;");
-        setPs(getCon().prepareStatement(getSql()));
-        setTab(getPs().executeQuery());
-
-        if (getTab().next()) {
-            return getTab().getInt("ID_COMENTARIO");
-        }
-            
-        }catch (SQLException e) {
-        e.printStackTrace(); // Log do erro
-    } finally {
-        try {
-            if (getTab() != null) getTab().close();
-            if (getPs() != null) getPs().close();
-        } catch (SQLException e) {
-            e.printStackTrace(); // Log para erros ao fechar os recursos
-        }
-    }
-    return 0;
-        }
-        
-        
-        
-        
-        
-        
-
-    public int getId() {
-        return idComent;
-    }
-
-    public void setId(int idComent) {
-        this.idComent = idComent;
-    }
-
-    public String getComentario() {
-        return comentario;
-    }
-
-    public void setComentario(String comentario) {
-        this.comentario = comentario;
+    public Comentario() {
+      
     }
     
+    public Comentario(String nomeUser, String comentario, String dataComentario) {
+        this.nomeUser = nomeUser;
+        this.comentario = comentario;
+        this.dataComentario = dataComentario;
+    }
+    
+    
+    public void IncluirComentario(){
+        try {
+            sql = "INSERT INTO TB_COMENTARIO (ID_FILME, ID_USUARIO, DS_COMENTARIO, DT_COMENTARIO) VALUES (?,?,?,NOW())";
 
+            ps = con.prepareStatement(sql);
+            
+            ps.setInt(1, idFilme); // Configura Parametros
+            ps.setInt(2, idUser); // Configura Parametros
+            ps.setString(3, comentario); // Configura Parametros
+        
+            ps.executeUpdate();
+            
+            this.statusSQL = null;
 
+        } catch (SQLException ex) {
+            this.statusSQL = "Erro ao incluir comentário ! <br> " + ex.getMessage();
+        } 
+    }
+    
+    
+    public ArrayList<Comentario> listarComentarios() {
+
+        ArrayList<Comentario> comentarios = new ArrayList<>();
+
+        try {
+
+            sql =   " SELECT        NM_USUARIO,\n" +
+                    "               DS_COMENTARIO,\n" +
+                    "               DATE_FORMAT(DT_COMENTARIO, '%d/%m/%Y') AS DATA_COMENTARIO\n" +
+                    " FROM          TB_COMENTARIO\n" +
+                    " INNER JOIN    TB_FILME 	ON 	TB_FILME.ID_FILME = TB_COMENTARIO.ID_FILME\n" +
+                    " INNER JOIN    TB_USUARIO 	ON 	TB_USUARIO.ID_USUARIO = TB_COMENTARIO.ID_USUARIO\n" +
+                    " WHERE     TB_FILME.ID_FILME = ?";
+
+            ps = con.prepareStatement(sql);
+
+            ps.setInt(1, idFilme); // Configura Parametros
+             
+            tab = ps.executeQuery();
+
+            while (tab.next()) {
+                String nomeUser = tab.getString(1);
+                String coment = tab.getString(2);
+                String dtComentario = tab.getString(3);
+
+                comentarios.add(new Comentario(nomeUser, coment, dtComentario));
+            }
+
+            this.statusSQL = null;
+        } catch (SQLException ex) {
+            this.statusSQL = "Erro ao incluir usuario ! <br> " + ex.getMessage();
+        }
+
+        return comentarios;
+    }
+        
+        
     @Override
     public boolean salvar() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody

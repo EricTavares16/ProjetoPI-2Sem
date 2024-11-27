@@ -1,7 +1,9 @@
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="model.Usuario"%>
 <%@page import="model.Filme"%>
+<%@page import="model.Comentario"%>
+<%@page import="java.util.ArrayList"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
   Filme film = new Filme();
   String idzinho = request.getParameter("valor");
@@ -10,9 +12,25 @@
   
   String LancamentoBruto = FilmeBuscado.getDataLancamento();
   String Lancamento = LancamentoBruto.substring(0, 4);
-  String HorasBrutas = "";
-             
-    int a = 0;
+  
+  String comentInput = request.getParameter("comentario");
+  
+  Usuario userLogado = (Usuario) session.getAttribute("usuarioLogado"); 
+
+  Comentario coment = new Comentario();
+  
+  coment.setIdFilme(id);
+  
+  coment.setIdUser(userLogado.getPkuser());
+  
+  if(comentInput != null && !comentInput.trim().isEmpty()){
+    coment.setComentario(comentInput);
+    coment.IncluirComentario();
+  }
+    
+  ArrayList<Comentario> listaComent = coment.listarComentarios();
+  
+
 %>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -113,62 +131,20 @@
                 <div class="comentarios">
                     <h1>Comentários</h1>
                     <div class="comentarios_container">
+                        <%for(Comentario comentario:listaComent){%>
                         <div class="comentario flex">
-                            <h3>Roberta Renata</h3>
-                            <p>Filme muito bom, indico! </p>
-                            <span>1 dia atrás</span>
+                            <h3><%= comentario.getNomeUser() %></h3>
+                            <p><%= comentario.getComentario() %></p>
+                            <span><%= comentario.getDataComentario() %></span>
                         </div>
-                        <div class="comentario flex">
-                            <h3>Roberta Renata</h3>
-                            <p>Filme muito bom, indico! </p>
-                            <span>1 dia atrás</span>
-                        </div>
-                        <div class="comentario flex">
-                            <h3>Roberta Renata</h3>
-                            <p>Filme muito bom, indico! </p>
-                            <span>1 dia atrás</span>
-                        </div>
-                        <div class="comentario flex">
-                            <h3>Roberta Renata</h3>
-                            <p>Filme muito bom, indico! </p>
-                            <span>1 dia atrás</span>
-                        </div>
-                        <div class="comentario flex">
-                            <h3>Roberta Renata</h3>
-                            <p>Filme muito bom, indico! </p>
-                            <span>1 dia atrás</span>
-                        </div>
-                        <div class="comentario flex">
-                            <h3>Roberta Renata</h3>
-                            <p>Filme muito bom, indico! </p>
-                            <span>1 dia atrás</span>
-                        </div>
-                        <div class="comentario flex">
-                            <h3>Roberta Renata</h3>
-                            <p>Filme muito bom, indico! </p>
-                            <span>1 dia atrás</span>
-                        </div>
+                        <%}%>
                     </div>
                 </div>
                 <div class="form_comentarios" id="comentar_no_filme">
-                    <form class="flex">
-                        <textarea class="input_style textarea_comment" placeholder="Digite seu comentário"></textarea>
+                    <form name=formreg method="POST" class="flex">
+                        <textarea class="input_style textarea_comment" name="comentario" placeholder="Digite seu comentário"></textarea>
                         <div class="flex-between w-full">
-                            <label class="select_star input_style flex">
-                                <div class="star_icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"/></svg>
-                                </div>
-                                <select name="" id="" class="border">    
-                                    <option value="0">0</option> 
-                                    <option value="0">1</option> 
-                                    <option value="0">2</option> 
-                                    <option value="0">3</option> 
-                                    <option value="0">4</option> 
-                                    <option value="0">5</option> 
-                                </select>
-                            </label>
-                            
-                            <input class="input_style" type="submit" value="Enviar">
+                            <input class="input_style" type="submit">
                         </div>
                     </form>
                 </div>
