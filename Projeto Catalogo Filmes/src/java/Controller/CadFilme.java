@@ -26,7 +26,7 @@ public class CadFilme extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+            response.setContentType("text/html;charset=UTF-8");
         
         
         String sHTML = "";
@@ -37,8 +37,9 @@ public class CadFilme extends HttpServlet {
             response.sendRedirect("./login.html");
         
         statusSQL = "Entrou no serverlet";
-        
+      
         Filme film = new Filme(); // Instancia o objeto Usuario
+        request.setCharacterEncoding("UTF-8");  
         film.nome = request.getParameter("nome");
         film.sinopse = request.getParameter("sinopse");
         film.duracao = request.getParameter("duracao");

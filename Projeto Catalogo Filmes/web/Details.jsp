@@ -5,6 +5,8 @@
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
+  request.setCharacterEncoding("UTF-8");
+  
   Filme film = new Filme();
   String idzinho = request.getParameter("valor");
   int id =  Integer.parseInt(idzinho);
@@ -18,7 +20,7 @@
   Usuario userLogado = (Usuario) session.getAttribute("usuarioLogado"); 
 
   Comentario coment = new Comentario();
-  
+
   coment.setIdFilme(id);
   
   coment.setIdUser(userLogado.getPkuser());
@@ -141,7 +143,7 @@
                     </div>
                 </div>
                 <div class="form_comentarios" id="comentar_no_filme">
-                    <form name=formreg method="POST" class="flex">
+                    <form method="POST" class="flex">
                         <textarea class="input_style textarea_comment" name="comentario" placeholder="Digite seu comentário"></textarea>
                         <div class="flex-between w-full">
                             <input class="input_style" type="submit">
