@@ -9,6 +9,8 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100,200,300,400,500,600,700,800,900;1,100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -22,14 +24,15 @@
                 <h1>Nome do filme</h1>
                 <div class="info_details flex">
                     <span>Documentario</span>
-                    <span>4.5</span>
+                    <span class="stars-details"><i class="fa-solid fa-star"></i>4.5</span>
                     <span>2016</span>
-                    <span>12</span>
+                    <span ><div class="censure-details">12</div></span>
                     <span>2h40</span>
                 </div>
                 <p>O filme destaca momentos decisivos na vida de Steve Jobs, desde o lançamento do primeiro Macintosh, em 1984, e a criação da NeXT Inc, até a introdução revolucionária do iMac. Fatos da vida pessoal de Jobs também são revelados, especialmente o conturbado relacionamento com sua primeira filha Lisa.</p>
                 <div class="buttons_container flex">
-                    <button class="favoritar input_style">Favoritar</button>
+                    <!-- <i class="fa-solid fa-bookmark"></i> esse é pra quando tiver clicado pra ser favorito -->
+                    <button class="favoritar input_style"><i class="fa-regular fa-bookmark"></i>Favoritar</button>
                     <a href="#comentar_no_filme" class="comentar input_style">Comentar</a>
                 </div>
             </div>
@@ -160,4 +163,6 @@
             
         </div>
     </main>
+    <script src="https://kit.fontawesome.com/3d5034d18d.js" crossorigin="anonymous"></script>
 </body>
+</html>

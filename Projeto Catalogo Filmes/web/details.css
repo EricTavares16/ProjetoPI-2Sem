@@ -41,6 +41,28 @@
   gap: 20px;
   color: #ADA8AD;
 }
+#banner_details .container .content .info_details .stars-details {
+  color: yellow;
+}
+#banner_details .container .content .info_details .stars-details i {
+  color: yellow;
+  font-size: 0.7rem;
+  padding-right: 3px;
+  vertical-align: middle;
+  margin-bottom: 3px;
+}
+#banner_details .container .content .info_details .censure-details {
+  width: 28px;
+  height: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border-radius: 3px;
+  background-color: #8501B0;
+  margin-top: -3px;
+  font-weight: 600;
+}
 #banner_details .container .content p {
   max-width: 645px;
   width: 100%;
@@ -53,6 +75,10 @@
 #banner_details .container .content .buttons_container .input_style {
   color: #ADA8AD;
   background-color: #211C21;
+}
+#banner_details .container .content .buttons_container .input_style i {
+  margin-right: 8px;
+  color: #ADA8AD;
 }
 
 main {
@@ -189,4 +215,4 @@ main {
   resize: none;
   height: 200px;
   border-radius: 8px;
-}
+}/*# sourceMappingURL=details.css.map */
