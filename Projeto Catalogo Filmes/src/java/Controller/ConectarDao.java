@@ -255,6 +255,10 @@ Pela excessão da clausula try. */
             ps = con.prepareStatement(sql); // prepara o objeto que irá executar o comando SQL
             ps.executeUpdate();// Executa o comando SQL
             
+            sql = "SET GLOBAL max_allowed_packet = 16 * 1024 * 1024; -- Aumenta para 16 MB";
+            ps = con.prepareStatement(sql); // prepara o objeto que irá executar o comando SQL
+            ps.executeUpdate();
+            
         } catch (SQLException err) {
             htmlError = err.getMessage();
         }

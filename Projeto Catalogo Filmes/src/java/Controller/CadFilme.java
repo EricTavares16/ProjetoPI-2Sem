@@ -40,6 +40,9 @@ public class CadFilme extends HttpServlet {
       
         Filme film = new Filme(); // Instancia o objeto Usuario
         request.setCharacterEncoding("UTF-8");  
+        String filmeid = request.getParameter("id");
+        if (filmeid != null)
+            film.id = Integer.parseInt(filmeid);
         film.nome = request.getParameter("nome");
         film.sinopse = request.getParameter("sinopse");
         film.duracao = request.getParameter("duracao");
@@ -144,12 +147,29 @@ public class CadFilme extends HttpServlet {
             film.deletar();
             session.invalidate();
             statusSQL = "Você deletou seu usuário, sua sessão foi fechada!";}
+        
+        if (request.getParameter("alterar") != null) {
+            film.alterar();
+            genf.idFilme = film.id;
+            genf.alterar();
+            if (film.statusSQL == null) {
+                statusSQL = "Registro Alterado com Sucesso !"+genf.idFilme + film.id ;
+            }}
 
         
         
         
         try (PrintWriter out = response.getWriter()) {
-            response.sendRedirect("./loadingFilm.html");
+            //response.sendRedirect("./loadingFilm.html");
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet Upload</title>");
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet Upload at " + statusSQL + "\n" +film.statusSQL + "</h1>");
+           out.println("</body>");
+            out.println("</html>");
         }
     }
 
