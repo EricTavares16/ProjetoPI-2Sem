@@ -90,11 +90,29 @@ public class CadFilme extends HttpServlet {
                 genf.idGenero = 3;
             }else if(genreoStr.equals("Aventura")){
                 genf.idGenero = 4;
-            }else if(genreoStr.equals("Ficção")){
+            }else if(genreoStr.equals("Animação")){
                 genf.idGenero = 5;
-            }else if(genreoStr.equals("Desenho")){
+            }else if(genreoStr.equals("Ficção")){
                 genf.idGenero = 6;
-            } 
+            }else if(genreoStr.equals("Drama")){
+                genf.idGenero = 7;
+            }else if(genreoStr.equals("Terror")){
+                genf.idGenero = 8;
+            }else if(genreoStr.equals("Fantasia")){
+                genf.idGenero = 9;
+            }else if(genreoStr.equals("Suspense")){
+                genf.idGenero = 10;
+            }else if(genreoStr.equals("Mistério")){
+                genf.idGenero = 11;
+            }else if(genreoStr.equals("Documentário")){
+                genf.idGenero = 12;
+            }else if(genreoStr.equals("Musical")){
+                genf.idGenero = 13;
+            } else if(genreoStr.equals("Histórico")){
+                genf.idGenero = 14;
+            } else if(genreoStr.equals("Família")){
+                genf.idGenero = 15;
+            }    
             
             
     }
