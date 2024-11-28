@@ -362,11 +362,17 @@ public class Filme extends ConectarDao implements IcrudDao {
         return filmes;
     }
 
-    public void deletar() {
+    public void deletar(int idzinho) {
         try {
-            sql = "DELETE FROM TB_FILME WHERE UCASE(TRIM(NM_FILME)) = UCASE(TRIM(?))";
+            
+            String sqlDeleteGenero = "DELETE FROM tb_genero_filme WHERE ID_FILME = ?";
+            ps = con.prepareStatement(sqlDeleteGenero);
+            ps.setInt(1, idzinho);
+            ps.executeUpdate();
+        
+            sql = "DELETE FROM TB_FILME WHERE ID_FILME = ?";
             ps = con.prepareStatement(sql);
-            ps.setString(1, nome);
+            ps.setInt(1, idzinho);
             ps.executeUpdate();
             this.statusSQL = null;
         } catch (SQLException ex) {

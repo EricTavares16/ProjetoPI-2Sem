@@ -1,5 +1,7 @@
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="model.Filme"%>
+<%@page import="model.Ator"%>
 <%
     
 String nomeUser = (String) session.getAttribute("nome");
@@ -13,6 +15,9 @@ Filme filme = new Filme();
     int idzao = Integer.valueOf(idzinho);
     filme.id = idzao;
  
+ Ator atr = new Ator();
+    ArrayList<Ator> atores = atr.listarAtores();
+    
 %>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -92,22 +97,22 @@ Filme filme = new Filme();
                         <label>Categoria</label>
                         <label class="input_capas">
                             <select id="cate" name="categoria" class="principal">
-                                <option value="acao">Ação</option>
-                                <option value="aventura">Aventura</option>
-                                <option value="comedia">Comédia</option>
-                                <option value="drama">Drama</option>
-                                <option value="terror">Terror</option>
-                                <option value="ficcao-cientifica">Ficção Científica</option>
-                                <option value="romance">Romance</option>
-                                <option value="fantasia">Fantasia</option>
-                                <option value="suspense">Suspense</option>
-                                <option value="misterio">Mistério</option>
-                                <option value="animacao">Animação</option>
-                                <option value="documentario">Documentário</option>
-                                <option value="musical">Musical</option>
-                                <option value="historico">Histórico</option>
-                                <option value="familia">Família</option>
-                            </select>                                
+                                    <option value="Ação">Ação</option>
+                                    <option value="Aventura">Aventura</option>
+                                    <option value="Comédia">Comédia</option>
+                                    <option value="Drama">Drama</option>
+                                    <option value="Terror">Terror</option>
+                                    <option value="Ficção">Ficção Científica</option>
+                                    <option value="Românce">Romance</option>
+                                    <option value="Fantasia">Fantasia</option>
+                                    <option value="Suspense">Suspense</option>
+                                    <option value="Mistério">Mistério</option>
+                                    <option value="Animação">Animação</option>
+                                    <option value="Documentário">Documentário</option>
+                                    <option value="Musical">Musical</option>
+                                    <option value="Histórico">Histórico</option>
+                                    <option value="Família">Família</option>
+                                </select>                                  
                         </label>
                     </div>
                     <div class="input_div_grid">
@@ -145,35 +150,17 @@ Filme filme = new Filme();
             </div>
 
             <!-- atores -->
-            <div class="div_list_inputs actors">
+ 
+
+                    <!-- ABRIR MODAL PARA SELECIONAR ATORES -->
+ 
 
                 <!-- ABRIR MODAL PARA SELECIONAR ATORES -->
-                <div class="add_atores">
-                    <h1>Lista de Atores</h1>
-                    
-                </div>
-
-                <!-- LISTAGEM DE ATORES -->
-                <div class="container_actores_list">
-                    <div class="actors_div_film">
-                        <button class="btn_favoritar_filmes ">
-                            <a>
-    
-                                <i class="fa-solid fa-trash"></i>                          
-                            </a>
-                        </button>
-                        <img src="./../../../5teste.jpg" alt="Foto do ator">
-                        <div class="content">
-                            <p class="title_persona_name location">Nome do Personagem</p>
-                            <p class="title_actor_name location">Nome do Ator</p>
-                        </div>
-                    </div>                                                                              
-                </div>
-            </div>
+            
 
             <div class="footer">
                 <div class="footer_container_area with_delete_button">
-                    <button class="delete_btn" type="reset">
+                    <button class="delete_btn" onclick="window.location.href='./ExcluirFilme.jsp?valor=<%=filme.getId() %>'" type="button">
                         Excluir 
                     </button>
                     <div class="others">
@@ -181,7 +168,7 @@ Filme filme = new Filme();
                             Cancelar
                         </button>
             
-                        <button class="add_btn" type="submit">
+                        <button class="add_btn"  type="submit">
                             Editar
                         </button>
                     </div>
@@ -192,12 +179,12 @@ Filme filme = new Filme();
     </main>
 
 
-   
 
 
 
 
     <script src="../scriptGlobal.js"></script>
+    <script src="./../scriptGlobal.js"></script>
     <script src="https://kit.fontawesome.com/3d5034d18d.js" crossorigin="anonymous"></script>
 
 </body>
