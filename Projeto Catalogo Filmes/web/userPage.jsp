@@ -47,8 +47,9 @@
             <div class="flex-center actions_buttons">
                 <button class="input_style" onclick="window.location.href='Home.jsp'">Voltar para home</button>
                <button class="input_style" onclick="window.location.href='logout.jsp'">Logout</button>
-                <!-- colocar validacao (if user=admin)  mostra botao-->
-                <a href="./admin/" class="input_style area_admin_link">Area do administrador</a>
+               <%if("admin".equals(userLogado.getNome())) {%>
+                  <a href="./admin/HomeAdmin.jsp" class="input_style area_admin_link">Area do administrador</a>
+               <%}%>
             </div>
 
         </div>

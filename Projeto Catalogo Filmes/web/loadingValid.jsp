@@ -1,13 +1,3 @@
-<%
-    String nomeUser = (String) session.getAttribute("nome");
- if("admin".equals(nomeUser)){
-        response.sendRedirect("admin/HomeAdmin.jsp");
-    }else{
-        response.sendRedirect("Home.jsp");
-    }
-
-
-%>
 
 <!DOCTYPE html>
 <html lang="pt-br">
