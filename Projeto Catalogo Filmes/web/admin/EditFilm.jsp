@@ -39,9 +39,11 @@ Filme filme = new Filme();
 <body class="body">
     <nav class="container-menu">
         <div class="buttonsAreaView">
+
             <div class="buttonView active"><button style="cursor: pointer;" onclick="window.location.href='cadNewFilme.jsp'"><i class="fa-solid fa-circle-plus"  ></i></button><p>Adicionar Filme</p></div>
             <div class="buttonView"><button style="cursor: pointer;" onclick="window.location.href='addActorPage.jsp'"><i class="fa-solid fa-user-plus" ></i></button><p>Adicionar Ator</p></div>
             <div class="buttonView"><button style="cursor: pointer;" onclick="window.location.href='../logout.jsp'"><i class="fa-solid fa-right-from-bracket" ></i></button><p>Logout</p></div>
+
         </div>
     </nav>
     <main class="container">

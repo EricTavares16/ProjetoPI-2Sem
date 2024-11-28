@@ -1,5 +1,7 @@
+<%@page import="java.util.ArrayList"%>
 <%@page import="model.GeneroFilme"%>
 <%@page import="model.Filme"%>
+<%@page import="model.Ator"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
 
@@ -43,6 +45,8 @@
             // Verificando a classificação para converter em um número
             if (classificacaoStr.equals("12") || classificacaoStr.equals("+12")) {
                 classificacao = 12;
+            }if (classificacaoStr.equals("10") || classificacaoStr.equals("+10")) {
+                classificacao = 10;
             } else if (classificacaoStr.equals("14") || classificacaoStr.equals("+14")) {
                 classificacao = 14;
             } else if (classificacaoStr.equals("16") || classificacaoStr.equals("+16")) {
@@ -83,6 +87,9 @@
     genf.idGenero = 0;
    String sHtml = " " + film.nome + film.sinopse + genf.idFilme + genf.idGenero ;
     }
+    
+ Ator atr = new Ator();
+ ArrayList<Ator> atores = atr.listarAtores();  
 %>
 
 
@@ -113,7 +120,7 @@
     <nav class="container-menu">
         <div class="buttonsAreaView">
             <div class="buttonView active"><button><a href="cadNewFilme.html"><i class="fa-solid fa-circle-plus"></i></a></button><p>Adicionar Filme</p></div>
-            <div class="buttonView"><button><a href="editFilme.html"><i class="fa-solid fa-user-plus"></i></a></button><p>Adicionar Atores</p></div>
+            <div class="buttonView"><button><a href="addActorPage.jsp"><i class="fa-solid fa-user-plus"></i></a></button><p>Adicionar Atores</p></div>
             <div class="buttonView"><button><a href=""><i class="fa-solid fa-right-from-bracket"></i></a></button><p>Logout</p></div>
             
         </div>
@@ -125,7 +132,7 @@
             <div class="cockpit_filmes_form ">
 
                 <div class="cockpit_item_adm ">
-                    <button class="btn_return"><a href="index.html"><i class="fa-solid fa-arrow-left"></i></a></button>
+                    <button class="btn_return"><a href="HomeAdmin.jsp"><i class="fa-solid fa-arrow-left"></i></a></button>
 
                     <h1>Capas & Banners</h1>
                 </div>
@@ -207,6 +214,7 @@
                             <label>Restrição de idade</label>
                             <label class="input_capas"> <input list="restri" id="rest" class="principal" onclick="inputClearorNot(event)" name="classificacao" autocomplete="off">
                                 <datalist id="restri">
+                                    <option value="+10" name="5">
                                     <option value="+12" name="1">
                                     <option value="+14"name="2">
                                     <option value="+16"name="3">
@@ -224,29 +232,26 @@
 
 
                     </div>
-                    <div class="div_list_inputs colunm">
-                        <div class="input_div_grid desc_area">
-                            <label>Atores Principais</label>
-                            <label class="input_capas"> <button type="button" onclick="openCloseModal('.modal_add_ator')">Adicionar Ator</button>
-                            </label>
-                            <div class="container_actores_list ">
-                                <div class="actors_div_film">
+                    <!-- atores -->
+            <div class="div_list_inputs actors">
 
-                                    <div class="box_color_bg">
-                                    </div>
-                                    <div class="container_names_actors">
+                <!-- ABRIR MODAL PARA SELECIONAR ATORES -->
+                <div class="add_atores">
+                    <label>Atores Principais</label>
+                    <button type="button" onclick="openCloseModal('.modal_add_ator')">Adicionar Ator</button>
+                </div>
 
-                                        <p class="title_persona_name location">Nome do Personagem</p>
-                                        <p class="title_actor_name location">Nome do Ator</p>
-                                    </div>
-
-
-                                </div>
-                                
-                            </div>
+                <!-- LISTAGEM DE ATORES -->
+                <div class="container_actores_list">
+                    <div class="actors_div_film">
+                        <img src="./../../../5teste.jpg" alt="Foto do ator">
+                        <div class="content">
+                            <p class="title_persona_name location">Nome do Personagem</p>
+                            <p class="title_actor_name location">Nome do Ator</p>
                         </div>
-
-                    </div>
+                    </div>                                                                              
+                </div>
+            </div>
                     <div class="footer" >
     
                         <div class="footer_container_area ">
@@ -274,78 +279,113 @@
 
 
 
-    <!-- MODAL TEST -->
+                   <!-- ABRIR MODAL PARA SELECIONAR ATORES 
+                <div class="add_atores">
+                    <label>Atores Principais</label>
+                    <button type="button" onclick="openCloseModal('.modal_add_ator')">Adicionar Ator</button>
+                </div>
 
-    <!--<button class="edit_button" id="edit_user_info_button" onclick="openCloseModal('.modal_edit_user_name')">edit</button>-->
+                <!-- LISTAGEM DE ATORES 
+                <div class="container_actores_list">
+                    <div class="actors_div_film">
+                        <img src="./../../../5teste.jpg" alt="Foto do ator">
+                        <div class="content">
+                            <p class="title_persona_name location">Nome do Personagem</p>
+                            <p class="title_actor_name location">Nome do Ator</p>
+                        </div>
+                    </div>                                                                              
+                </div>
+            </div>
+                    
+                        
+            <div class="footer">
+                <div class="footer_container_area">
+                    <button class="cancel_btn" type="reset">
+                        Cancelar
+                    </button>
+        
+                    <button class="add_btn" type="submit">
+                        <i class="fa-solid fa-plus"></i>
+                        Adicionar
+                    </button>
+                </div>                
+            </div>
+        </form>    
+    
+    </main>
 
+ <div class="modal modal_add_ator hidden">
+        <div class="modal_header">
+            <p>Adicionar ator</p>
+            <button class="close" data-modal-close>X</button>
+        </div>
+        <div class="modal_content">
+            <form>
+                <label class="nome_ficticio_label">
+                    <span>Nome fictício</span>
+                    <input type="text" class="input_style" id="nome_ficticio" name="nome_ficticio" placeholder="Nome do personagem">
+                </label>
+                <div class="search">
+                    <div class="action">
+                        <input type="text" class="input_style" placeholder="Filtrar por nome">
+                    </div>
+                </div>
+                <div class="container_actores_list"> -->
     <div class="modal modal_add_ator hidden">
         <div class="modal_header">
             <p>Adicionar ator</p>
             <button class="close" data-modal-close>X</button>
         </div>
         <div class="modal_content">
-            <form class="flex">
-                <div class="atorModalLeft">
-                    <div class="input_div">
-                        <!-- A imagem atua como botão para selecionar o arquivo -->
-                        <label class="input_capas">
-                  
-                            <!-- Campo de input de arquivo escondido -->
-                            <input type="file" class="banners" id="file-input" data-id="3" accept="image/*"
-                                onclick="handleFileChange(event)">
-                        </label>
+            <form>
+                <div class="search">
+                    <div class="action">
+                        <input type="text" class="input_style" placeholder="Filtrar por nome">
                     </div>
-
-                    
-
                 </div>
-                <div class="atorModalRight">
-                    <div class="atorModalLabel">
-                        <!-- <label>
-                            <p>Nome:</p>
-                            <input class="input_style" type="text" id="nome" name="nome">
-                        </label> -->
-                        <label>
-                            <p>Nome:</p>
-                            <input class="input_style" list="actoresCad" id="nome" name="nome" autocomplete="off"autocomplete="off">
-                            <datalist id="actoresCad">
-                                <option value="Leonardo DiCaprio">
-                                <option value="Johnny Depp">
-                                <option value="Tom Hanks">
-                                <option value="Brad Pitt">
-                                <option value="Dwayne Johnson">
-                                <option value="Robert Downey Jr.">
-                                <option value="Chris Hemsworth">
-                                <option value="Will Smith">
-                                <option value="Keanu Reeves">
-                                <option value="Hugh Jackman">
-                                <option value="Ryan Reynolds">
-                                <option value="Chris Evans">
-                                <option value="Jason Momoa">
-                                <option value="Adam Sandler">
-                                <option value="Morgan Freeman">
-                              </datalist>
-                        </label>
-                    </div>
-                    <div class="atorModalLabel">
-                        <label class="atorModalLabel">
-                            <p>Nome fictício:</p>
-                            <input class="input_style" type="text" id="nome-ficticio" name="nome-ficticio">
-                        </label>
-                    </div>
-
+                <div class="container_actores_list">
+    <!-- Listagem dos atores -->
+    <% for (Ator listaatores : atores) { %>
+        <div class="actors_div_film">
+            <!-- Radio Button -->
+            <input type="radio" 
+                   id="ator_<%= listaatores.getId() %>" 
+                   name="selected_actor" 
+                   value="<%= listaatores.getId() %>" 
+                   required>
+            
+            <!-- Label para o Radio Button -->
+            <label class="label_input_radio" for="ator_<%= listaatores.getId() %>">
+                <!-- Imagem do ator -->
+                <img src="data:image/png;base64,<%= listaatores.capaimagemBase64 != null ? listaatores.capaimagemBase64 : "" %>" 
+                     alt="<%= listaatores.getNomeAtor() %>">
+                
+                <!-- Nome do ator -->
+                <div class="content">
+                    <p class="title_actor_name location"><%= listaatores.getNomeAtor() %></p>
                 </div>
+            </label>
         </div>
-        </form>
+    <% } %>  
+</div>
+
+                <div class="submit">
+                    <button class="add_btn" type="submit">
+                        <i class="fa-solid fa-plus" aria-hidden="true"></i>
+                        Adicionar
+                    </button>
+                </div>
+            </form>
+        </div>
     </div>
-    </div>
+    
 
     <div id="modal_blur" class="hidden">
     </div>
 
 
     <!-- fim do modal -->
-    <script src="/Projeto Catalogo Filmes/web/scriptGlobal.js"></script>
+    <script src="./../scriptGlobal.js"></script>
     <script src="https://kit.fontawesome.com/3d5034d18d.js" crossorigin="anonymous"></script>
 
 </body>

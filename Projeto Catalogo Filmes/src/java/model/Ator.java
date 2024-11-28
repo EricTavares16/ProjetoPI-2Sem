@@ -26,15 +26,22 @@ public class Ator extends ConectarDao implements IcrudDao {
 
     public String nomeAtor;
     public int idade;
+    public int id;
+    
     
     public InputStream capa; // Imagem guardada no InputStream
     public long capatamanho; // Guarda o tamanho da imagem em bytes
     public String capaimagemBase64;
 
-    public Ator(String nome, String fotinho) {
+    Filme film = new Filme();    
+    
+    public Ator(int id , String nome, String fotinho) {
+        this.id = id;
         this.nomeAtor = nome;
         this.capaimagemBase64 = fotinho;
     }
+
+
     
     public Ator(){
     }
@@ -59,6 +66,17 @@ public class Ator extends ConectarDao implements IcrudDao {
             this.setStatusSQL("Erro ao incluir Ator ! <br> " + ex.getMessage());
         }
     }
+    
+     public void IncluirAtorFilme(){
+         try{setSql("INSET INTO TB_FILME_ATOR(ID_FILME, ID_ATOR) VALUES (?,?)");
+         setPs(getCon().prepareStatement(getSql()));
+         getPs().setInt(1, film.id);
+         getPs().setInt(2, id);
+         
+         }catch(SQLException ex){
+            this.setStatusSQL("Erro ao incluir Ator ! <br> " + ex.getMessage());
+        }
+     }
     
         public void deletar() {
         try {
@@ -100,7 +118,7 @@ public class Ator extends ConectarDao implements IcrudDao {
                     fotinho = capaimagemBase64 = Base64.getEncoder().encodeToString(buffer);
                 }
 
-                atores.add(new Ator(nome, fotinho));
+                atores.add(new Ator(id, nome, fotinho));
             }
 
             this.statusSQL = null;
@@ -165,7 +183,7 @@ public class Ator extends ConectarDao implements IcrudDao {
     public Connection getCon() {
         return con;
     }
-
+    
     public void setCon(Connection con) {
         this.con = con;
     }
@@ -208,6 +226,13 @@ public class Ator extends ConectarDao implements IcrudDao {
 
     public void setStatusSQL(String statusSQL) {
         this.statusSQL = statusSQL;
+    }
+        public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
     
     @Override
