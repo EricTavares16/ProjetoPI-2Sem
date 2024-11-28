@@ -43,15 +43,14 @@ public class Filme extends ConectarDao implements IcrudDao {
     public String bannerimagemBase64;
     public String genero;
 
-    
-     public String getGenero() {
+    public String getGenero() {
         return genero;
     }
 
     public void setGenero(String genero) {
         this.genero = genero;
     }
-    
+
     public int getId() {
         return id;
     }
@@ -160,11 +159,12 @@ public class Filme extends ConectarDao implements IcrudDao {
             sql = "SELECT * FROM TB_FILME WHERE ID_FILME = '" + this.id + "'";
             ps = con.prepareStatement(sql);
             ps.setInt(1, id);
-            ResultSet consul = ps.executeQuery() ;
-            if (consul.next()) 
-            { alterar(); }
-            else
-            { incluirFilme(); }
+            ResultSet consul = ps.executeQuery();
+            if (consul.next()) {
+                alterar();
+            } else {
+                incluirFilme();
+            }
 
         } catch (SQLException ex) {
             statusSQL = "Erro ao gravar filme  " + ex.getMessage();
@@ -249,35 +249,35 @@ public class Filme extends ConectarDao implements IcrudDao {
 
         return filmes;
     }
-    
-    public ArrayList<Filme> listarFilmes_PorGenero(){
-        
-        ArrayList<Filme> filmes = new ArrayList<>();
-        
-        try { 
 
-            sql = "SELECT	FM.ID_FILME,\n" +
-                                "NM_FILME,\n" +
-                                "DS_SINOPSE,\n" +
-                                "HR_DURACAO,\n" +
-                                "DT_LANCAMENTO,\n" +
-                                "VL_AVALIACAO,\n" +
-                                "NR_CLASSIFICACAO_INDICATIVA,\n" +
-                                "IMG_CAPA\n" +
-                "FROM 		`TB_GENERO_FILME` GENFM\n" +
-                "INNER JOIN 	TB_FILME 	FM 	ON 	FM.ID_FILME = GENFM.ID_FILME\n" +
-                "INNER JOIN	TB_GENERO 	GEN	ON 	GEN.ID_GENERO = GENFM.ID_GENERO\n" +
-                "WHERE 		UCASE(TRIM(NM_GENERO)) = UCASE(TRIM(?))";
+    public ArrayList<Filme> listarFilmes_PorGenero() {
+
+        ArrayList<Filme> filmes = new ArrayList<>();
+
+        try {
+
+            sql = "SELECT	FM.ID_FILME,\n"
+                    + "NM_FILME,\n"
+                    + "DS_SINOPSE,\n"
+                    + "HR_DURACAO,\n"
+                    + "DT_LANCAMENTO,\n"
+                    + "VL_AVALIACAO,\n"
+                    + "NR_CLASSIFICACAO_INDICATIVA,\n"
+                    + "IMG_CAPA\n"
+                    + "FROM 		`TB_GENERO_FILME` GENFM\n"
+                    + "INNER JOIN 	TB_FILME 	FM 	ON 	FM.ID_FILME = GENFM.ID_FILME\n"
+                    + "INNER JOIN	TB_GENERO 	GEN	ON 	GEN.ID_GENERO = GENFM.ID_GENERO\n"
+                    + "WHERE 		UCASE(TRIM(NM_GENERO)) = UCASE(TRIM(?))";
 
             ps = con.prepareStatement(sql);
-            
+
             ps.setString(1, genero); // Configura Parametros
-           
+
             tab = ps.executeQuery();
-            
+
             String capaFilm = "";
 
-            while(tab.next()){
+            while (tab.next()) {
                 int id = tab.getInt(1);
                 String nome = tab.getString(2);
                 String sinopse = tab.getString(3);
@@ -286,48 +286,47 @@ public class Filme extends ConectarDao implements IcrudDao {
                 double avaliacao = tab.getDouble(6);
                 int classificacao = tab.getInt(7);
                 Blob blob = (Blob) tab.getBlob(8);
-                
+
                 if (blob == null) {
-                    capaimagemBase64 = null; 
+                    capaimagemBase64 = null;
                     bannerimagemBase64 = null;
-                }
-                else {
+                } else {
                     capa = blob.getBinaryStream();
                     byte[] buffer = new byte[(int) blob.length()];
                     capa.read(buffer);
                     capaFilm = capaimagemBase64 = Base64.getEncoder().encodeToString(buffer);
                 }
-                
+
                 filmes.add(new Filme(id, nome, sinopse, duracao, dtLancamento, avaliacao, classificacao, capaFilm));
             }
 
-            this.statusSQL = null; 
+            this.statusSQL = null;
         } catch (SQLException ex) {
             this.statusSQL = "Erro ao incluir usuario ! <br> " + ex.getMessage();
         } catch (IOException ex) {
             Logger.getLogger(Filme.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         return filmes;
     }
-    
-     public ArrayList<Filme> listarFilmes_PorNome(){
-        
+
+    public ArrayList<Filme> listarFilmes_PorNome() {
+
         ArrayList<Filme> filmes = new ArrayList<>();
-    
-        try { 
+
+        try {
 
             sql = "SELECT * FROM TB_FILME WHERE NM_FILME LIKE ?";
 
             ps = con.prepareStatement(sql);
-            
+
             ps.setString(1, "%" + nome + "%");
-           
+
             tab = ps.executeQuery();
-            
+
             String fotinho = "";
 
-            while(tab.next()){
+            while (tab.next()) {
                 int id = tab.getInt(1);
                 String nome = tab.getString(2);
                 String sinopse = tab.getString(3);
@@ -336,26 +335,26 @@ public class Filme extends ConectarDao implements IcrudDao {
                 double avaliacao = tab.getDouble(6);
                 int classificacao = tab.getInt(7);
                 Blob blob = (Blob) tab.getBlob(8);
-                
+
                 if (blob == null) {
-                    capaimagemBase64 = null; }
-                else {
+                    capaimagemBase64 = null;
+                } else {
                     capa = blob.getBinaryStream();
                     byte[] buffer = new byte[(int) blob.length()];
                     capa.read(buffer);
                     fotinho = capaimagemBase64 = Base64.getEncoder().encodeToString(buffer);
                 }
-                
+
                 filmes.add(new Filme(id, nome, sinopse, duracao, dtLancamento, avaliacao, classificacao, fotinho));
             }
 
-            this.statusSQL = null; 
+            this.statusSQL = null;
         } catch (SQLException ex) {
             this.statusSQL = "Erro ao incluir usuario ! <br> " + ex.getMessage();
         } catch (IOException ex) {
             Logger.getLogger(Filme.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         return filmes;
     }
 
@@ -370,20 +369,54 @@ public class Filme extends ConectarDao implements IcrudDao {
             this.statusSQL = "Errro ao encontrar  usuario ! <br>" + ex.getMessage();
         }
     }
-    
-    public void alterar(){
-        sql= "UPDATE TB_FILME SET NM_FILME= ";
-    
+
+    public void alterar() {
+        try {
+            sql = "UPDATE TB_FILME SET NM_FILME= ?, DS_SINOPSE = ?, HR_DURACAO = ?, DT_LANCAMENTO = ?, VL_AVALIACAO = ?, NR_CLASSIFICACAO_INDICATIVA = ?";
+            if (capatamanho > 0) {
+                sql += ",IMG_CAPA = ?";
+            }
+            if (bannertamanho > 0) {
+                sql += ",IMG_BANNER = ?";
+            }
+            sql += " WHERE ID_FILME = ?";
+            ps = con.prepareStatement(sql);
+            ps.setString(1, nome); // Configura Parametros
+            ps.setString(2, sinopse); // Configura Parametros
+            ps.setString(3, duracao); // Configura Parametros
+            ps.setString(4, dataLancamento); // Configura Parametros
+            ps.setDouble(5, avaliacao); // Configura Parametros
+            ps.setInt(6, classificacao); // Configura Parametros
+            if(capatamanho <= 0 && bannertamanho <= 0){
+                ps.setInt(7, id);
+            }else if( capatamanho <= 0){
+                ps.setBlob(7, banner,bannertamanho);
+                ps.setInt(8, id);
+            }else if( bannertamanho <= 0){
+                ps.setBlob(7, capa,capatamanho);
+                ps.setInt(8, id);
+            }else{
+                ps.setBlob(7, capa,capatamanho);
+                ps.setBlob(8, banner,bannertamanho);
+                ps.setInt(9, id);
+            }
+
+            ps.executeUpdate();
+            this.statusSQL = null;
+
+        } catch (SQLException ex) {
+            this.statusSQL = "Errro ao encontrar  usuario ! <br>" + ex.getMessage() + nome + sinopse;
+        }
     }
-    
-    public Filme getFilmeById(int id) throws IOException{
+
+    public Filme getFilmeById(int id) throws IOException {
         Filme FilmeBuscado = new Filme();
-         try {
+        try {
             sql = "SELECT * FROM TB_FILME WHERE ID_FILME = ? ";
             ps = con.prepareStatement(sql);
             ps.setInt(1, id);
             tab = ps.executeQuery();
-            
+
             String capaFilm = "";
             String bannerFilm = "";
 
@@ -396,7 +429,7 @@ public class Filme extends ConectarDao implements IcrudDao {
                 classificacao = tab.getInt(7);
                 Blob blobCapa = (Blob) tab.getBlob(8);
                 Blob blobBanner = (Blob) tab.getBlob(9);
-                
+
                 FilmeBuscado.setNome(nome);
                 FilmeBuscado.setSinopse(sinopse);
                 FilmeBuscado.setDuracao(duracao);
@@ -412,22 +445,22 @@ public class Filme extends ConectarDao implements IcrudDao {
                     byte[] buffer = new byte[(int) blobCapa.length()];
                     capa.read(buffer);
                     capaFilm = capaimagemBase64 = Base64.getEncoder().encodeToString(buffer);
-                    
+
                     banner = blobBanner.getBinaryStream();
                     byte[] buffer2 = new byte[(int) blobBanner.length()];
                     banner.read(buffer2);
                     bannerFilm = Base64.getEncoder().encodeToString(buffer2);
                 }
-                FilmeBuscado.setCapaimagemBase64(capaFilm);  
+                FilmeBuscado.setCapaimagemBase64(capaFilm);
                 FilmeBuscado.setBannerimagemBase64(bannerFilm);
-            }else {
-            return null;
-        }
+            } else {
+                return null;
+            }
         } catch (SQLException ex) {
             this.statusSQL = "Erro ao buscar filme: " + ex.getMessage();
             return null;
         }
-         return FilmeBuscado;
+        return FilmeBuscado;
     }
 
     @Override

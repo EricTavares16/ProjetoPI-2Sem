@@ -74,6 +74,20 @@ public class GeneroFilme extends ConectarDao implements IcrudDao {
     return 0; // Retorna 0 se algo falhar
 }
      
+     public void alterar(){
+    try { 
+        sql = "UPDATE TB_GENERO_FILME SET ID_GENERO=? WHERE ID_FILME = ?";
+        ps = con.prepareStatement(sql); // prepara SQL
+        ps.setInt(1, idGenero); // Configura Parametros
+        ps.setInt(2, idFilme); // Configura Parametros // Configura Parametros
+        
+        
+        ps.executeUpdate(); // executa comando SQL
+            this.statusSQL = null; // armazena null se deu tudo certo
+        } catch (SQLException ex) {
+    this.statusSQL = "Erro ao Alterar Genero ! <br> " +    ex.getMessage();    
+    } 
+     }
      public String buscarGeneroPorId_Filme (int id) throws IOException{
          
          String nomeGenero = "";
