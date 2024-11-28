@@ -127,3 +127,8 @@ i {
   font-size: 20px;
   background-color: transparent;
 }
+
+.container.container_admin {
+  max-width: 1180px;
+  margin-left: 40px;
+}/*# sourceMappingURL=generalHome.css.map */

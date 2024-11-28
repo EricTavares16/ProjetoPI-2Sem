@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../global.css">
     <link rel="stylesheet" href="styles/menu.css">
     <link rel="stylesheet" href="styles/formsNewFilm.css">
+    <link rel="stylesheet" href="styles/generalHome.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
         integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -33,10 +34,14 @@
 
         </div>
     </nav>
-    <main class="container">
+    <main class="container container_admin">
         <section class="container_topArea ">
-            
-            <h1>Cadastro de Atores</h1>
+            <div class="cockpit_filmes_form">
+                <div class="cockpit_item_adm ">
+                    <button class="btn_return"><a href="HomeAdmin.jsp"><i class="fa-solid fa-arrow-left"></i></a></button>
+                    <h1>Adicionar atores</h1>
+                </div>
+            </div>
             <form method="post" action="../CadAtor" name="formAtor" enctype="multipart/form-data" onsubmit="formreg.oper.value = '1'">
                 <div class="container_inputs_areas">
                     <div class="inputs_areas">
