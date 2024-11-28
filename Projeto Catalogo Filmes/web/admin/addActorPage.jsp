@@ -26,22 +26,14 @@
 <body class="body">
     <nav class="container-menu">
         <div class="buttonsAreaView">
-            <div class="buttonView active"><button><a href="cadNewFilme.jsp"><i
-                            class="fa-solid fa-circle-plus"></i></a></button>
-                <p>Adicionar Filme</p>
-            </div>
-            <div class="buttonView"><button><a href="addActorPage.html"><i class="fa-solid fa-user-plus"></i></a></button>
-                <p>Adicionar Atores</p>
-            </div>
-            <div class="buttonView"><button><a href=""><i class="fa-solid fa-right-from-bracket"></i></a></button>
-                <p>Logout</p>
-            </div>
-
+            <div class="buttonView active"><button style="cursor: pointer;" onclick="window.location.href='cadNewFilme.jsp'"><i class="fa-solid fa-circle-plus"  ></i></button><p>Adicionar Filme</p></div>
+            <div class="buttonView"><button style="cursor: pointer;" onclick="window.location.href='addActorPage.jsp'"><i class="fa-solid fa-user-plus" ></i></button><p>Adicionar Ator</p></div>
+            <div class="buttonView"><button style="cursor: pointer;" onclick="window.location.href='../logout.jsp'"><i class="fa-solid fa-right-from-bracket" ></i></button><p>Logout</p></div>            
         </div>
     </nav>
     <main class="container">
         <section class="container_topArea ">
-             <button class="btn_return"><a href="HomeAdmin.jsp"><i class="fa-solid fa-arrow-left"></i></a></button>
+             <button class="btn_return" style="cursor: pointer;"  onclick="window.location.href='HomeAdmin.jsp'"><a><i class="fa-solid fa-arrow-left"></i></a></button>
             <h1>Cadastro de Atores</h1>
             <form method="post" action="../CadAtor" name="formAtor" enctype="multipart/form-data" onsubmit="formreg.oper.value = '1'">
                 <div class="container_inputs_areas">

@@ -146,7 +146,7 @@ public class CadFilme extends HttpServlet {
         
         
         if (request.getParameter("deletar") != null) {
-            film.deletar();
+            
             session.invalidate();
             statusSQL = "Você deletou seu usuário, sua sessão foi fechada!";}
         
@@ -162,16 +162,16 @@ public class CadFilme extends HttpServlet {
         
         
         try (PrintWriter out = response.getWriter()) {
-            //response.sendRedirect("./loadingFilm.html");
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet Upload</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet Upload at " + statusSQL + "\n" +film.statusSQL + "</h1>");
-           out.println("</body>");
-            out.println("</html>");
+            response.sendRedirect("./loadingFilm.html");
+            //out.println("<!DOCTYPE html>");
+            //out.println("<html>");
+            //out.println("<head>");
+            //out.println("<title>Servlet Upload</title>");
+            //out.println("</head>");
+            //out.println("<body>");
+            //out.println("<h1>Servlet Upload at " + statusSQL + "\n" +film.statusSQL + "</h1>");
+           // out.println("</body>");
+            //out.println("</html>");
         }
     }
 
