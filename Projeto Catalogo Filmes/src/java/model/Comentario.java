@@ -172,7 +172,7 @@ public class Comentario extends ConectarDao implements IcrudDao {
                     " FROM          TB_COMENTARIO\n" +
                     " INNER JOIN    TB_FILME 	ON 	TB_FILME.ID_FILME = TB_COMENTARIO.ID_FILME\n" +
                     " INNER JOIN    TB_USUARIO 	ON 	TB_USUARIO.ID_USUARIO = TB_COMENTARIO.ID_USUARIO\n" +
-                    " WHERE     TB_FILME.ID_FILME = ?";
+                    " WHERE     TB_FILME.ID_FILME = ? ORDER BY ID_COMENTARIO";
 
             ps = con.prepareStatement(sql);
 

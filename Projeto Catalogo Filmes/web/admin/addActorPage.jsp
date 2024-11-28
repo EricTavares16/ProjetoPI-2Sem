@@ -26,7 +26,7 @@
 <body class="body">
     <nav class="container-menu">
         <div class="buttonsAreaView">
-            <div class="buttonView active"><button><a href="cadNewFilme.html"><i
+            <div class="buttonView active"><button><a href="cadNewFilme.jsp"><i
                             class="fa-solid fa-circle-plus"></i></a></button>
                 <p>Adicionar Filme</p>
             </div>
@@ -41,7 +41,7 @@
     </nav>
     <main class="container">
         <section class="container_topArea ">
-            
+             <button class="btn_return"><a href="HomeAdmin.jsp"><i class="fa-solid fa-arrow-left"></i></a></button>
             <h1>Cadastro de Atores</h1>
             <form method="post" action="../CadAtor" name="formAtor" enctype="multipart/form-data" onsubmit="formreg.oper.value = '1'">
                 <div class="container_inputs_areas">

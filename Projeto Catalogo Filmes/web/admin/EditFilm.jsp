@@ -31,7 +31,7 @@ String nomeUser = (String) session.getAttribute("nome");
     <nav class="container-menu">
         <div class="buttonsAreaView">
             <div class="buttonView active"><button style="cursor: pointer;" ><i class="fa-solid fa-circle-plus" p onclick="window.location.href='cadNewFilme.jsp'"></i></button><p>Adicionar Filme</p></div>
-            <div class="buttonView"><button style="cursor: pointer;" ><i class="fa-solid fa-user-plus" onclick="window.location.href='CadNewAtor.jsp'"></i></button><p>Adicionar Ator</p></div>
+            <div class="buttonView"><button style="cursor: pointer;" ><i class="fa-solid fa-user-plus" onclick="window.location.href='addActorPage.jsp'"></i></button><p>Adicionar Ator</p></div>
             <div class="buttonView"><button style="cursor: pointer;" ><i class="fa-solid fa-right-from-bracket" onclick="window.location.href='../logout.jsp'"></i></button><p>Logout</p></div>
         </div>
     </nav>
