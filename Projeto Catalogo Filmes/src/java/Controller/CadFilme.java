@@ -55,7 +55,9 @@ public class CadFilme extends HttpServlet {
             // Verificando a classificação para converter em um número
             if (classificacaoStr.equals("12") || classificacaoStr.equals("+12")) {
                 classificacao = 12;
-            } else if (classificacaoStr.equals("14") || classificacaoStr.equals("+14")) {
+            } if (classificacaoStr.equals("10") || classificacaoStr.equals("+10")) {
+                classificacao = 10;
+            }else if (classificacaoStr.equals("14") || classificacaoStr.equals("+14")) {
                 classificacao = 14;
             } else if (classificacaoStr.equals("16") || classificacaoStr.equals("+16")) {
                 classificacao = 16;
