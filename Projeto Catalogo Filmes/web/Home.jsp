@@ -15,7 +15,7 @@ int idFilme = 0;
 
 ArrayList<Filme> lista = filmeT.listarFilmes();   
  
-String genero = request.getParameter("genero");
+String genero = request.getParameter("categoria");
 String query = request.getParameter("query");
 
 if(query != null && !query.trim().isEmpty()){
@@ -24,29 +24,55 @@ if(query != null && !query.trim().isEmpty()){
 }
 
 if(genero != null && !genero.trim().isEmpty()){
-    if(genero.equalsIgnoreCase("Todos")){
+    if (genero.equalsIgnoreCase("Todos")) {
         lista = filmeT.listarFilmes(); 
-    }
-    if(genero.equalsIgnoreCase("Romance")){
+    } else if (genero.equalsIgnoreCase("Romance")) {
+        filmeT.setGenero(genero);
+        lista = filmeT.listarFilmes_PorGenero();
+    } else if (genero.equalsIgnoreCase("Acao")) {
+        filmeT.setGenero(genero);
+        lista = filmeT.listarFilmes_PorGenero();
+    } else if (genero.equalsIgnoreCase("Aventura")) {
+        filmeT.setGenero(genero);
+        lista = filmeT.listarFilmes_PorGenero();
+    } else if (genero.equalsIgnoreCase("Comedia")) {
+        filmeT.setGenero(genero);
+        lista = filmeT.listarFilmes_PorGenero();
+    } else if (genero.equalsIgnoreCase("Desenho")) {
+        filmeT.setGenero(genero);
+        lista = filmeT.listarFilmes_PorGenero();
+    } else if (genero.equalsIgnoreCase("Ficcao")) {
+        filmeT.setGenero(genero);
+        lista = filmeT.listarFilmes_PorGenero();
+    } else if (genero.equalsIgnoreCase("Animacao")) {
+        filmeT.setGenero(genero);
+        lista = filmeT.listarFilmes_PorGenero();
+    } else if (genero.equalsIgnoreCase("Documentario")) {
+        filmeT.setGenero(genero);
+        lista = filmeT.listarFilmes_PorGenero();
+    } else if (genero.equalsIgnoreCase("Fantasia")) {
+        filmeT.setGenero(genero);
+        lista = filmeT.listarFilmes_PorGenero();
+    } else if (genero.equalsIgnoreCase("Terror")) {
+        filmeT.setGenero(genero);
+        lista = filmeT.listarFilmes_PorGenero();
+    } else if (genero.equalsIgnoreCase("Suspense")) {
+        filmeT.setGenero(genero);
+        lista = filmeT.listarFilmes_PorGenero();
+    } else if (genero.equalsIgnoreCase("Musical")) {
+        filmeT.setGenero(genero);
+        lista = filmeT.listarFilmes_PorGenero();
+    } else if (genero.equalsIgnoreCase("Familia")) {
+        filmeT.setGenero(genero);
+        lista = filmeT.listarFilmes_PorGenero();
+    } else if (genero.equalsIgnoreCase("Misterio")) {
+        filmeT.setGenero(genero);
+        lista = filmeT.listarFilmes_PorGenero();
+    } else if (genero.equalsIgnoreCase("Historico")) {
         filmeT.setGenero(genero);
         lista = filmeT.listarFilmes_PorGenero();
     }
-    if(genero.equalsIgnoreCase("Acao")){
-        filmeT.setGenero(genero);
-        lista = filmeT.listarFilmes_PorGenero();
-    }
-    if(genero.equalsIgnoreCase("Aventura")){
-        filmeT.setGenero(genero);
-        lista = filmeT.listarFilmes_PorGenero();
-    }
-    if(genero.equalsIgnoreCase("Desenho")){
-        filmeT.setGenero(genero);
-        lista = filmeT.listarFilmes_PorGenero();
-    }
-    if(genero.equalsIgnoreCase("Ficcao")){
-        filmeT.setGenero(genero);
-        lista = filmeT.listarFilmes_PorGenero();
-    }
+
  }
    
 %>
@@ -98,34 +124,32 @@ if(genero != null && !genero.trim().isEmpty()){
                         </svg>
                     </a>
                 </div>
-               <ul class="cockpit_item flex-center">
-                   <form method="GET">
-                        <input type="hidden" name="Todos" value="Todos">
-                        <button type="submit" class="input_style filters_button">Todos</button>
-                    </form>
-                    <form method="GET">
-                        <input type="hidden" name="genero" value="Romance">
-                        <button type="submit" class="input_style filters_button">Romance</button>
-                    </form>
-                    <form method="GET">
-                        <input type="hidden" name="genero" value="Acao">
-                        <button type="submit" class="input_style filters_button">Ação</button>
-                    </form>
-                    <form method="GET">
-                        <input type="hidden" name="genero" value="Aventura">
-                        <button type="submit" class="input_style filters_button">Aventura</button>
-                    </form>
-                    <form method="GET">
-                        <input type="hidden" name="genero" value="Desenho">
-                        <button type="submit" class="input_style filters_button">Desenho</button>
-                    </form>
-                    <form method="GET">
-                        <input type="hidden" name="genero" value="Ficcao">
-                        <button type="submit" class="input_style filters_button">Ficção</button>
-                    </form>
-                </ul>
+                <form method="GET" action="" id="filterForm">
+                     <ul class="cockpit_item flex-center">
+                         <li><span>Filtro de Categoria:</span></li>
+                         <li>
+                             <select name="categoria" class="input_style filters_button" id="categoria" autocomplete="off" onchange="document.getElementById('filterForm').submit();">
+                                <option value="Todos" <%= genero != null && genero.equalsIgnoreCase("Todos") ? "selected" : "" %>>Todos</option>
+                                <option value="Romance" <%= genero != null && genero.equalsIgnoreCase("Romance") ? "selected" : "" %>>Romance</option>
+                                <option value="Acao" <%= genero != null && genero.equalsIgnoreCase("Acao") ? "selected" : "" %>>Ação</option>
+                                <option value="Aventura" <%= genero != null && genero.equalsIgnoreCase("Aventura") ? "selected" : "" %>>Aventura</option>
+                                <option value="Comedia" <%= genero != null && genero.equalsIgnoreCase("Comedia") ? "selected" : "" %>>Comédia</option>
+                                <option value="Desenho" <%= genero != null && genero.equalsIgnoreCase("Desenho") ? "selected" : "" %>>Desenho</option>
+                                <option value="Ficcao" <%= genero != null && genero.equalsIgnoreCase("Ficcao") ? "selected" : "" %>>Ficção</option>
+                                <option value="Animacao" <%= genero != null && genero.equalsIgnoreCase("Animacao") ? "selected" : "" %>>Animação</option>
+                                <option value="Documentario" <%= genero != null && genero.equalsIgnoreCase("Documentario") ? "selected" : "" %>>Documentário</option>
+                                <option value="Fantasia" <%= genero != null && genero.equalsIgnoreCase("Fantasia") ? "selected" : "" %>>Fantasia</option>
+                                <option value="Terror" <%= genero != null && genero.equalsIgnoreCase("Terror") ? "selected" : "" %>>Terror</option>
+                                <option value="Suspense" <%= genero != null && genero.equalsIgnoreCase("Suspense") ? "selected" : "" %>>Suspense</option>
+                                <option value="Musical" <%= genero != null && genero.equalsIgnoreCase("Musical") ? "selected" : "" %>>Musical</option>
+                                <option value="Familia" <%= genero != null && genero.equalsIgnoreCase("Familia") ? "selected" : "" %>>Família</option>
+                                <option value="Misterio" <%= genero != null && genero.equalsIgnoreCase("Misterio") ? "selected" : "" %>>Mistério</option>
+                                <option value="Historico" <%= genero != null && genero.equalsIgnoreCase("Historico") ? "selected" : "" %>>Histórico</option>
+                             </select>
+                         </li>
+                     </ul>
+                </form>
             </div>
-
             <section id="filmes_container">
                 <% for(Filme filme:lista){%>
                     <div class="filme_content flex-center">
