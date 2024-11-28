@@ -12,6 +12,8 @@ Filme filmeT = new Filme();
 int idFilme = 0;
 
 ArrayList<Filme> lista = filmeT.listarFilmes();   
+
+ArrayList<Filme> listaSlider = filmeT.buscaFilmes_Destaques(); 
  
 String genero = request.getParameter("categoria");
 String query = request.getParameter("query");
@@ -104,10 +106,9 @@ if(genero != null && !genero.trim().isEmpty()){
         <div class="container_carrossel">
           <div class="carousel">
             <img src="./imgs/destaque_foto.png" alt="Foto destaque" />
-            <img src="./imgs/destaque_foto.png" alt="Foto destaque" />
-            <img src="./imgs/destaque_foto.png" alt="Foto destaque" />
-            <img src="./imgs/destaque_foto.png" alt="Foto destaque" />
-            <img src="./imgs/destaque_foto.png" alt="Foto destaque" />
+            <%for(Filme filme:listaSlider) {%>
+                 <img src="data:image/png;base64,<%if(filme.capaimagemBase64 != null)out.print(filme.capaimagemBase64);%>" alt=""></img>
+            <%}%>
           </div>
         </div>
       </div>
