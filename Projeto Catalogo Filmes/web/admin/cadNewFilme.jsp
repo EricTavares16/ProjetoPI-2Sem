@@ -185,7 +185,7 @@
                                     <option value="Comédia">Comédia</option>
                                     <option value="Drama">Drama</option>
                                     <option value="Terror">Terror</option>
-                                    <option value="Ficção Científica">Ficção Científica</option>
+                                    <option value="Ficção">Ficção</option>
                                     <option value="Romance">Romance</option>
                                     <option value="Fantasia">Fantasia</option>
                                     <option value="Suspense">Suspense</option>

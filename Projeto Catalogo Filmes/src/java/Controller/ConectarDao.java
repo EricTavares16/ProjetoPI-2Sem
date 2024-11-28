@@ -61,7 +61,7 @@ Pela excessão da clausula try. */
                     + "DS_SINOPSE VARCHAR(1000) NULL,"
                     + "HR_DURACAO VARCHAR(200) NULL,"
                     + "DT_LANCAMENTO DATE  NULL,"
-                    + "VL_AVALIACAO DECIMAL(2, 1) NULL,"
+                    + "VL_AVALIACAO DECIMAL(3, 1) NULL,"
                     + "NR_CLASSIFICACAO_INDICATIVA INT NULL,"
                     + "IMG_CAPA longblob NULL,"
                     + "IMG_BANNER longblob NULL,"

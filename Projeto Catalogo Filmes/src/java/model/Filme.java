@@ -504,6 +504,44 @@ public class Filme extends ConectarDao implements IcrudDao {
         }
         return filmes;
     }
+    
+        public ArrayList<Filme> buscaFilmes_Destaques() throws IOException {
+        
+        ArrayList<Filme> filmes = new ArrayList<>();
+        
+        try {
+            
+            sql =  "SELECT IMG_CAPA FROM TB_FILME WHERE VL_AVALIACAO >= 8;";
+            
+            ps = con.prepareStatement(sql);
+        
+            tab = ps.executeQuery();
+
+            String capaFilm = "";
+
+            while(tab.next()) {
+                
+                Blob blobCapa = (Blob) tab.getBlob(1);
+
+                if (blobCapa == null) {
+                    capaimagemBase64 = null;
+                } else {
+                    capa = blobCapa.getBinaryStream();
+                    byte[] buffer = new byte[(int) blobCapa.length()];
+                    capa.read(buffer);
+                    capaFilm = capaimagemBase64 = Base64.getEncoder().encodeToString(buffer);
+                }
+                
+                filmes.add(new Filme(capaFilm));
+                
+            }
+            this.statusSQL = null;
+        } catch (SQLException ex) {
+            this.statusSQL = "Erro ao buscar filmes: " + ex.getMessage();
+            return null;
+        }
+        return filmes;
+    }
 
     @Override
     public boolean salvar() {

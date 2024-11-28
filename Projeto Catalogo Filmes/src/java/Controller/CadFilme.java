@@ -162,7 +162,7 @@ public class CadFilme extends HttpServlet {
         
         
         try (PrintWriter out = response.getWriter()) {
-            //response.sendRedirect("./loadingFilm.html");
+            response.sendRedirect("./loadingFilm.html");
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
