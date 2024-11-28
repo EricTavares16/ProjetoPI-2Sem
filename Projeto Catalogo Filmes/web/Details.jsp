@@ -51,20 +51,21 @@
   
   boolean isFav = false;
   
+  isFav = fav.getFavorito();
+  
   if(favInput != null && !favInput.trim().isEmpty()){
-    
-    isFav = fav.getFavorito();
     
     if(isFav != false){
         fav.deletar();
+        isFav = false;
     } else {
         fav.IncluirFavorito();
+        isFav = true;
     }
   
 
-  }
+  } 
     
-
 %>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -72,11 +73,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%=FilmeBuscado.getNome()%> - Feedback Cinema</title>
-    <link rel="stylesheet" href="./global.css">
+     <link rel="stylesheet" href="./global.css">
     <link rel="stylesheet" href="./details.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100,200,300,400,500,600,700,800,900;1,100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -90,22 +93,42 @@
                 <h1><%= FilmeBuscado.getNome() %> </h1>
                 <div class="info_details flex">
                     <span><%= nmGenero %></span>
-                    <span><%= FilmeBuscado.getAvaliacao()%></span>
+                    <span class="stars-details"><i class="fa-solid fa-star"></i><%= FilmeBuscado.getAvaliacao()%></span>
                     <span><%= Lancamento%></span>
-                    <span><%= FilmeBuscado.getClassificacao()%></span>
-                    <span><%= FilmeBuscado.getDuracao() %></span>
+                    <span><div class="censure-details"><%= FilmeBuscado.getClassificacao() == 0 ? "livre" : FilmeBuscado.getClassificacao()%></div></span>
+                    <%
+                        int totalMinutes = Integer.parseInt(FilmeBuscado.getDuracao());
+                        String duracaoFormatada;
+
+                        if (totalMinutes < 60) {
+                            duracaoFormatada = totalMinutes + "min";
+                        } else {
+                            int hours = totalMinutes / 60;
+                            int remainingMinutes = totalMinutes % 60;
+
+                            if (remainingMinutes == 0) {
+                                duracaoFormatada = hours + "H";
+                            } else {
+                                duracaoFormatada = hours + "H" + remainingMinutes;
+                            }
+                        }
+                    %>
+                    <span><%= duracaoFormatada %></span>
                 </div>
                 <p><%= FilmeBuscado.getSinopse() %> </p>
                 <div class="buttons_container flex">
                     <form method="POST">
                         <input type="hidden" name="Favoritar" value="true">
-                        <button class="favoritar input_style" type="submit">Favoritar</button>
+                       <button class="favoritar input_style" type="submit">
+                            <i class="<%= isFav ? "fa-solid fa-bookmark" : "fa-regular fa-bookmark" %>"></i>Favoritar
+                        </button>
                     </form>
                     <a href="#comentar_no_filme" class="comentar input_style">Comentar</a>
                 </div>
             </div>
         </div>
     </div>
+                 
     <main class="big_container flex-center">
         <div class="container ">
 
