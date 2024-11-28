@@ -150,6 +150,10 @@ public class Filme extends ConectarDao implements IcrudDao {
         this.capaimagemBase64 = capaimagemBase64;
     }
 
+    public Filme(String capaimagemBase64){
+        this.capaimagemBase64 = capaimagemBase64;
+    }
+    
     public Filme() {
     }
 
@@ -242,7 +246,7 @@ public class Filme extends ConectarDao implements IcrudDao {
 
             this.statusSQL = null;
         } catch (SQLException ex) {
-            this.statusSQL = "Erro ao incluir usuario ! <br> " + ex.getMessage();
+            this.statusSQL = "Erro ao Listar Filmes ! <br> " + ex.getMessage();
         } catch (IOException ex) {
             Logger.getLogger(Filme.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -302,7 +306,7 @@ public class Filme extends ConectarDao implements IcrudDao {
 
             this.statusSQL = null;
         } catch (SQLException ex) {
-            this.statusSQL = "Erro ao incluir usuario ! <br> " + ex.getMessage();
+            this.statusSQL = "Erro ao Listar Filmes ! <br> " + ex.getMessage();
         } catch (IOException ex) {
             Logger.getLogger(Filme.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -461,6 +465,44 @@ public class Filme extends ConectarDao implements IcrudDao {
             return null;
         }
         return FilmeBuscado;
+    }
+    
+    public ArrayList<Filme> getFavsByIdUser(int idUser) throws IOException {
+        
+        ArrayList<Filme> filmes = new ArrayList<>();
+        
+        try {
+            
+            sql =   "SELECT IMG_CAPA FROM TB_FAVORITO INNER JOIN TB_FILME ON TB_FILME.ID_FILME = TB_FAVORITO.ID_FILME WHERE ID_USUARIO = ?";
+            
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, idUser);
+            tab = ps.executeQuery();
+
+            String capaFilm = "";
+
+            while(tab.next()) {
+                
+                Blob blobCapa = (Blob) tab.getBlob(1);
+
+                if (blobCapa == null) {
+                    capaimagemBase64 = null;
+                } else {
+                    capa = blobCapa.getBinaryStream();
+                    byte[] buffer = new byte[(int) blobCapa.length()];
+                    capa.read(buffer);
+                    capaFilm = capaimagemBase64 = Base64.getEncoder().encodeToString(buffer);
+                }
+                
+                filmes.add(new Filme(capaFilm));
+                
+            }
+            this.statusSQL = null;
+        } catch (SQLException ex) {
+            this.statusSQL = "Erro ao buscar filmes: " + ex.getMessage();
+            return null;
+        }
+        return filmes;
     }
 
     @Override

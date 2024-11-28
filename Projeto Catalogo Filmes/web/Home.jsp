@@ -6,9 +6,7 @@
 
 <% 
 
-Usuario user = new Usuario();
 Usuario userLogado = (Usuario) session.getAttribute("usuarioLogado");
-String nomeUser = (String) session.getAttribute("nome");
 
 Filme filmeT = new Filme();
 int idFilme = 0;
@@ -25,7 +23,7 @@ if(query != null && !query.trim().isEmpty()){
 
 if(genero != null && !genero.trim().isEmpty()){
     if (genero.equalsIgnoreCase("Todos")) {
-        lista = filmeT.listarFilmes(); 
+        response.sendRedirect("Home.jsp");
     } else if (genero.equalsIgnoreCase("Romance")) {
         filmeT.setGenero(genero);
         lista = filmeT.listarFilmes_PorGenero();
@@ -91,13 +89,10 @@ if(genero != null && !genero.trim().isEmpty()){
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100,200,300,400,500,600,700,800,900;1,100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- DESTAQUES DA PLATAFORMA -->
+    <!-- Carrossel -->
     <header class="big_container flex-center" id="Destaques">
-        <div class="destaques_carrossel">
-            <img src="./imgs/destaque_foto.png" alt="Foto do filme destaque do sistema">
-        </div>
-        <div class="container">
-            <a href="userPage.jsp" class="avatar_image flex-center">
+      <div class="container">
+        <a href="userPage.jsp" class="avatar_image flex-center">
                 <%
                     if (userLogado == null) {
                         response.sendRedirect("login.jsp"); // Substitua "login.jsp" pela página de destino
@@ -105,9 +100,17 @@ if(genero != null && !genero.trim().isEmpty()){
                 %>
 
             <img src="data:image/png;base64,<%if(userLogado.imagemBase64 != null)out.print(userLogado.imagemBase64);%>" alt="<%out.print(userLogado.email);%>">
-            </a>
-            <a href="Details.jsp" class="input_style btn_detalhes_destaque" onclick="window.location.href='Details.jsp?valor=<%=idFilme%>'; return false;">Detalhes</a>
+        </a>
+        <div class="container_carrossel">
+          <div class="carousel">
+            <img src="./imgs/destaque_foto.png" alt="Foto destaque" />
+            <img src="./imgs/destaque_foto.png" alt="Foto destaque" />
+            <img src="./imgs/destaque_foto.png" alt="Foto destaque" />
+            <img src="./imgs/destaque_foto.png" alt="Foto destaque" />
+            <img src="./imgs/destaque_foto.png" alt="Foto destaque" />
+          </div>
         </div>
+      </div>
     </header>
     <main class="big_container flex-center">
         <div class="container">
@@ -118,7 +121,7 @@ if(genero != null && !genero.trim().isEmpty()){
                     <form id="searchForm"  method="GET">
                         <input type="text"  id="searchInput" name="query"  placeholder="Pesquisar" class="input_style">
                     </form>
-                    <a href="#" class="input_style">
+                    <a href="favorite.jsp" class="input_style">
                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="22" viewBox="0 0 18 22" fill="none">
                             <path d="M17 21L9 15.4444L1 21V3.22222C1 2.63285 1.24082 2.06762 1.66947 1.65087C2.09812 1.23413 2.67951 1 3.28571 1H14.7143C15.3205 1 15.9019 1.23413 16.3305 1.65087C16.7592 2.06762 17 2.63285 17 3.22222V21Z" stroke="#665E66" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
@@ -171,5 +174,6 @@ if(genero != null && !genero.trim().isEmpty()){
         });
     </script>
     <script src="scriptGlobal.js"></script>
+    <script src="carrossel.js"></script>
 </body>
 </html>
